@@ -1,0 +1,46 @@
+{
+  "name": "transmute-core",
+  "version": "0.1.0",
+  "description": "Transmute, to change or alter in form, appearance, or nature and especially to a higher form",
+  "main": "./app/index.js",
+  "scripts": {
+    "test": "nyc --reporter=text mocha test/**.spec.js",
+    "coverage": "nyc report --reporter=text-lcov npm test | coveralls"
+  },
+  "bin": {
+    "transmute": "./app/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/transmutejs/core.git"
+  },
+  "keywords": [
+    "transcode",
+    "media",
+    "h265",
+    "h264",
+    "ffmpeg"
+  ],
+  "author": "Jamie Holdroyd <jamie.holdroyd@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/transmutejs/core/issues"
+  },
+  "homepage": "https://github.com/transmutejs/core#readme",
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "chai-as-promised": "^7.1.1",
+    "coveralls": "^2.13.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.5.0",
+    "nyc": "^11.1.0"
+  },
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "commander": "^2.11.0",
+    "dotenv": "^4.0.0",
+    "i18n": "^0.8.3",
+    "winston": "^2.3.1",
+    "winston-daily-rotate-file": "^1.4.6"
+  }
+}
