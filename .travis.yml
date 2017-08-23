@@ -22,4 +22,4 @@ after_success:
   - npm run coverage
 
 env:
-  - ENV=development LOG_DIR=logs
+  - ENV=development LOG_DIR=logs LOCALE=en
