@@ -6,7 +6,7 @@ const glob = require('glob'),
       logger = require('../log');
 
 // Build a list of the available locale files in a given directory
-function availableLocales(dir) {
+module.exports = function(dir) {
 
   // Variables
   let available = [];
@@ -23,7 +23,4 @@ function availableLocales(dir) {
   });
 
   return available;
-}
-
-// Send it back
-module.exports = availableLocales;
+};
