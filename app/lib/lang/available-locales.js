@@ -23,7 +23,7 @@ function availableLocales(dir) {
   });
 
   return available;
-};
+}
 
 // Send it back
 module.exports = availableLocales;

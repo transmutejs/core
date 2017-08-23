@@ -30,7 +30,7 @@ module.exports = function(options, char) {
       // Assign value or create object
       iobj[ikey] = ( ( i + 1 === arr.length) ? options[key] : iobj[ikey] || {} );
       return iobj[ikey];
-    }, clone)
+    }, clone);
 
     return clone;
   }, {});

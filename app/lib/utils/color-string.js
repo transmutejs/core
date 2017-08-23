@@ -1,7 +1,8 @@
 'use strict';
 
 // Load requirements
-const chalk = require('chalk');
+const clk = require('chalk'),
+      chalk = new clk.constructor({level: 1, enabled: true});
 
 // Formats a string with ANSI styling
 module.exports = function(str) {
