@@ -19,20 +19,11 @@ i18n.configure({
   api: {
     '__': 'lang',
     '__n': 'plural'
-  },
-  logDebugFn: (msg) => {
-    return logger.debug(msg);
-  }, 
-  logWarnFn: (msg) => {
-    return logger.warn(msg);
-  },
-  logErrorFn: (msg) => {
-    return logger.error(msg);
   }
 });
 
 // Set the default locale
-i18n.setLocale(( process.env.LANG !== undefined ? process.env.LANG : 'en' ));
+i18n.setLocale( process.env.LOCALE || 'en' );
 
 // Export for future use
 module.exports = i18n;
