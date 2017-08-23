@@ -6,5 +6,6 @@ describe('Utils module', () => {
   // Load sub-module specs
   require('./utils/color-string.spec');
   require('./utils/nest-options.spec');
+  require('./utils/uid.spec');
 
 });
