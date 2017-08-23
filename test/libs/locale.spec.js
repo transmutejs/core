@@ -24,7 +24,7 @@ describe('Locale module', () => {
 
   it('should default to the locale specified in env', () => {
     expect(i18n.getLocale()).to.be.a('string')
-                            .that.equals( process.env.LANG || 'en' );
+                            .that.equals( process.env.LOCALE || 'en' );
   });
 
   it('should allow changing of the localization', () => {
@@ -34,7 +34,7 @@ describe('Locale module', () => {
     expect(i18n.getLocale()).to.be.a('string')
                             .that.equals('de');
 
-    i18n.setLocale( process.env.LANG || 'en' );
+    i18n.setLocale( process.env.LOCALE || 'en' );
   });
 
 });
