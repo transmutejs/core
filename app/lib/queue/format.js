@@ -20,9 +20,10 @@ module.exports = {
     // Check for an array and recurse
     if ( Array.isArray(format) ) {
       return format.every((item) => { return this.add(item); });
+    }
 
     // Not a string, can't do anything with it
-    } else if ( typeof format !== 'string' ) {
+    if ( typeof format !== 'string' ) {
       return false;
     }
 
@@ -47,9 +48,10 @@ module.exports = {
     // Check for an array and recurse
     if ( Array.isArray(format) ) {
       return format.every((item) => { return this.remove(item); });
+    }
 
     // Not a string, can't do anything with it
-    } else if ( typeof format !== 'string' ) {
+    if ( typeof format !== 'string' ) {
       return false;
     }
 
@@ -98,7 +100,14 @@ module.exports = {
 
   // Builds a regex pattern from the format arary
   regex: function() {
-    return new RegExp('\.(' + this.formats.join('|') + ')$', 'i');
+
+    // Run through formats and make them safe
+    let cleanFormats = this.formats.map((item) => {
+      return item.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    });
+
+    // Build the regex object
+    return new RegExp('\.(' + cleanFormats.join('|') + ')$', 'i');
   },
 
   // Does a given filename/path match the available formats
@@ -107,14 +116,15 @@ module.exports = {
     // Check for an array and recurse
     if ( Array.isArray(file) ) {
       return file.every((item) => { return this.match(item); });
+    }
 
     // Not a string, can't do anything with it
-    } else if ( typeof file !== 'string' ) {
+    if ( typeof file !== 'string' ) {
       return false;
     }
 
     // Send back the result
-    return file.trim().match(this.pattern);
+    return file.trim().match(this.pattern) !== null ? true : false;
   }
 
 };
