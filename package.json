@@ -1,15 +1,14 @@
 {
   "name": "transmutejs",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Transmute, to change or alter in form, appearance, or nature and especially to a higher form",
   "main": "./app/index.js",
   "scripts": {
     "test": "ENV=test nyc --reporter=html --reporter=text mocha test/**.spec.js",
     "coverage": "ENV=test nyc report --reporter=text-lcov npm test | coveralls",
-    "dist": "",
     "preversion": "npm test",
     "preversion:readme": "replace '/v\\d+\\.\\d+\\.\\d+' \"/v$npm_package_version\" ./README.md",
-    "version": "npm run preversion:readme && npm run dist && git add -A dist README.md",
+    "version": "npm run preversion:readme && git add -A dist README.md",
     "postversion": "git push && git push --tags && npm publish"
   },
   "bin": {
