@@ -2,5 +2,6 @@
 
 module.exports = {
   format: require('./format'),
-  listing: require('./listing')
+  listing: require('./listing'),
+  add: require('./add')
 };

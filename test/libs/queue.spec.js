@@ -10,7 +10,8 @@ const queue = require('../../app/lib/queue');
 // Define the available functions
 const queueFunctions = [
   'format',
-  'listing'
+  'listing',
+  'add'
 ];
 
 // Convert string to camelCase
