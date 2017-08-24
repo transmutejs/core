@@ -5,7 +5,11 @@
   "main": "./app/index.js",
   "scripts": {
     "test": "ENV=test nyc --reporter=html --reporter=text mocha test/**.spec.js",
-    "coverage": "ENV=test nyc report --reporter=text-lcov npm test | coveralls"
+    "coverage": "ENV=test nyc report --reporter=text-lcov npm test | coveralls",
+    "preversion": "npm test",
+    "preversion:readme": "replace '/v\\d+\\.\\d+\\.\\d+' \"/v$npm_package_version\" ./README.md",
+    "version": "npm run preversion:readme && npm run dist && git add -A dist README.md",
+    "postversion": "git push && git push --tags && npm publish"
   },
   "bin": {
     "transmute": "./app/index.js"
@@ -38,6 +42,7 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.5.0",
     "nyc": "^11.1.0",
+    "replace": "^0.3.0",
     "sinon": "^3.2.1",
     "sinon-chai": "^2.13.0"
   },
