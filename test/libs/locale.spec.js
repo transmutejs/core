@@ -11,7 +11,7 @@ const i18n = require('../../app/lib/locale');
 describe('Locale module', () => {
 
   it('should export an object', () => {
-    expect(i18n).to.be.a('object');
+    expect(i18n).to.be.an('object');
   });
 
   it('should add "lang" function to the global space', () => {

@@ -37,7 +37,9 @@
     "grunt-run": "^0.7.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.5.0",
-    "nyc": "^11.1.0"
+    "nyc": "^11.1.0",
+    "sinon": "^3.2.1",
+    "sinon-chai": "^2.13.0"
   },
   "dependencies": {
     "chalk": "^2.1.0",

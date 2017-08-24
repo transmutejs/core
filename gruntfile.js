@@ -13,11 +13,16 @@ module.exports = (grunt) => {
       node: true,
       esversion: 6,
       strict: false,
+      expr: true,
       globals: {
         describe: false,
         it: false,
         lang: false,
-        plural: false
+        plural: false,
+        before: false,
+        after: false,
+        beforeEach: false,
+        afterEach: false
       }
     }
   });
