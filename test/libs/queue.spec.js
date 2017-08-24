@@ -28,9 +28,13 @@ describe('Queue module', () => {
     expect(queue).to.be.an('object');
   });
 
-  it('should contain the ' + queueFunctions.length + ' expected functions', () => {
+  it('should contain 3 properties', () => {
+    expect(queue).to.have.property('items').that.is.an('object');
+    expect(queue).to.have.property('total').that.is.a('number');
+    expect(queue).to.have.property('current').that.is.a('number');
+  });
 
-    expect(Object.keys(queue)).to.have.length(queueFunctions.length);
+  it('should contain the ' + queueFunctions.length + ' expected functions', () => {
 
     queueFunctions.forEach((func) => {
 
