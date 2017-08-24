@@ -5,8 +5,12 @@ const path = require('path'),
       fs = require('fs');
 
 // Helper method to check for a file
+function exists(file) {
+  return fs.existsSync(file);
+}
+
 function isFile(file) {
-  return fs.lstatSync(file).isFile();
+  return ( exists(file) ? fs.lstatSync(file).isFile() : false );
 }
 
 module.exports = function(directory, seasons) {
@@ -58,13 +62,13 @@ module.exports = function(directory, seasons) {
       });
     }
 
+    // Invalid directory
+    if ( ! exists(directory) ) {
+      return reject('invalid directory "' + directory + '"');
+    }
+
     // Directory listing
     fs.readdir(directory, (err, result) => {
-
-      // Was there a problem
-      if ( err !== null ) {
-        return reject(err.message);
-      }
       
       // Loop the available files
       result.forEach((file) => {

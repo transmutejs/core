@@ -106,19 +106,28 @@ describe('Function "listing"', () => {
     return expect(listingResult).to.be.rejected;
   });
 
+  it('should return an empty array when an empty directory is provided', () => {
+
+    let listingResult = queue.listing(directory, ['Empty Directory']);
+    
+    return expect(listingResult).to.eventually.be.an('array')
+                                .to.have.nested.property('[0].files')
+                                .and.be.empty;
+  });
+
   it('should reject when an invalid season is provided', () => {
     
-    let listingResult = queue.listing(directory, ['not-a-valid-season-i-hope']);
+    let listingResult = queue.listing(directory, ['not-a-valid-season']);
     
     return expect(listingResult).to.be.rejected;
   });
 
   it('should reject when an invalid directory is provided', () => {
 
-    let file = path.join(directory, 'not-a-valid-directory-i-hope');
-    
+    let file = path.join(directory, 'not-a-valid-directory');
+
     let listingResult = queue.listing(file);
-    
+
     return expect(listingResult).to.be.rejected;
   });
 
