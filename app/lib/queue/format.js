@@ -15,7 +15,7 @@ module.exports = {
 
     // Check for an array and recurse
     if ( Array.isArray(format) ) {
-      return format.all((item) => { return this.add(item); });
+      return format.every((item) => { return this.add(item); });
 
     // Not a string, can't do anything with it
     } else if ( typeof format !== 'string' ) {
@@ -23,7 +23,7 @@ module.exports = {
     }
 
     // Already in the list, skip but don't fail
-    if ( this.formats.include(format) ) {
+    if ( this.formats.includes(format) ) {
       return true;
     }
 
@@ -39,7 +39,7 @@ module.exports = {
 
     // Check for an array and recurse
     if ( Array.isArray(format) ) {
-      return format.all((item) => { return this.remove(item); });
+      return format.every((item) => { return this.remove(item); });
 
     // Not a string, can't do anything with it
     } else if ( typeof format !== 'string' ) {
@@ -90,7 +90,7 @@ module.exports = {
 
     // Check for an array and recurse
     if ( Array.isArray(file) ) {
-      return file.all((item) => { return this.match(item); });
+      return file.every((item) => { return this.match(item); });
 
     // Not a string, can't do anything with it
     } else if ( typeof file !== 'string' ) {
