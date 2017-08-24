@@ -1,6 +1,6 @@
 {
   "name": "transmutejs",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Transmute, to change or alter in form, appearance, or nature and especially to a higher form",
   "main": "./app/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "coverage": "ENV=test nyc report --reporter=text-lcov npm test | coveralls",
     "preversion": "npm test",
     "preversion:readme": "replace '/v\\d+\\.\\d+\\.\\d+' \"/v$npm_package_version\" ./README.md",
-    "version": "npm run preversion:readme && git add -A dist README.md",
+    "version": "npm run preversion:readme && git add -A README.md",
     "postversion": "git push && git push --tags && npm publish"
   },
   "bin": {
