@@ -1,12 +1,14 @@
 'use strict';
 
+const defaultFormats = ['mkv', 'mp4', 'avi', 'flv', 'mov', 'wmv'];
+
 module.exports = {
 
   // The default formats to support
-  formats: ['mkv', 'mp4', 'avi', 'flv', 'mov', 'wmv'],
+  formats: defaultFormats,
 
   // Regex pattern to handle extension matching of the above formats
-  pattern: /\.(mkv|mp4|avi|flv|mov|wmv)$/,
+  pattern: new RegExp('\.(' + defaultFormats.join('|') + ')$'),
 
   // Add a new format to the available list
   add: function(format) {
@@ -64,6 +66,16 @@ module.exports = {
 
     // Add a generic regex pattern
     this.pattern = /\.([a-z0-9]{2,5})$/gi;
+
+    return true;
+  },
+
+  // Resets the available formats
+  reset: function() {
+
+    // Reset and generate regex pattern
+    this.formats = defaultFormats;
+    this.pattern = this.regex();
 
     return true;
   },
