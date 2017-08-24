@@ -14,7 +14,8 @@ module.exports = function(directory, seasons) {
 
     // Variables
     let tasks = [],
-        files = [];
+        files = [],
+        promises = [];
 
     // Normalize the search directory
     directory = path.normalize(directory);
@@ -30,14 +31,37 @@ module.exports = function(directory, seasons) {
       return resolve(tasks);
     }
 
+    // Handle seasons
+    if ( seasons !== undefined && Array.isArray(seasons) ) {
 
+      // Loop through the supplied seasons
+      seasons.forEach((season) => {
+
+        // Clean up season
+        season = season.toString().trim();
+
+        // Format the season directory path
+        let seasonSub = ( parseInt(season) > 0 ? 'Season ' + season : season ),
+            seasonDir = path.normalize(path.join(directory + '/' + seasonSub));
+
+        // Push into promise queue
+        promises.push(this.listing(seasonDir, season));
+      });
+
+      // Handle the promise resolution
+      return Promise.all(promises).then((data) => {
+        return resolve(data.map((season) => { return season[0]; }));
+      }).catch((err) => {
+        return reject(err.message || err);
+      });
+    }
 
     // Directory listing
     fs.readdir(directory, (err, result) => {
 
       // Was there a problem
       if ( err !== null ) {
-        return reject(err);
+        return reject(err.message);
       }
       
       // Loop the available files
@@ -53,7 +77,7 @@ module.exports = function(directory, seasons) {
       });
 
       // Push files into array and resolve
-      tasks.push({season: false , files: files});
+      tasks.push({season: seasons || false, files: files});
       return resolve(tasks);
     });
   });
