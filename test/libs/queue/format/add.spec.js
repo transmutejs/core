@@ -10,6 +10,8 @@ const format = require('../../../../app/lib/queue/format');
 // Describe the module
 describe('Function "add"', () => {
 
+  beforeEach(() => { format.reset(); });
+
   afterEach(() => { format.reset(); });
 
   it('should export a function', () => {
