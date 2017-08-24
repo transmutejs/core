@@ -22,6 +22,11 @@ module.exports = function(directory, seasons) {
         files = [],
         promises = [];
 
+    // Reject without a directory
+    if ( ! directory ) {
+      return reject('No file or directory provided');
+    }
+
     // Normalize the search directory
     directory = path.normalize(directory);
 
