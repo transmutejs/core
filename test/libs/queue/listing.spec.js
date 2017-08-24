@@ -58,19 +58,32 @@ describe('Function "listing"', () => {
     let listingResult = queue.listing(directory);
 
     return expect(listingResult).to.eventually.be.an('array')
+                                .to.have.nested.property('[0].files[0]')
+                                .and.match(queue.format.regex());
+  });
+
+  it('should produce an array of objects when given seasons', () => {
+
+    let listingResult = queue.listing(directory, [1, 2]);
+
+    return expect(listingResult).to.eventually.be.an('array')
                                 .to.have.nested.property('[0].files[0]');
   });
 
-  it('should produce an array of arrays when given seasons', () => {
-
-  });
-
   it('should reject when an invalid season is provided', () => {
-
+    
+    let listingResult = queue.listing(directory, ['not-a-valid-season-i-hope']);
+    
+    return expect(listingResult).to.be.rejected;
   });
 
   it('should reject when an invalid directory is provided', () => {
 
+    let file = path.join(directory, 'not-a-valid-directory-i-hope');
+    
+    let listingResult = queue.listing(file);
+    
+    return expect(listingResult).to.be.rejected;
   });
 
 });
