@@ -30,13 +30,11 @@ describe('Utils module', () => {
 
   it('should contain the ' + utilFunctions.length + ' expected functions', () => {
 
-    expect(Object.keys(utils)).to.have.length(utilFunctions.length);
-
     utilFunctions.forEach((func) => {
 
       let property = camelCase(func);
 
-      expect(utils[property]).to.be.a('function');
+      expect(utils).to.have.property(property).that.is.a('function');
     });  
   });
 
