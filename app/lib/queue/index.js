@@ -18,5 +18,6 @@ module.exports = {
   // Load our sub-modules
   format: require('./format'),
   listing: require('./listing'),
-  add: require('./add')
+  add: require('./add'),
+  prepare: require('./prepare')
 };

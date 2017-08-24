@@ -11,7 +11,8 @@ const queue = require('../../app/lib/queue');
 const queueFunctions = [
   'format',
   'listing',
-  'add'
+  'add',
+  'prepare'
 ];
 
 // Convert string to camelCase
