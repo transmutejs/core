@@ -18,7 +18,8 @@ describe('Function "add"', () => {
 
     let addResult = queue.add();
 
-    expect(addResult).to.be.a('promise');
+    return expect(addResult).to.be.a('promise')
+                            .and.to.eventually.be.rejected;
   });
 
   it('should add x items to the queue', () => {

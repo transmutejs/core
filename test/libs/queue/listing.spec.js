@@ -25,7 +25,8 @@ describe('Function "listing"', () => {
 
     let listingResult = queue.listing();
 
-    expect(listingResult).to.be.a('promise');
+    return expect(listingResult).to.be.a('promise')
+                                .and.to.eventually.be.rejected;
   });
 
   it('should be rejected with no input', () => {
