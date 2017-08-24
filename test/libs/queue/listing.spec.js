@@ -1,7 +1,8 @@
 'use strict';
 
 // Load requirements
-const path = require('path');
+const path = require('path'),
+      fs = require('fs');
 
 // Load chai
 const chai = require('chai');
@@ -108,7 +109,13 @@ describe('Function "listing"', () => {
 
   it('should return an empty array when an empty directory is provided', () => {
 
-    let listingResult = queue.listing(directory, ['Empty Directory']);
+    let emptyDir = path.join(directory, 'Empty Directory');
+
+    fs.mkdirSync(emptyDir);
+
+    let listingResult = queue.listing(emptyDir);
+
+    fs.rmdirSync(emptyDir);
     
     return expect(listingResult).to.eventually.be.an('array')
                                 .to.have.nested.property('[0].files')
