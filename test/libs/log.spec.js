@@ -5,7 +5,7 @@ const path = require('path'),
       fs = require('fs');
 
 // Variables
-let loggerDir = path.resolve('./' + ( process.env.LOG_DIR || 'logs' ));
+let loggerDir = path.resolve('./logs');
 
 // Load chai
 const chai = require('chai');

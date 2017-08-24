@@ -10,7 +10,7 @@ const winston = require('winston'),
 require('winston-daily-rotate-file');
 
 // Get log directory
-let logDirectory = path.resolve('./' + ( process.env.LOG_DIR || 'logs' ));
+let logDirectory = path.resolve('./logs');
 
 // Ensure the directory exists
 fs.mkdir(logDirectory, (err) => { return; });
@@ -23,7 +23,7 @@ const logger = new (winston.Logger)({
       colorize: true
     }),
     new (winston.transports.DailyRotateFile)({
-      filename: path.join(logDirectory, ( process.env.ENV || 'development' ) + '.'),
+      filename: path.join(logDirectory, process.env.ENV + '.'),
       datePattern: 'yyyy-MM-dd.log',
       level: process.env.LOG_LEVEL
     })
