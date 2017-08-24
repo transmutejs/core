@@ -4,11 +4,12 @@
 const path = require('path'),
       fs = require('fs');
 
-// Helper method to check for a file
+// Helper method to check a file or directory exists
 function exists(file) {
   return fs.existsSync(file);
 }
 
+// Helper method to check for a file
 function isFile(file) {
   return ( exists(file) ? fs.lstatSync(file).isFile() : false );
 }
