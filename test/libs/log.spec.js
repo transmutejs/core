@@ -50,7 +50,7 @@ describe('Log module', () => {
     expect(loggerResult).to.equal('foo \u001b[31mbar\u001b[39m');
   });
 
-  it('should export a bunch of functions', () => {
+  it('should export 6 helper functions', () => {
 
     let methods = ['error', 'warn', 'info', 'verbose', 'debug', 'silly'];
 

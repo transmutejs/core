@@ -10,36 +10,34 @@ const winston = require('winston'),
 require('winston-daily-rotate-file');
 
 // Get log directory
-let dir = path.resolve('./' + ( process.env.LOG_DIR || 'logs' ));
+let logDirectory = path.resolve('./' + ( process.env.LOG_DIR || 'logs' ));
 
 // Ensure the directory exists
-if ( ! fs.existsSync(dir) ) {
-  fs.mkdirSync(dir);
-}
+fs.mkdir(logDirectory, (err) => { return; });
 
 // Setup the logger interfaces for console, file and exception handling
 const logger = new (winston.Logger)({
   transports: [
     new (winston.transports.Console)({
-      level: ( process.env.ENV === 'development' ? 'debug' : 'info' ),
+      level: process.env.CONSOLE_LEVEL,
       colorize: true
     }),
     new (winston.transports.DailyRotateFile)({
-      filename: path.join(dir, process.env.ENV + '.'),
+      filename: path.join(logDirectory, process.env.ENV + '.'),
       datePattern: 'yyyy-MM-dd.log',
-      level: ( process.env.ENV === 'development' ? 'debug' : 'warning' )
+      level: process.env.LOG_LEVEL
     })
   ],
   exceptionHandlers: [
     new (winston.transports.DailyRotateFile)({
-      filename: path.join(dir, 'exceptions.'),
+      filename: path.join(logDirectory, 'exceptions.'),
       datePattern: 'yyyy-MM-dd.log'
     })
   ]
 });
 
 // Add colorize support
-logger.filters.push(function(level, msg, meta) {
+logger.filters.push((level, msg, meta) => {
   return utils.colorString(msg);
 });
 
