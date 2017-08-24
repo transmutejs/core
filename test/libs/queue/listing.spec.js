@@ -53,21 +53,57 @@ describe('Function "listing"', () => {
                                 .with.length(2);
   });
 
-  it('should only return files in the specified formats', () => {
+  it('should only return files in the specified formats', (done) => {
     
-    let listingResult = queue.listing(directory);
+    queue.listing(directory).then((result) => {
 
-    return expect(listingResult).to.eventually.be.an('array')
-                                .to.have.nested.property('[0].files[0]')
-                                .and.match(queue.format.regex());
+      expect(result).to.be.an('array');
+
+      result[0].files.forEach((file) => {
+        expect(file).to.be.a('string')
+                    .and.to.match(queue.format.pattern);
+      });
+
+      return done();
+    }).catch((err) => {
+      return done(err);
+    });
   });
 
-  it('should produce an array of objects when given seasons', () => {
+  it('should produce an array of objects when given seasons', (done) => {
 
-    let listingResult = queue.listing(directory, [1, 2]);
+    queue.listing(directory, [1, 2]).then((result) => {
 
-    return expect(listingResult).to.eventually.be.an('array')
-                                .to.have.nested.property('[0].files[0]');
+      expect(result).to.be.an('array');
+
+      result.forEach((season) => {
+
+        expect(season).to.have.all.keys(['season', 'files'])
+                      .and.property('files').not.be.empty;
+
+        expect(season.season).to.be.a('string')
+                             .and.to.match(/[1|2]/);
+
+        season.files.forEach((file) => {
+          expect(file).to.be.a('string')
+                      .and.to.match(queue.format.pattern);
+        });
+
+      });
+
+      return done();
+    }).catch((err) => {
+      return done(err);
+    });
+  });
+
+  it('should reject when an invalid file format is provided', () => {
+    
+    let file = path.join(directory, 'invalid file.ext');
+
+    let listingResult = queue.listing(file);
+    
+    return expect(listingResult).to.be.rejected;
   });
 
   it('should reject when an invalid season is provided', () => {
