@@ -23,7 +23,7 @@ const logger = new (winston.Logger)({
       colorize: true
     }),
     new (winston.transports.DailyRotateFile)({
-      filename: path.join(logDirectory, process.env.ENV + '.'),
+      filename: path.join(logDirectory, ( process.env.ENV || 'development' ) + '.'),
       datePattern: 'yyyy-MM-dd.log',
       level: process.env.LOG_LEVEL
     })
@@ -31,7 +31,8 @@ const logger = new (winston.Logger)({
   exceptionHandlers: [
     new (winston.transports.DailyRotateFile)({
       filename: path.join(logDirectory, 'exceptions.'),
-      datePattern: 'yyyy-MM-dd.log'
+      datePattern: 'yyyy-MM-dd.log',
+      humanReadableUnhandledException: true
     })
   ]
 });
