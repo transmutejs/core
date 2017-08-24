@@ -22,8 +22,5 @@ i18n.configure({
   }
 });
 
-// Set the default locale
-i18n.setLocale( process.env.LOCALE || 'en' );
-
 // Export for future use
 module.exports = i18n;
