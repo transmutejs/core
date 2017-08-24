@@ -24,10 +24,12 @@ module.exports = function(directory, seasons) {
     if ( isFile(directory) ) {
 
       // Still ensure it matches a format we want
-      if ( this.format.match(directory) ) {
-        tasks.push({season: false, files: [directory]});
+      if ( ! this.format.match(directory) ) {
+        return reject('invalid format');
       }
 
+      // Push to tasks and resolve
+      tasks.push({season: false, files: [directory]});
       return resolve(tasks);
     }
 
