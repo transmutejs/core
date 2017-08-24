@@ -107,19 +107,21 @@ describe('Function "listing"', () => {
     return expect(listingResult).to.be.rejected;
   });
 
-  it('should return an empty array when an empty directory is provided', () => {
+  it('should return an empty array when an empty directory is provided', (done) => {
 
     let emptyDir = path.join(directory, 'Empty Directory');
 
-    fs.mkdirSync(emptyDir);
+    fs.mkdir(emptyDir, (err) => {
 
-    let listingResult = queue.listing(emptyDir);
+      let listingResult = queue.listing(emptyDir);
 
-    fs.rmdirSync(emptyDir);
-    
-    return expect(listingResult).to.eventually.be.an('array')
+      expect(listingResult).to.eventually.be.an('array')
                                 .to.have.nested.property('[0].files')
-                                .and.be.empty;
+                                .and.be.empty
+                                .notify(done);
+
+      fs.rmdirSync(emptyDir);
+    });
   });
 
   it('should reject when an invalid season is provided', () => {
