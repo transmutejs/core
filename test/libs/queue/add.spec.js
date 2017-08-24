@@ -41,10 +41,15 @@ describe('Function "add"', () => {
 
   });
 
-  it('should throw an error when passed an invalid file', () => {
+  it('should send a rejection when passed an invalid path or file', () => {
 
   });
 
-  
+  it('should send a rejection when passed no arguments', () => {
+
+    let addResult = queue.add();
+
+    return expect(addResult).to.eventually.be.rejected;
+  });
 
 });

@@ -11,10 +11,17 @@ let queueCache = [];
 module.exports = function(task, options) {
   return new Promise((resolve, reject) => {
 
-    // Merge task specific options
+    // Exit without task or options
+    if ( ! task || ! options ) {
+      return reject('Missing param "' + ( ! task ? 'task' : 'options' ) + '"');
+    }
+
+    // TODO: Validate schemas
+
+    // Merge for task specific options
     options = assign(options, task.options);
 
-    // Sort directory
+    // Create absolute directory path
     let directory = path.absolute(path.join(options.base, task.directory));
 
     // Get the tasks to be processed and add them to listing
