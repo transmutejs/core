@@ -4,7 +4,7 @@ module.exports = {
 
   formats: ['mkv', 'mp4', 'avi', 'flv', 'mov', 'wmv'],
 
-  pattern: /\.(mkv|mp4|avi|flv|mov|wmv)$/gi,
+  pattern: /\.(mkv|mp4|avi|flv|mov|wmv)$/,
 
   add: function(format) {
 
@@ -56,7 +56,7 @@ module.exports = {
   },
 
   regex: function() {
-    return new RegExp('\.(' + this.formats.join('|') + ')$', 'gi');
+    return new RegExp('\.(' + this.formats.join('|') + ')$');
   },
 
   match: function(file) {
