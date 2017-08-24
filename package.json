@@ -4,8 +4,8 @@
   "description": "Transmute, to change or alter in form, appearance, or nature and especially to a higher form",
   "main": "./app/index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha test/**.spec.js",
-    "coverage": "nyc report --reporter=text-lcov npm test | coveralls"
+    "test": "ENV=test nyc --reporter=html --reporter=text mocha test/**.spec.js",
+    "coverage": "ENV=test nyc report --reporter=text-lcov npm test | coveralls"
   },
   "bin": {
     "transmute": "./app/index.js"
