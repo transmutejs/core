@@ -116,10 +116,13 @@ describe('Function "listing"', () => {
 
       let listingResult = queue.listing(emptyDir);
 
+      console.log(err);
+      console.log(listingResult);
+
       expect(listingResult).to.eventually.be.an('array')
-                                .to.have.nested.property('[0].files')
-                                .and.be.empty
-                                .notify(done);
+                           .to.have.nested.property('[0].files')
+                           .and.be.empty
+                           .notify(done);
 
       fs.rmdirSync(emptyDir);
     });
