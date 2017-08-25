@@ -14,7 +14,7 @@ function error(errors) {
     errors: errors.map((err) => {
       return {path: err.dataPath, message: err.message};
     })
-  }
+  };
 }
 
 // Build the module structure
