@@ -22,15 +22,18 @@ describe('Function "add"', () => {
                             .and.to.eventually.be.rejected;
   });
 
+  it('should resolve when passed a task class', () => {
+
+    let addResult = queue.add(function() { return true; });
+
+    return expect(addResult).to.eventually.be.fulfilled;
+  });
+
   it('should add x items to the queue', () => {
 
   });
 
   it('should increase the total queue length', () => {
-
-  });
-
-  it('should handle an empty or missing directory', () => {
 
   });
 
@@ -42,8 +45,11 @@ describe('Function "add"', () => {
 
   });
 
-  it('should send a rejection when passed an invalid path or file', () => {
+  it('should send a rejection when passed an invalid task argument', () => {
 
+    let addResult = queue.add('foo bar');
+
+    return expect(addResult).to.eventually.be.rejected;
   });
 
   it('should send a rejection when passed no arguments', () => {
