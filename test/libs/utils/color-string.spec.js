@@ -5,7 +5,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const utils = require('../../../app/lib/utils');
+const utils = require('../../../app/libs/utils');
 
 // Formats a string with ANSI styling
 describe('Function "colorString"', () => {

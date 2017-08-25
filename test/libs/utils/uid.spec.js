@@ -5,7 +5,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const utils = require('../../../app/lib/utils');
+const utils = require('../../../app/libs/utils');
 
 // Creates a pseudo unique string of a given length
 describe('Function "uid"', () => {

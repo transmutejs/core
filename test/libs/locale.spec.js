@@ -5,7 +5,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const i18n = require('../../app/lib/locale');
+const i18n = require('../../app/libs/locale');
 
 // Describe the module
 describe('Locale module', () => {

@@ -10,20 +10,21 @@ const expect = chai.expect;
 chai.use(require('chai-as-promised'));
 
 // Load our module
-const queue = require('../../../app/lib/queue');
+const TaskModule = require('../../../app/libs/task');
+const task = new TaskModule();
 
 // Define the test data directory
-let directory = path.resolve('./test/data/queue');
+let directory = path.resolve('./test/data/task');
 
 describe('Function "listing"', () => {
 
   it('should export a function', () => {
-    expect(queue.listing).to.be.a('function');
+    expect(task.listing).to.be.a('function');
   });
 
   it('should return a promise', () => {
 
-    let listingResult = queue.listing();
+    let listingResult = task.listing();
 
     return expect(listingResult).to.be.a('promise')
                                 .and.to.eventually.be.rejected;
@@ -31,7 +32,7 @@ describe('Function "listing"', () => {
 
   it('should be rejected with no input', () => {
     
-    let listingResult = queue.listing();
+    let listingResult = task.listing();
     
     return expect(listingResult).to.be.rejected;
   });
@@ -40,7 +41,7 @@ describe('Function "listing"', () => {
 
     let file = path.join(directory, 'valid file.mp4');
 
-    let listingResult = queue.listing(file);
+    let listingResult = task.listing(file);
 
     return expect(listingResult).to.eventually.be.an('array')
                                 .and.to.have.nested.property('[0].files[0]', file);
@@ -48,7 +49,7 @@ describe('Function "listing"', () => {
 
   it('should produce an array of files in a directory', () => {
 
-    let listingResult = queue.listing(directory);
+    let listingResult = task.listing(directory);
 
     return expect(listingResult).to.eventually.be.an('array')
                                 .to.have.nested.property('[0].files')
@@ -57,13 +58,13 @@ describe('Function "listing"', () => {
 
   it('should only return files in the specified formats', (done) => {
     
-    queue.listing(directory).then((result) => {
+    task.listing(directory).then((result) => {
 
       expect(result).to.be.an('array');
 
       result[0].files.forEach((file) => {
         expect(file).to.be.a('string')
-                    .and.to.match(queue.format.pattern);
+                    .and.to.match(task.format.pattern);
       });
 
       return done();
@@ -74,7 +75,7 @@ describe('Function "listing"', () => {
 
   it('should produce an array of objects when given seasons', (done) => {
 
-    queue.listing(directory, [1, 2]).then((result) => {
+    task.listing(directory, [1, 2]).then((result) => {
 
       expect(result).to.be.an('array');
 
@@ -88,7 +89,7 @@ describe('Function "listing"', () => {
 
         season.files.forEach((file) => {
           expect(file).to.be.a('string')
-                      .and.to.match(queue.format.pattern);
+                      .and.to.match(task.format.pattern);
         });
 
       });
@@ -103,7 +104,7 @@ describe('Function "listing"', () => {
     
     let file = path.join(directory, 'invalid file.ext');
 
-    let listingResult = queue.listing(file);
+    let listingResult = task.listing(file);
     
     return expect(listingResult).to.be.rejected;
   });
@@ -114,7 +115,7 @@ describe('Function "listing"', () => {
 
     fs.mkdir(emptyDir, (err) => {
 
-      let listingResult = queue.listing(emptyDir);
+      let listingResult = task.listing(emptyDir);
 
       console.log(err);
       console.log(listingResult);
@@ -130,7 +131,7 @@ describe('Function "listing"', () => {
 
   it('should reject when an invalid season is provided', () => {
     
-    let listingResult = queue.listing(directory, ['not-a-valid-season']);
+    let listingResult = task.listing(directory, ['not-a-valid-season']);
     
     return expect(listingResult).to.be.rejected;
   });
@@ -139,7 +140,7 @@ describe('Function "listing"', () => {
 
     let file = path.join(directory, 'not-a-valid-directory');
 
-    let listingResult = queue.listing(file);
+    let listingResult = task.listing(file);
 
     return expect(listingResult).to.be.rejected;
   });

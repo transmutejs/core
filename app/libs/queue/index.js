@@ -15,9 +15,6 @@ module.exports = {
   // Current task number being run
   current: 0,
 
-  // Load our sub-modules
-  format: require('./format'),
-  listing: require('./listing'),
-  add: require('./add'),
-  prepare: require('./prepare')
+  // Add tasks to the queue
+  add: require('./add')
 };

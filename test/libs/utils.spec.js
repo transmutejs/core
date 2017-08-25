@@ -5,13 +5,14 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const utils = require('../../app/lib/utils');
+const utils = require('../../app/libs/utils');
 
 // Define the available functions
 const utilFunctions = [
   'color-string',
   'nest-options',
-  'uid'
+  'uid',
+  'request'
 ];
 
 // Convert string to camelCase

@@ -6,7 +6,7 @@ const expect = chai.expect;
 chai.use(require('chai-as-promised'));
 
 // Load our module
-const queue = require('../../../app/lib/queue');
+const queue = require('../../../app/libs/queue');
 
 describe('Function "add"', () => {
 

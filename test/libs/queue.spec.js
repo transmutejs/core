@@ -5,14 +5,11 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const queue = require('../../app/lib/queue');
+const queue = require('../../app/libs/queue');
 
 // Define the available functions
 const queueFunctions = [
-  'format',
-  'listing',
-  'add',
-  'prepare'
+  'add'
 ];
 
 // Convert string to camelCase

@@ -5,7 +5,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const format = require('../../../../app/lib/queue/format');
+const format = require('../../../../app/libs/task/format');
 
 // Describe the module
 describe('Function "remove"', () => {

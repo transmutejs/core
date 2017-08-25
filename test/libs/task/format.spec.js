@@ -5,7 +5,8 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const queue = require('../../../app/lib/queue');
+const TaskModule = require('../../../app/libs/task');
+const task = new TaskModule();
 
 // Define the available functions
 const formatFunctions = ['add', 'remove', 'clear', 'reset', 'regex', 'match'];
@@ -14,17 +15,17 @@ const formatFunctions = ['add', 'remove', 'clear', 'reset', 'regex', 'match'];
 describe('Class "format"', () => {
 
   it('should export an object', () => {
-    expect(queue.format).to.be.an('object');
+    expect(task.format).to.be.an('object');
   });
 
   it('should contain 2 properties', () => {
-    expect(queue.format).to.have.property('formats').that.is.an('array');
-    expect(queue.format).to.have.property('pattern').that.is.an.instanceOf(RegExp);
+    expect(task.format).to.have.property('formats').that.is.an('array');
+    expect(task.format).to.have.property('pattern').that.is.an.instanceOf(RegExp);
   });
 
   it('should export ' + formatFunctions.length + ' functions', () => {
     formatFunctions.forEach((func) => {
-      expect(queue.format).to.have.property(func).that.is.a('function');
+      expect(task.format).to.have.property(func).that.is.a('function');
     });
   });
 
