@@ -11,17 +11,17 @@ ajv.addSchema(require('./schema/task.schema'), 'task');
 module.exports = {
 
   // Error formatting
-  error: (errors) => {
+  error: function(errors) {
     return {
       status: false,
-      errors: errors.map((err) => {
+      errors: ( Array.isArray(errors) ? errors : [] ).map((err) => {
         return {path: err.dataPath || '', message: err.message || ''};
       })
     };
   },
 
   // Validate a single task object
-  object: (obj) => {
+  object: function(obj) {
 
     if ( ! ajv.validate('task', obj) ) {
       return this.error(ajv.errors);
@@ -31,7 +31,7 @@ module.exports = {
   },
 
   // Validate a task config file
-  file: (obj) => {
+  file: function(obj) {
 
     if ( ! ajv.validate('tasks', obj) ) {
       return this.error(ajv.errors);

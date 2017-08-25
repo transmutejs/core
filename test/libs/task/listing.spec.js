@@ -14,7 +14,7 @@ const TaskModule = require('../../../app/libs/task');
 const task = new TaskModule();
 
 // Define the test data directory
-let directory = path.resolve('./test/data/task');
+let directory = path.resolve('./test/data/task/listing');
 
 describe('Function "listing"', () => {
 

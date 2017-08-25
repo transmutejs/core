@@ -1,0 +1,13 @@
+{
+    "name": "Less Drama, More Zombies",
+    "directory": "Less Drama, More Zombies/",
+    "type": "tv",
+    "seasons": [1, 2, 3, 4],
+    "options": {
+        "preset": "slow",
+        "video" : {
+            "bitrate": -1,
+            "quality": 0
+        }
+    }
+}
