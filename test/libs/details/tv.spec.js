@@ -22,6 +22,13 @@ describe('Function "tv"', () => {
                            .and.to.eventually.be.rejected;
   });
 
+  it('should resolve when passed an argument', () => {
+
+    let tvResult = details.tv('test tv show.mkv');
+
+    return expect(tvResult).to.eventually.be.fulfilled;
+  });
+
   it('should send a rejection when passed no arguments', () => {
 
     let tvResult = details.tv();
