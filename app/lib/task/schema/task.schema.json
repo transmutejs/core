@@ -1,0 +1,53 @@
+{
+	"title": "Task schema",
+	"description": "describes properties required to create a task object",
+	"type": "object",
+	"required": ["name", "directory", "type"],
+	"additionalProperties": false,
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"directory": {
+			"type": "string"
+		},
+		"type": {
+			"type": "string",
+			"enum": ["tv", "movie"]
+		},
+		"seasons": {
+			"type": "array",
+			"uniqueItems": true,
+			"items": {
+				"type": "number"
+			}
+		},
+		"options": {
+			"type": "object",
+			"additionalProperties": true,
+			"properties": {
+				"preset": {
+					"type": "string",
+					"enum": ["slow", "fast"]
+				},
+				"video": {
+					"type": "object",
+					"additionalProperties": true,
+					"properties": {
+						"bitrate": {
+							"type": "number",
+							"minimum": 0,
+							"multipleOf": 1
+						},
+						"quality": {
+							"type": "number",
+							"minimum": 0,
+							"maximum": 50,
+							"multipleOf": 1
+						}
+					}
+				}
+			}
+		}
+	}
+}
