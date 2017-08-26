@@ -40,7 +40,7 @@ describe('Function "create"', () => {
     });
   });
 
-  it('should throw an exception with no data argument', () => {
+  it('should throw an exception with no data argument', (done) => {
     
     task.create().then((result) => {
       return done(false);
