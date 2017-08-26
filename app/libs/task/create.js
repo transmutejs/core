@@ -6,6 +6,8 @@ module.exports = function(data) {
     // Did we recieve any data
     if ( ! data ) {
       return reject(['No data provided for this task']);
+    } else {
+      throw new Error('Testing artifacts');
     }
 
     // Check the task data is compliant
