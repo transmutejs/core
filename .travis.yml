@@ -26,8 +26,8 @@ env:
 
 addons:
   artifacts:
-    s3_region: "eu-west-2"
+    s3_region: eu-west-2
     debug: true
+    target_paths: $TRAVIS_BUILD_NUMBER
     paths:
-      - $(ls /var/log/*.log | tr "\n" ":")
       - ./logs
