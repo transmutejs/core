@@ -1,0 +1,177 @@
+{
+  "options": [
+    {
+      "group": "Video Options"
+    },
+    {
+      "names": ["video:codec"],
+      "type": "string",
+      "help": "Video codec to use, default: libx265",
+      "helpArg": "[codec]",
+      "default": "libx265"
+    },
+    {
+      "names": ["video:size"],
+      "type": "string",
+      "help": "Video resizing (1280x720, 1080x?, etc.), default: original",
+      "helpArg": "[size]",
+      "default": false
+    },
+    {
+      "names": ["video:bitrate"],
+      "type": "positiveInteger",
+      "help": "Video bitrate, use 0 to use constant quality, default: 0",
+      "helpArg": "[bitrate]",
+      "default": 0
+    },
+    {
+      "names": ["video:quality"],
+      "type": "positiveInteger",
+      "help": "Constant video quality option, default: 19",
+      "helpArg": "[level]",
+      "default": 19
+    },
+    {
+      "names": ["video:bitdepth"],
+      "type": "bitdepth",
+      "help": "Pixel depth, default: 10",
+      "helpArg": "[depth]",
+      "default": 10
+    },
+    {
+      "names": ["video:tuning"],
+      "type": "tuning",
+      "help": "Tuning of the video parser, default: none",
+      "helpArg": "[option]",
+      "default": false
+    },
+    {
+      "group": "Audio Options"
+    },
+    {
+      "names": ["audio:codec"],
+      "type": "string",
+      "help": "Audio codec to use, default: copy",
+      "helpArg": "[codec]",
+      "default": "copy"
+    },
+    {
+      "names": ["audio:bitrate"],
+      "type": "integer",
+      "help": "Audio bitrate, default: original",
+      "helpArg": "[bitrate]",
+      "default": false
+    },
+    {
+      "names": ["audio:strip"],
+      "type": "bool",
+      "help": "Strip additional audio channels, default: false",
+      "default": false
+    },
+    {
+      "names": ["he:audio"],
+      "type": "bool",
+      "help": "Use high-efficency audio codec",
+      "default": false
+    },
+    {
+      "names": ["he:force"],
+      "type": "bool",
+      "help": "Force high-efficency audio for lossless streams",
+      "default": false
+    },
+    {
+      "names": ["he:downmix"],
+      "type": "bool",
+      "help": "Downmix audio from 5.1 or 7.1 to 2.1 channels",
+      "default": false
+    },
+    {
+      "names": ["he:bitrate"],
+      "type": "positiveInteger",
+      "help": "high-efficency audio bitrate, default: 40",
+      "helpArg": "[bitrate]",
+      "default": 40
+    },
+    {
+      "group": "Watch Options"
+    },
+    {
+      "names": ["watch:config"],
+      "type": "bool",
+      "help": "Watch the config file for changes and additions",
+      "default": false
+    },
+    {
+      "names": ["watch:directory"],
+      "type": "string",
+      "help": "Watch a directory for file changes to convert",
+      "helpArg": "[path]",
+      "default": false
+    },
+    {
+      "names": ["watch:socket"],
+      "type": "bool",
+      "help": "Listen on the socket connection for new tasks",
+      "default": false
+    },
+    {
+      "group": "General Options"
+    },
+    {
+      "names": ["help", "h"],
+      "type": "bool"
+    },
+    {
+      "names": ["verbose", "v"],
+      "type": "bool",
+      "default": false
+    },
+    {
+      "names": ["target", "t"],
+      "type": "string",
+      "help": "Target directory for output, default: source directory",
+      "helpArg": "[path]",
+      "default": false
+    },
+    {
+      "names": ["format", "f"],
+      "type": "string",
+      "help": "Output container format, default: mkv",
+      "helpArg": "[type]",
+      "default": "mkv"
+    },
+    {
+      "names": ["preset", "p"],
+      "type": "preset",
+      "help": "Encoding preset to use, default: fast",
+      "helpArg": "[type]",
+      "default": "fast"
+    },
+    {
+      "names": ["remove-subtitles", "rs"],
+      "type": "bool",
+      "help": "Strip subtiles from the output, default: false",
+      "default": false
+    },
+    {
+      "names": ["language", "l"],
+      "type": "string",
+      "help": "Default language to include for subtitles, default: eng",
+      "helpArg": "[code]",
+      "default": "eng"
+    },
+    {
+      "names": ["preview"],
+      "type": "bool",
+      "help": "Encode a 60 second preview of the source",
+      "default": false
+    },
+    {
+      "names": ["screenshots"],
+      "type": "bool",
+      "help": "Take a series of screenshots during processing",
+      "default": false
+    }
+  ]
+}
