@@ -56,8 +56,6 @@ describe('Task module', () => {
 
     let taskInstance = new task(require(file));
 
-    console.log(taskInstance.data);
-
     expect(taskInstance.data).to.be.an('object')
                              .with.all.keys(['name', 'directory', 'type', 'seasons', 'options']);
   });
