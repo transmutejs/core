@@ -12,7 +12,8 @@ chai.use(require('chai-as-promised'));
 const task = require('../../../app/libs/task');
 
 // Define the test data directory
-let directory = path.resolve('./test/data/task/validate');
+let directory = path.resolve('./test/data/task/validate'),
+    listingDirectory = path.resolve('./test/data/task/listing');
 
 describe('Function "create"', () => {
 
@@ -56,9 +57,11 @@ describe('Function "create"', () => {
 
   it('should resolve when given a valid schema', () => {
 
-    let file = path.join(directory, 'object.valid.json');
+    let schema = require(path.join(directory, 'object.valid.json'));
 
-    let taskResult = task.create(require(file));
+    schema.directory = listingDirectory;
+
+    let taskResult = task.create(schema);
 
     expect(taskResult).to.eventually.be.fulfilled;
   });
@@ -67,7 +70,7 @@ describe('Function "create"', () => {
 
     let schema = require(path.join(directory, 'object.valid.json'));
 
-    schema.directory = path.resolve('./test/data/task/listing');
+    schema.directory = listingDirectory;
 
     task.create(schema).then((result) => {
 
@@ -91,7 +94,7 @@ describe('Function "create"', () => {
     
     let schema = require(path.join(directory, 'object.valid.json'));
 
-    schema.directory = path.resolve('./test/data/task/listing');
+    schema.directory = listingDirectory;
 
     task.create(schema).then((result) => {
 
