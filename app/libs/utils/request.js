@@ -7,6 +7,11 @@ module.exports = function(url) {
   // return new pending promise
   return new Promise((resolve, reject) => {
 
+    // reject without url
+    if ( ! url ) {
+      return reject('invalid url provided');
+    }
+
     // select http or https module, depending on reqested url
     const lib = url.startsWith('https') ? require('https') : require('http');
 
