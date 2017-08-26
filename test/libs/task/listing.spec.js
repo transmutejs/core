@@ -113,20 +113,18 @@ describe('Function "listing"', () => {
 
     let emptyDir = path.join(directory, 'Empty Directory');
 
-    fs.mkdir(emptyDir, (err) => {
+    if ( ! fs.existsSync(emptyDir) ) {
+      fs.mkdirSync(emptyDir);
+    }
 
-      let listingResult = task.listing(emptyDir);
+    let listingResult = task.listing(emptyDir);
 
-      console.log(err);
-      console.log(listingResult);
+    expect(listingResult).to.eventually.be.an('array')
+                         .to.have.nested.property('[0].files')
+                         .and.be.empty
+                         .notify(done);
 
-      expect(listingResult).to.eventually.be.an('array')
-                           .to.have.nested.property('[0].files')
-                           .and.be.empty
-                           .notify(done);
-
-      fs.rmdirSync(emptyDir);
-    });
+    fs.rmdirSync(emptyDir);
   });
 
   it('should reject when an invalid season is provided', () => {

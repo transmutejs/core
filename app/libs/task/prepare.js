@@ -1,9 +1,10 @@
 'use strict';
 
-module.exports = () => {
+module.exports = function() {
 
   // TODO: Something...
 
+  return true;
 };
 
 /*let details = {

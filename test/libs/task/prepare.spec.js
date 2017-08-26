@@ -14,4 +14,8 @@ describe('Function "prepare"', () => {
     expect(task.prepare).to.be.a('function');
   });
 
+  it('should return true', () => {
+    expect(task.prepare()).to.be.true;
+  });
+
 });

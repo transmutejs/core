@@ -29,18 +29,18 @@ describe('Function "object"', () => {
                         .and.ownProperty('status').to.be.false;
   });
 
-  it('should return an object with status true with a valid schema', () => {
+  it('should return status true with a valid schema', () => {
 
-    let object = path.join(directory, 'object.valid.json');
+    let file = path.join(directory, 'object.valid.json');
 
-    let objectResult = validate.object(require(object));
+    let objectResult = validate.object(require(file));
 
     expect(objectResult).to.be.an('object')
                         .with.all.keys(['status', 'errors'])
                         .and.ownProperty('status').to.be.true;
   });
 
-  it('should return an object with status true with a valid schema', () => {
+  it('should return status false and an error message with an invalid schema', () => {
 
     let object = path.join(directory, 'object.invalid.json');
 

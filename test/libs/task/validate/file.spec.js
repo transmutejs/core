@@ -29,7 +29,7 @@ describe('Function "file"', () => {
                       .and.ownProperty('status').to.be.false;
   });
 
-  it('should return an object with status true with a valid schema', () => {
+  it('should return status true with a valid schema', () => {
 
     let file = path.join(directory, 'file.valid.json');
 
@@ -40,7 +40,7 @@ describe('Function "file"', () => {
                       .and.ownProperty('status').to.be.true;
   });
 
-  it('should return an object with status true with a valid schema', () => {
+  it('should return status false and an error message with an invalid schema', () => {
 
     let file = path.join(directory, 'file.invalid.json');
 

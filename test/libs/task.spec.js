@@ -1,11 +1,17 @@
 'use strict';
 
+// Load requirements
+const path = require('path');
+
 // Load chai
 const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
 const task = require('../../app/libs/task');
+
+// Define the test data directory
+let directory = path.resolve('./test/data/task/validate');
 
 // Define the available functions
 const taskFunctions = [
@@ -31,6 +37,29 @@ describe('Task module', () => {
 
   it('should export a function', () => {
     expect(task).to.be.a('function');
+  });
+
+  it('should throw an exception when instantiated with an invalid schema', () => {
+    expect(() => { new task({}); }).to.throw(/should have required property/ig);
+  });
+
+  it('should throw an exception when an invalid schema is added', () => {
+    
+    let taskInstance = new task();
+
+    expect(() => { taskInstance.add({}); }).to.throw(/should have required property/ig);
+  });
+
+  it('should assign valid data to the class object', () => {
+
+    let file = path.join(directory, 'object.valid.json');
+
+    let taskInstance = new task(require(file));
+
+    console.log(taskInstance.data);
+
+    expect(taskInstance.data).to.be.an('object')
+                             .with.all.keys(['name', 'directory', 'type', 'seasons', 'options']);
   });
 
   it('should contain the ' + taskFunctions.length + ' expected functions', () => {

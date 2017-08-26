@@ -14,7 +14,7 @@ function Task(data) {
 }
 
 // Load data after initialization
-Task.prototype.add = (data) => {
+Task.prototype.add = function(data) {
 
   // Check the task data is compliant
   let valid = this.validate.object(data);
