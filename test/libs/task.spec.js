@@ -16,7 +16,7 @@ let directory = path.resolve('./test/data/task/validate');
 // Define the available functions
 const taskFunctions = [
   'listing',
-  'prepare',
+  'create',
 ];
 
 // Define the available objects
@@ -35,52 +35,27 @@ function camelCase(string) {
 // Describe the module
 describe('Task module', () => {
 
-  it('should export a function', () => {
-    expect(task).to.be.a('function');
-  });
-
-  it('should throw an exception when instantiated with an invalid schema', () => {
-    expect(() => { new task({}); }).to.throw(/should have required property/ig);
-  });
-
-  it('should throw an exception when an invalid schema is added', () => {
-    
-    let taskInstance = new task();
-
-    expect(() => { taskInstance.add({}); }).to.throw(/should have required property/ig);
-  });
-
-  it('should assign valid data to the class object', () => {
-
-    let file = path.join(directory, 'object.valid.json');
-
-    let taskInstance = new task(require(file));
-
-    expect(taskInstance.data).to.be.an('object')
-                             .with.all.keys(['name', 'directory', 'type', 'seasons', 'options']);
+  it('should export an object', () => {
+    expect(task).to.be.an('object');
   });
 
   it('should contain the ' + taskFunctions.length + ' expected functions', () => {
-
-    let taskInstance = new task();
 
     taskFunctions.forEach((func) => {
 
       let property = camelCase(func);
 
-      expect(taskInstance).to.have.property(property).that.is.a('function');
+      expect(task).to.have.property(property).that.is.a('function');
     });  
   });
 
   it('should contain the ' + taskObjects.length + ' expected objects', () => {
 
-    let taskInstance = new task();
-
     taskObjects.forEach((obj) => {
 
       let property = camelCase(obj);
 
-      expect(taskInstance).to.have.property(property).that.is.an('object');
+      expect(task).to.have.property(property).that.is.an('object');
     });  
   });
 

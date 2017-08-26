@@ -3,58 +3,54 @@
 
 // Load base requirements
 const program = require('commander'),
-      dotenv = require('dotenv').config();
+      dotenv = require('dotenv').config(),
+      path = require('path');
 
 // Load our libraries
 const utils = require('./libs/utils'),
       logger = require('./libs/log'),
       i18n = require('./libs/locale'),
-      queue = require('./libs/queue');
-
-// Variables
-let task1, task2;
+      queue = require('./libs/queue'),
+      task = require('./libs/task');
 
 // Create new task
-try {
-  task1 = new (require('./libs/task'))({
-    "name": "Two Brothers, One Impala",
-    "directory": "Two Brothers, One Impala/",
-    "type": "tv",
-    "seasons": [1, 2, 3, 4, 5, 6],
-    "options": {
-      "preset": "slow",
-      "video" : {
-        "bitrate": 3500,
-        "quality": 0
-      }
-     }
-  });
-} catch (e) {
-  console.log(e.message);
-}
+task.create({
+  "name": "Two Brothers, One Impala",
+  "directory": path.resolve('test/data/task/listing'),
+  "type": "tv",
+  "seasons": [1, 2],
+  "options": {
+    "preset": "slow",
+    "video" : {
+      "bitrate": 3500,
+      "quality": 0
+    }
+   }
+}).then((data) => {
+  console.log('Resolved 1 -');
+  console.log(data);
+}).catch((err) => {
+  console.log('Error 1 -');
+  console.log(err);
+});
 
 // Create a second task instance
-try {
-  task2 = new (require('./libs/task'))({
-    "name": "Less Drama, More Zombies",
-    "directory": "Less Drama, More Zombies/",
-    "type": "tv",
-    "seasons": [1, 2, 3, "4"],
-    "options": {
-      "preset": "slow",
-      "video" : {
-        "bitrate": 4000,
-        "quality": 0
-      }
-     }
-  });
-} catch (e) {
-  console.log(e.message);
-}
-
-// DEBUG
-console.log(task1.data);
-console.log(task2.data);
-
-// Just for now
-process.exit(0);
+task.create({
+  "name": "Less Drama, More Zombies",
+  "directory": "Less Drama, More Zombies/",
+  "type": "tv",
+  "seasons": [1, 2, 3, "4"],
+  "options": {
+    "preset": "slow",
+    "video" : {
+      "bitrate": 4000,
+      "quality": 0
+    }
+   }
+}).then((data) => {
+  console.log('Resolved 2 -');
+  console.log(data);
+}).catch((err) => {
+  console.log('Error 2 -');
+  console.log(err);
+});

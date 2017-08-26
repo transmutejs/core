@@ -10,8 +10,7 @@ const expect = chai.expect;
 chai.use(require('chai-as-promised'));
 
 // Load our module
-const TaskModule = require('../../../app/libs/task');
-const task = new TaskModule();
+const task = require('../../../app/libs/task');
 
 // Define the test data directory
 let directory = path.resolve('./test/data/task/listing');
