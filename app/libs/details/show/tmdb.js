@@ -4,7 +4,8 @@
 const path = require('path'),
       fs = require('fs');
 
-
+// Ignored until keys are deployed onto travis to actually test this
+/* istanbul ignore next */
 module.exports = function(key) {
 
   // Setup TMDB specific properties
