@@ -1,8 +1,7 @@
 'use strict';
 
 // Load requirements
-const ffmpeg = require('fluent-ffmpeg'),
-      utils = require('../utils');
+const utils = require('../utils');
 
 // Build the module structure
 module.exports = {
@@ -15,6 +14,7 @@ module.exports = {
     return ( m !== null ? m[1] : err );
   },
 
+  // Wrap the utils helper method to get metadata for a file
   get: function(file) {
     return new Promise((resolve, reject) => {
 

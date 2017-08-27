@@ -18,25 +18,14 @@ module.exports = {
         return reject('Invalid job type "' + type + '" specified');
       }
 
-      // Start by getting metadata
+      // Get metadata, auth with trakt and get media information
       this.metadata.get(file).then((meta) => {
-
-        // Assign metadata to our object
         details.meta = meta;
-
-        console.log(metadata);
-
-        // Authenticate with trakt before continuing
         return _trakt.authenticate();
       }).then((trakt) => {
-
         return this[type](trakt, filename);
       }).then((info) => {
-
         details.info = info;
-
-        console.log(info);
-
         return resolve(details);
       }).catch((err) => {
         return reject(err);

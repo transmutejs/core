@@ -61,18 +61,6 @@ module.exports = {
       });
 
     });
-
-    let file = path.resolve('./_trackt.json');
-
-    console.log(file);
-
-    let token = _t.export_token();
-
-      console.log(token);
-
-
-
-
   },
 
   refresh: function() {
