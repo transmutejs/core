@@ -5,8 +5,14 @@ module.exports = {
   get: function(task) {
     return new Promise((resolve, reject) => {
 
+      // Check for task
+      // TODO: Replace with schema validation
+      if ( ! task || ! task.file || ! task.type || ! task.basename ) {
+        return reject('Invalid task object');
+      }
+
       // Check type
-      if ( task.type === undefined || ! ['show', 'movie'].includes(task.type) ) {
+      if ( ! task.type || ! ['show', 'movie'].includes(task.type) ) {
         return reject('Invalid job type "' + task.type + '" specified');
       }
 
