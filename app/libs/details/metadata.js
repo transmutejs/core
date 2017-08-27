@@ -8,9 +8,9 @@ module.exports = {
 
   // Error formatting
   error: function(err) {
-    return ( Array.isArray(err) ? err : [err] ).map((str) => {
-      let m = /\.[a-z0-9]{2,4}: (.+?)\n\s+at/gmi.exec(str);
-      return ( m !== null ? m[1] : err );
+    return ( Array.isArray(err) ? err : [err] ).map((value) => {
+      let m = /\.[a-z0-9]{2,4}: (.+?)\n\s+at/gmi.exec(value.toString());
+      return ( m !== null ? m[1] : value );
     });
   },
 
