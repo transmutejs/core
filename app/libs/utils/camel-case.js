@@ -7,7 +7,7 @@ module.exports = function(str) {
     return str;
   }
 
-  return str.replace(/-([a-z])/ig, function(all, letter) {
+  return str.replace(/-([a-z0-9])/ig, function(all, letter) {
     return letter.toUpperCase();
   });
 };
