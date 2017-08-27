@@ -1,13 +1,13 @@
 'use strict';
 
 // Load requirements
-const tmdb = require('moviedb')(process.env.TMDB_KEY),
-      parser = require('episode-parser'),
+const parser = require('episode-parser'),
       path = require('path'),
       fs = require('fs');
 
 // Define config file location
-let tmdbConfig = path.resolve('./config/_tmdb.json'),
+let tmdb = null,
+    tmdbConfig = path.resolve('./config/_tmdb.json'),
     tmdbImageUrl = 'https://image.tmdb.org/t/p/';
 
 // Does it exist
@@ -22,10 +22,18 @@ module.exports = {
   get: function(filename) {
     return new Promise((resolve, reject) => {
 
-      // Nothing to do without a filename
+      // No api key, nothing we can do
+      if ( ! process.env.TMDB_KEY ) {
+        return resolve({});
+      }
+
+      // No file provided
       if ( filename === undefined ) {
         return reject('No filename provided');
       }
+
+      // Start tmdb
+      tmdb = require('moviedb')(process.env.TMDB_KEY);
 
       // Decode episode details from filename
       let details = parser(filename);
