@@ -1,5 +1,9 @@
 'use strict';
 
+// Load requirements
+const details = require('../details');
+
+// Export promise for use
 module.exports = function(data) {
   return new Promise((resolve, reject) => {
 
@@ -16,14 +20,39 @@ module.exports = function(data) {
       return reject(valid.errors.map((err) => { return err.path + '\n  ' + err.message; }));
     }
 
+    // Create our object
+    let task = {
+      data: data,
+      jobs: []
+    };
+
     // Get a files listing
     this.listing(data.directory).then((files) => {
+
+      // Variables
+      let promises = [];
+
+      // Assign files to task
+      task.files = files;
+
+      // Get metadata for each task
+      files.forEach((group) => {
+        group.files.forEach(function(file, i) {
+          promises.push(details.get(file, data.type));
+        });
+      });
+
+      // Wait for formatted job results
+      return Promise.all(promises);
+
+    }).then((jobs) => {
+
+      task.jobs = jobs;
+
+      console.log(jobs);
       
       // Resolve with task object
-      return resolve({
-        data: data,
-        files: files
-      });
+      return resolve(task);
 
     // Otherwise reject with an error
     }).catch((err) => {
