@@ -13,6 +13,13 @@ const detailsFunctions = [
   'movie'
 ];
 
+// Define the available classes
+const detailsClasses = [
+  'metadata',
+  'show/tvmaze',
+  'show/tmdb'
+];
+
 // Convert string to camelCase
 function camelCase(string) {
   return string.replace(/-([a-z])/ig, function(all, letter) {
@@ -40,6 +47,11 @@ describe('Details module', () => {
   // Load sub-module specs
   detailsFunctions.forEach((func) => {
     require('./details/' + func + '.spec');
+  });
+
+  // Load provider specs
+  detailsClasses.forEach((provider) => {
+    require('./details/' + provider + '.spec');
   });
 
 });
