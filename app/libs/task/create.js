@@ -1,44 +1,55 @@
 'use strict';
 
 // Load requirements
-const details = require('../details');
+const details = require('../details'),
+      path = require('path');
 
 // Export promise for use
-module.exports = function(data) {
+module.exports = function(task) {
   return new Promise((resolve, reject) => {
 
     // Did we recieve any data
-    if ( ! data ) {
+    if ( ! task ) {
       return reject(['No data provided for this task']);
     }
 
     // Check the task data is compliant
-    let valid = this.validate.object(data);
+    let valid = this.validate.object(task);
 
     // If not, throw exception
     if ( ! valid.status ) {
       return reject(valid.errors.map((err) => { return err.path + '\n  ' + err.message; }));
     }
 
-    // Create our object
-    let task = {
-      data: data,
-      jobs: []
-    };
-
     // Get a files listing
-    this.listing(data.directory).then((files) => {
+    this.listing(task.directory).then((files) => {
 
       // Variables
-      let promises = [];
+      let promises = [],
+          current = 1,
+          overall = files.reduce(function(value, group) { return group.files.length; }, 0);
 
-      // Assign files to task
-      task.files = files;
-
-      // Get metadata for each task
+      // Get additional details for each task
       files.forEach((group) => {
         group.files.forEach(function(file, i) {
-          promises.push(details.get(file, data.type));
+          
+          promises.push(details.get({
+            file: file,
+            path: path.dirname(file),
+            basename: path.basename(file),
+            type: task.type,
+            task: {
+              current: ( i + 1 ),
+              total: group.files.length
+            },
+            overall: {
+              current: current,
+              total: overall
+            },
+            options: task.options
+          }));
+
+          current++;
         });
       });
 
@@ -48,8 +59,6 @@ module.exports = function(data) {
     }).then((jobs) => {
 
       task.jobs = jobs;
-
-      console.log(jobs);
       
       // Resolve with task object
       return resolve(task);
@@ -60,23 +69,3 @@ module.exports = function(data) {
     });
   });
 };
-
-/*let details = {
-  name: task.name,
-  file: file,
-  path: path.dirname(file),
-  filename: filename,
-  type: task.type,
-  show: details.show || task.name,
-  season: details.season || files.season,
-  episode: details.episode || i,
-  task: {
-    current: ( i + 1 ),
-    total: files.listing.length
-  },
-  overall: {
-    current: this.current,
-    total: this.total
-  },
-  options: opts
-};*/
