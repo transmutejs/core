@@ -12,6 +12,7 @@ cache:
     - node_modules
 
 before_install:
+  - sudo add-apt-repository ppa:mc3man/trusty-media
   - sudo apt-get -qq update
   - sudo apt-get install -y ffmpeg
 
