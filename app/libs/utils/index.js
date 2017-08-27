@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+  camelCase: require('./camel-case'),
   colorString: require('./color-string'),
   nestOptions: require('./nest-options'),
   uid: require('./uid'),
