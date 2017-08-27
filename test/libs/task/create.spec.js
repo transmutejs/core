@@ -60,7 +60,7 @@ describe('Function "create"', () => {
 
     let schema = require(path.join(directory, 'object.valid.json'));
 
-    schema.directory = listingDirectory;
+    schema.directory = metadataDirectory;
 
     let taskResult = task.create(schema);
 
@@ -102,7 +102,6 @@ describe('Function "create"', () => {
 
       return done();
     }).catch((err) => {
-      console.log(err);
       return done(err);
     });
   });
