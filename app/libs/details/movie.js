@@ -7,13 +7,23 @@ const parser = require('parse-torrent-name');
 module.exports = function(filename) {
   return new Promise((resolve, reject) => {
 
+    // Variables
+    let source;
+
     // No file provided
     if ( filename === undefined ) {
       return reject('No filename provided');
     }
 
-    // Start our movie details source
-    let source = require('./movie/' + ( process.env.TMDB_KEY ? 'tmdb' : 'tvmaze' ));
+    // No movie providers yet
+    return resolve({});
+
+    // Check for tmdb key
+    /*if ( process.env.TMDB_KEY ) {
+      source = require('./movie/tmdb')(process.env.TMDB_KEY);
+    } else {
+      source = require('./movie/tvmaze')();
+    }
 
     // Decode details from filename
     let details = parser(filename);
@@ -23,6 +33,6 @@ module.exports = function(filename) {
       return resolve(movie);
     }).catch((err) => {
       return reject(err);
-    });
+    });*/
   });
 };
