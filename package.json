@@ -1,6 +1,6 @@
 {
   "name": "transmutejs",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Transmute, to change or alter in form, appearance, or nature and especially to a higher form",
   "main": "./index.js",
   "scripts": {
