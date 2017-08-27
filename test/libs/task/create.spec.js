@@ -13,7 +13,8 @@ const task = require('../../../app/libs/task');
 
 // Define the test data directory
 let directory = path.resolve('./test/data/task/validate'),
-    listingDirectory = path.resolve('./test/data/task/listing');
+    listingDirectory = path.resolve('./test/data/task/listing'),
+    metadataDirectory = path.resolve('./test/data/task/metadata');
 
 describe('Function "create"', () => {
 
@@ -70,18 +71,14 @@ describe('Function "create"', () => {
 
     let schema = require(path.join(directory, 'object.valid.json'));
 
-    schema.directory = listingDirectory;
+    schema.directory = metadataDirectory;
 
     task.create(schema).then((result) => {
 
       expect(result).to.be.an('object')
-                    .with.all.keys(['data', 'files']);
+                    .with.all.keys(['name', 'directory', 'type', 'seasons', 'options', 'jobs']);                    
 
-      expect(result).to.have.nested.property('data')
-                    .to.be.an('object')
-                    .with.all.keys(['name', 'directory', 'type', 'seasons', 'options']);
-
-      expect(result).to.have.nested.property('files')
+      expect(result).to.have.nested.property('jobs')
                     .to.be.an('array');
 
       return done();
@@ -90,18 +87,18 @@ describe('Function "create"', () => {
     });
   });
 
-  it('should return an array of objects containing files to be processed', (done) => {
+  it('should return an array of objects containing jobs to be processed', (done) => {
     
     let schema = require(path.join(directory, 'object.valid.json'));
 
-    schema.directory = listingDirectory;
+    schema.directory = metadataDirectory;
 
     task.create(schema).then((result) => {
 
-      expect(result).to.have.nested.property('files')
+      expect(result).to.have.nested.property('jobs')
                     .to.be.an('array')
-                    .to.have.nested.property('[0].files')
-                    .with.length(2);
+                    .to.have.nested.property('[0]')
+                    .with.all.keys(['file', 'path', 'basename', 'type', 'task', 'overall', 'options', 'meta', 'details']);
 
       return done();
     }).catch((err) => {
