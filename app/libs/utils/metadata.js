@@ -8,6 +8,11 @@ const ffmpeg = require('fluent-ffmpeg'),
 module.exports = function(file) {
   return new Promise((resolve, reject) => {
 
+    // Check we got a file at all
+    if ( ! file ) {
+      return reject(['No file provided']);
+    }
+
     // Check that the file exists
     if ( ! fs.existsSync(file) ) {
       return reject(['"' + file + '" does not exist']);
