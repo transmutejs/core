@@ -12,13 +12,8 @@ module.exports = function(filename) {
       return reject('No filename provided');
     }
 
-    // Only check for tmdb for now
-    if ( ! process.env.TMDB_KEY ) {
-      return resolve({});
-    }
-
     // Start our show details source
-    let source = require('./show/tmdb');
+    let source = require('./show/' + ( process.env.TMDB_KEY ? 'tmdb' : 'tvmaze' ));
 
     // Decode episode details from filename
     let details = parser(filename);
