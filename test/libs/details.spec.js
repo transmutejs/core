@@ -9,7 +9,7 @@ const details = require('../../app/libs/details');
 
 // Define the available functions
 const detailsFunctions = [
-  'tv',
+  'show',
   'movie'
 ];
 
