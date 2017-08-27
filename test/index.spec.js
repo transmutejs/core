@@ -1,10 +1,9 @@
-// https://gist.github.com/yoavniran/1e3b0162e1545055429e
-
 'use strict';
 
 // Load requirements
 const glob = require('glob'),
-      path = require('path');
+      path = require('path'),
+      fs = require('fs');
 
 // Describe the application
 describe('Transmute', () => {
