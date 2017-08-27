@@ -12,7 +12,9 @@ const utilFunctions = [
   'color-string',
   'nest-options',
   'uid',
-  'request'
+  'request',
+  'metadata',
+  'camel-case'
 ];
 
 // Convert string to camelCase
@@ -33,7 +35,7 @@ describe('Utils module', () => {
 
     utilFunctions.forEach((func) => {
 
-      let property = camelCase(func);
+      let property = utils.camelCase(func);
 
       expect(utils).to.have.property(property).that.is.a('function');
     });  
