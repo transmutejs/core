@@ -29,4 +29,12 @@ describe('Function "movie"', () => {
     return expect(movieResult).to.eventually.be.rejected;
   });
 
+  // Temporary
+  it('should resolve when given a filename', () => {
+
+    let movieResult = movie('foobar');
+
+    return expect(movieResult).to.eventually.be.fulfilled;
+  });
+
 });

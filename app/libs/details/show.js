@@ -16,6 +16,7 @@ module.exports = function(filename) {
     }
 
     // Check for tmdb key
+    /* istanbul ignore if */
     if ( process.env.TMDB_KEY ) {
       source = require('./show/tmdb')(process.env.TMDB_KEY);
     } else {
@@ -24,6 +25,12 @@ module.exports = function(filename) {
 
     // Decode episode details from filename
     let details = parser(filename);
+
+    // Check we have what we need to continue
+    // TODO: Replace with better validation
+    if ( ! details.title || ! details.season || ! details.episode ) {
+      return resolve({});
+    }
 
     // Check for the show in cache
     source.findShow(details.title).then((show) => {

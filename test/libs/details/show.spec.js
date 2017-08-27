@@ -22,11 +22,28 @@ describe('Function "show"', () => {
                            .and.to.eventually.be.rejected;
   });
 
+  it('should resolve with an empty object when unable to parse filename', () => {
+
+    let tvResult = show('not-a-helpful-filename.mkv');
+
+    return expect(tvResult).to.eventually.be.fulfilled
+                           .and.to.be.an('object');
+  });
+
   it('should send a rejection when passed no arguments', () => {
 
     let tvResult = show();
 
     return expect(tvResult).to.eventually.be.rejected;
+  });
+
+  it('should be rejected when given an invalid season/episode', () => {
+
+    let tvResult = show('castle.s99e01.mkv');
+
+    return expect(tvResult).to.eventually.be.rejected
+                           .to.be.a('string')
+                           .and.to.match(/no results/ig);
   });
 
 });
