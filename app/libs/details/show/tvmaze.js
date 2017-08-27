@@ -30,10 +30,10 @@ module.exports = function() {
         tvmaze.search(name, (err, res) => {
           
           if ( err !== null ) {
-            return reject(err.message);
+            return reject(err);
           }
 
-          res = ( typeof res === 'string' ? JSON.parse(res) : res );
+          res = ( typeof res === 'string' ? JSON.parse(res) : /* istanbul ignore next */ res );
 
           let details = this.formatShow(res[0].show);
           
@@ -48,14 +48,17 @@ module.exports = function() {
     findEpisode: function(show, season, episode) {
       return new Promise((resolve, reject) => {
 
+        if ( ! show || ! show.id ) {
+          return reject('Invalid show provided');
+        }
+
         tvmaze.showById(show.id, "episodesbynumber", [season, episode], (err, res) => {
           
           if ( err !== null ) {
-            console.log(err);
-            return reject(err.message);
+            return reject(err);
           }
 
-          res = ( typeof res === 'string' ? JSON.parse(res) : res );
+          res = ( typeof res === 'string' ? JSON.parse(res) : /* istanbul ignore next */  res );
 
           let details = this.formatEpisode(res, show);
 
@@ -65,6 +68,7 @@ module.exports = function() {
     },
 
     // Formats an episode object into something more consistent
+    // TODO: Validate incoming schema
     formatEpisode: function(episode, show) {
       return {
         id: episode.id,
@@ -80,6 +84,7 @@ module.exports = function() {
     },
 
     // Formats a show object into something more consistent
+    // TODO: Validate incoming schema
     formatShow: function(show) {
       return {
         id: show.id,
