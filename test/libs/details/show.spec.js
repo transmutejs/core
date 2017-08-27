@@ -6,32 +6,25 @@ const expect = chai.expect;
 chai.use(require('chai-as-promised'));
 
 // Load our module
-const details = require('../../../app/libs/details');
+const show = require('../../../app/libs/details/show');
 
-describe('Function "tv"', () => {
+describe('Function "show"', () => {
 
   it('should export a function', () => {
-    expect(details.tv).to.be.a('function');
+    expect(show).to.be.a('function');
   });
 
   it('should return a promise', () => {
 
-    let tvResult = details.tv();
+    let tvResult = show();
 
     return expect(tvResult).to.be.a('promise')
                            .and.to.eventually.be.rejected;
   });
 
-  it('should resolve when passed an argument', () => {
-
-    let tvResult = details.tv('test tv show.mkv');
-
-    return expect(tvResult).to.eventually.be.fulfilled;
-  });
-
   it('should send a rejection when passed no arguments', () => {
 
-    let tvResult = details.tv();
+    let tvResult = show();
 
     return expect(tvResult).to.eventually.be.rejected;
   });
