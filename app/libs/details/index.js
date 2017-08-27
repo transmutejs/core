@@ -1,32 +1,22 @@
 'use strict';
 
-// Load requirements
-const _trakt = require('./trakt'),
-      path = require('path');
-
 module.exports = {
 
-  get: function(file, type) {
+  get: function(task) {
     return new Promise((resolve, reject) => {
 
-      // Variables
-      let filename = path.basename(file),
-          details = {};
-
       // Check type
-      if ( type === undefined || ! ['show', 'move'].includes(type) ) {
-        return reject('Invalid job type "' + type + '" specified');
+      if ( task.type === undefined || ! ['show', 'move'].includes(task.type) ) {
+        return reject('Invalid job type "' + task.type + '" specified');
       }
 
       // Get metadata, auth with trakt and get media information
-      this.metadata.get(file).then((meta) => {
-        details.meta = meta;
-        return _trakt.authenticate();
-      }).then((trakt) => {
-        return this[type](trakt, filename);
+      this.metadata.get(task.file).then((meta) => {
+        task.meta = meta;
+        return this[task.type].get(task.basename);
       }).then((info) => {
-        details.info = info;
-        return resolve(details);
+        task.details = info;
+        return resolve(task);
       }).catch((err) => {
         return reject(err);
       });
