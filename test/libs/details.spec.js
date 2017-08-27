@@ -44,6 +44,40 @@ describe('Details module', () => {
     });  
   });
 
+  describe('Function "get"', () => {
+
+    it('should export a function', () => {
+      expect(details.get).to.be.a('function');
+    });
+
+    it('should return a promise', () => {
+
+      let detailsResult = details.get();
+
+      return expect(detailsResult).to.be.a('promise')
+                                   .and.to.eventually.be.rejected;
+    });
+
+    it('should send a rejection when passed no arguments', () => {
+
+      let detailsResult = details.get();
+
+      return expect(detailsResult).to.eventually.be.rejected;
+    });
+
+    it('should send a rejection when passed an invalid task type', () => {
+
+      let detailsResult = details.get({
+        file: './path/to/file.mkv',
+        basename: 'file.mkv',
+        type: 'invalid'
+      });
+
+      return expect(detailsResult).to.eventually.be.rejected;
+    });
+
+  });
+
   // Load sub-module specs
   detailsFunctions.forEach((func) => {
     require('./details/' + func + '.spec');
