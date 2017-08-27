@@ -123,7 +123,9 @@ describe('Function "listing"', () => {
                          .and.be.empty
                          .notify(done);
 
-    fs.rmdirSync(emptyDir);
+    if ( fs.existsSync(emptyDir) ) {
+      fs.rmdirSync(emptyDir);
+    }
   });
 
   it('should reject when an invalid season is provided', () => {
