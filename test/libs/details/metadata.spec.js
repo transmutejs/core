@@ -1,5 +1,9 @@
 'use strict';
 
+// Load requirements
+const path = require('path'),
+      fs = require('fs');
+
 // Load chai
 const chai = require('chai');
 const expect = chai.expect;
@@ -33,6 +37,34 @@ describe('Class "metadata"', () => {
       let metadataResult = metadata.get();
 
       return expect(metadataResult).to.eventually.be.rejected;
+    });
+
+  });
+
+  describe('Function "error"', () => {
+
+    it('should export a function', () => {
+      expect(metadata.error).to.be.a('function');
+    });
+
+    it('should return an array', () => {
+
+      let errorResult = metadata.error('foo');
+
+      expect(errorResult).to.be.an('array')
+                         .with.length(1);
+    });
+
+    it('should extract a human readable error message from ffmpeg exception', () => {
+
+      let file = path.resolve('./test/data/task/metadata/error.txt');
+      let err = fs.readFileSync(file, 'utf8');
+
+      let errorResult = metadata.error([err]);
+
+      expect(errorResult).to.be.an('array')
+                         .with.length(1)
+                         .and.to.eql(['Invalid data found when processing input']);
     });
 
   });
