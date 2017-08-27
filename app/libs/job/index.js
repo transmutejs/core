@@ -2,7 +2,7 @@
 
 module.exports = {
 
-  get: function(task) {
+  build: function(task) {
     return new Promise((resolve, reject) => {
 
       // Check for task

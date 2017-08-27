@@ -1,7 +1,7 @@
 'use strict';
 
 // Load requirements
-const details = require('../details'),
+const job = require('../job'),
       path = require('path');
 
 // Export promise for use
@@ -33,7 +33,7 @@ module.exports = function(task) {
       files.forEach((group) => {
         group.files.forEach(function(file, i) {
           
-          promises.push(details.get({
+          promises.push(job.build({
             file: file,
             path: path.dirname(file),
             basename: path.basename(file),

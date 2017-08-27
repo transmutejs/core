@@ -9,7 +9,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load module
-const tvmaze = require('../../../../app/libs/details/show/tvmaze'),
+const tvmaze = require('../../../../app/libs/job/show/tvmaze'),
       tvmazeConfig = path.resolve('./config/_tvmaze.json');
 
 describe('Class "tvmaze"', () => {

@@ -6,7 +6,7 @@ const expect = chai.expect;
 chai.use(require('chai-as-promised'));
 
 // Load our module
-const show = require('../../../app/libs/details/show');
+const show = require('../../../app/libs/job/show');
 
 describe('Function "show"', () => {
 

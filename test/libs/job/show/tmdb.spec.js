@@ -5,7 +5,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const tmdb = require('../../../../app/libs/details/show/tmdb');
+const tmdb = require('../../../../app/libs/job/show/tmdb');
 
 describe('Class "tmdb"', () => {
 
