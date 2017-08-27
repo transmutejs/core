@@ -1,5 +1,17 @@
 'use strict';
 
+// Load requirements
+const fs = require('fs'),
+      path = require('path');
+
+// Define the config directory
+let configDir = path.resolve('./config');
+
+// Create config directory if we don't have one
+if ( ! fs.existsSync(configDir) ) {
+  fs.mkdirSync(configDir);
+}
+
 module.exports = {
 
   get: function(task) {
