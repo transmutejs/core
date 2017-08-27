@@ -27,30 +27,8 @@ task.create({
     }
    }
 }).then((data) => {
-  console.log('Resolved 1 -');
   console.log(data);
+  console.log(data.jobs);
 }).catch((err) => {
-  console.log('Error 1 -');
-  console.log(err);
-});
-
-// Create a second task instance
-task.create({
-  "name": "Less Drama, More Zombies",
-  "directory": "Less Drama, More Zombies/",
-  "type": "show",
-  "seasons": [1, 2, 3, "4"],
-  "options": {
-    "preset": "slow",
-    "video" : {
-      "bitrate": 4000,
-      "quality": 0
-    }
-   }
-}).then((data) => {
-  console.log('Resolved 2 -');
-  console.log(data);
-}).catch((err) => {
-  console.log('Error 2 -');
   console.log(err);
 });
