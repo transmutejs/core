@@ -55,8 +55,8 @@
     "episode-parser": "^1.2.0",
     "fluent-ffmpeg": "^2.1.2",
     "i18n": "^0.8.3",
+    "moviedb": "^0.2.10",
     "promise-queue": "^2.2.3",
-    "trakt.tv": "^6.0.1",
     "winston": "^2.3.1",
     "winston-daily-rotate-file": "^1.4.6"
   }
