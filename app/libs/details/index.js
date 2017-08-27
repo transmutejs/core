@@ -13,7 +13,7 @@ module.exports = {
       // Get metadata, auth with trakt and get media information
       this.metadata.get(task.file).then((meta) => {
         task.meta = meta;
-        return this[task.type].get(task.basename);
+        return this[task.type](task.basename);
       }).then((info) => {
         task.details = info;
         return resolve(task);

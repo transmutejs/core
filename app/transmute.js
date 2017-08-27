@@ -27,8 +27,18 @@ task.create({
     }
    }
 }).then((data) => {
+  
+  console.log('Task Object:');
   console.log(data);
-  console.log(data.jobs);
+
+  console.log('\n\n');
+  
+  console.log('Job Object:');
+  console.log(data.jobs[0]);
+
+  process.exit(0);
+
 }).catch((err) => {
   console.log(err);
+  process.exit(0);
 });
