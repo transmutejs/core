@@ -21,7 +21,7 @@
 					},
 					"type": {
 						"type": "string",
-						"enum": ["tv", "movie"]
+						"enum": ["show", "movie"]
 					},
 					"seasons": {
 						"type": "array",

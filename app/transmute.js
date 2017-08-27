@@ -16,8 +16,8 @@ const utils = require('./libs/utils'),
 // Create new task
 task.create({
   "name": "Two Brothers, One Impala",
-  "directory": path.resolve('test/data/task/listing'),
-  "type": "tv",
+  "directory": path.resolve('test/data/task/metadata'),
+  "type": "show",
   "seasons": [1, 2],
   "options": {
     "preset": "slow",
@@ -38,7 +38,7 @@ task.create({
 task.create({
   "name": "Less Drama, More Zombies",
   "directory": "Less Drama, More Zombies/",
-  "type": "tv",
+  "type": "show",
   "seasons": [1, 2, 3, "4"],
   "options": {
     "preset": "slow",

@@ -3,7 +3,7 @@
         {
             "name": "foo",
             "directory": "foo/",
-            "type": "tv",
+            "type": "show",
             "seasons": [1, 2, "3"],
             "options": {
                 "preset": "slow",
@@ -16,7 +16,7 @@
         {
             "name": "bar",
             "directory": "bar/",
-            "type": "tv",
+            "type": "show",
             "seasons": [1, 2, 3],
             "options": {
                 "preset": "slow",
