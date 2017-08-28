@@ -32,8 +32,8 @@ module.exports = {
       engine.config(job.file, job.options, job.meta, job.details).then((command) => {
 
         // Add additional details
-        job.output = path.resolve(command.target);
-        job.temp = path.resolve(command.target); // Temporary until engine supports it
+        job.output = path.resolve(command.output);
+        job.temp = path.resolve(command.temp);
         job.framerate = utils.framerate(job.meta.streams[0].avg_frame_rate);
         job.started = this.started.format('MMMM Do YYYY, h:mm:ss a');
         job.size = {
