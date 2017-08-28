@@ -7,5 +7,6 @@ module.exports = {
   uid: require('./uid'),
   request: require('./request'),
   metadata: require('./metadata'),
-  framerate: require('./framerate')
+  framerate: require('./framerate'),
+  normalizeLanguage: require('./normalize-language')
 };
