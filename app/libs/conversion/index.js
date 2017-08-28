@@ -1,11 +1,19 @@
 'use strict';
 
 // Load requirements
-const engine = require('../engine');
+const engine = require('../engine'),
+      moment = require('moment');
 
-// Configures and runs the conversion task
+// Export for use
 module.exports = {
 
+  // Helps avoid errors when engine quits without starting
+  progressBar: {terminate: function() { }},
+
+  // Track the time since conversion began
+  started: moment(),
+
+  // Configures and runs the conversion task
   run: function(job) {
     return new Promise((resolve, reject) => {
 
@@ -21,7 +29,7 @@ module.exports = {
 
       // Bind events
       ['start', 'filenames', 'progress', 'error', 'end'].forEach((e) => {
-        return command.on(e, () => {
+        return command.on(e, function() {
             
           // Format arguments to include details and metadata
           let args = Array.prototype.slice.call(arguments);
@@ -29,7 +37,7 @@ module.exports = {
             
           // Call event callback with args
           this['on' + e].apply(this, args);
-        });
+        }.bind(this));
       });
 
       // Start processing the job
