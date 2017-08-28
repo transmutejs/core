@@ -6,5 +6,6 @@ module.exports = {
   nestOptions: require('./nest-options'),
   uid: require('./uid'),
   request: require('./request'),
-  metadata: require('./metadata')
+  metadata: require('./metadata'),
+  framerate: require('./framerate')
 };
