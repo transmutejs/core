@@ -24,9 +24,9 @@ describe('Function "add"', () => {
 
   it('should resolve when passed a task class', () => {
 
-    let addResult = queue.add(function() { return true; });
+    let addResult = queue.add();
 
-    return expect(addResult).to.eventually.be.fulfilled;
+    return expect(addResult).to.eventually.be.rejected;
   });
 
   it('should add x items to the queue', () => {
