@@ -6,5 +6,6 @@
 	},
 	"PROGRESS.CONVERSION": "[{magenta::bar}] [{cyan:x:speed}] [{green::percent}] [{yellow::time}] [{yellow::taken}] [{green::size (:reduction%)}] [{magenta::estimate}]",
 	"PROGRESS.COPY": "Copying [{magenta::bar}] :rate/bps :percent :etas",
-	"INFO.COMPLETE": "Original: {cyan:%s} New: {green:%s} Saving: {yellow:%s} ({green:%s%})"
+	"INFO.COMPLETE": "Original: {cyan:%s} New: {green:%s} Saving: {yellow:%s} ({green:%s%})",
+	"HELP.DIALOG": "\nUsage: transmute [options]\n\nOptions:\n\n%s\n\n"
 }
