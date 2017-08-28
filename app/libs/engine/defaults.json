@@ -1,0 +1,39 @@
+{
+	"video": {
+		"codec": "libx265",
+		"size": false,
+		"bitrate": 0,
+		"quality": 19,
+		"bitdepth": 10,
+		"tuning": false
+	},
+	"audio": {
+		"codec": "copy",
+		"bitrate": false,
+		"strip": false
+	},
+	"he": {
+		"audio": false,
+		"force": false,
+		"downmix": false,
+		"bitrate": 40
+	},
+	"watch": {
+		"config": false,
+		"directory": false,
+		"socket": false
+	},
+	"verbose": false,
+	"target": false,
+	"format": "mkv",
+	"preset": "fast",
+	"remove_subtitles": false,
+	"language": "eng",
+	"preview": false,
+	"screenshots": false,
+	"overwrite": true,
+	"pattern": {
+		"show": "%.n.%y.S%ssE%ee.%.t.%r.%vc.%ex",
+		"movie": "%.n.%y.%r.%vc.%ex"
+	}
+}
