@@ -52,8 +52,30 @@ module.exports = {
 
   outputPath: require('./methods/output-path'),
 
+  streamData: require('./methods/stream-data'),
+
+  assignStreams: require('./methods/assign-streams'),
+
+  videoCodec: require('./methods/video-codec'),
+
   videoBitrate: require('./methods/video-bitrate'),
 
-  videoSize: require('./methods/video-size')
+  videoSize: require('./methods/video-size'),
+
+  videoBitdepth: require('./methods/video-bitdepth'),
+
+  codecX265: require('./methods/codec-x265'),
+
+  audioCodec: require('./methods/audio-codec'),
+
+  heAudio: require('./methods/he-audio'),
+
+  removeSubtitles: require('./methods/remove-subtitles'),
+
+  encodePreset: require('./methods/encode-preset'),
+
+  tune: require('./methods/tune'),
+
+  preview: require('./methods/preview')
 
 };
