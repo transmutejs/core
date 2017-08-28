@@ -1,0 +1,16 @@
+{
+	"ctu": 32,
+	"max-tu-size": 16,
+	"qcomp": 0.8,
+	"aq-mode": 1,
+	"aq-strength": 1,
+	"psy-rd": 1.8,
+	"psy-rdoq": 5,
+	"rdoq-level": 1,
+	"deblock": "-2:-2",
+	"qg-size": 16,
+	"no-sao": null,
+	"me_range": 44,
+	"no-rect": null,
+	"no-amp": null
+}
