@@ -42,12 +42,12 @@ module.exports = {
           codec: data.codec_name.replace('h', 'x'),
           resolution: data.height + 'p',
           depth: data.bits_per_raw_sample + 'bit'
-        }
+        };
       } else if ( data.codec_type === 'audio' ) {
         codecs.audio = {
           codec: data.codec_name,
           channels: data.channels + '.1'
-        }
+        };
       }
     });
 
@@ -59,7 +59,7 @@ module.exports = {
     let basename = './';
 
     if ( target && path.isAbsolute(target) ) {
-      basename = options.target;
+      basename = target;
     } else {
       basename = path.dirname(file) + ( target ? '/' + target : '' );
     }
@@ -108,7 +108,7 @@ module.exports = {
       // This is necessary to avoid infinite loops with zero-width matches
       if ( m.index === regex.lastIndex ) { regex.lastIndex++; }
     
-      m.forEach((match, i) => {
+      m.forEach((match, i) => { // jshint ignore:line
         let val = replacements[m[3]];
         str = str.replace(m[1], ( m[2] !== undefined ? this.clean(val) : val ));
       });
