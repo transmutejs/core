@@ -12,6 +12,9 @@ module.exports = {
   // Total number of items added to the queue
   total: 0,
 
+  // Current number of items in the queue
+  length: 0,
+
   // Current task number being run
   current: 0,
 

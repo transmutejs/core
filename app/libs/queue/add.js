@@ -44,6 +44,9 @@ module.exports = function(task) {
       // Add to the queue
       promises.push(this.items.add(() => {
 
+        // Update queue length
+        this.length = ( this.items.getQueueLength() + this.items.getPendingLength() );
+
         // Update current task position
         this.current++;
 
@@ -51,12 +54,11 @@ module.exports = function(task) {
         task.overall = {total: this.total, current: this.current};
 
         // DEBUG
-        logger.info('Starting task {green:%s} of {cyan:%s}', this.current, this.total);
+        logger.info('Starting task {cyan:%s} of {green:%s}', this.current, this.total);
 
         // Send to conversion for processing
         return require('../conversion').run(job);
       }));
-
     });
 
     // DEBUG
