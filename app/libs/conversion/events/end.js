@@ -1,8 +1,9 @@
 'use strict';
 
 // On conversion completion
-module.exports = function(cmd, job) {
+module.exports = function(stdout, stderr, job) {
 
-  // TODO
+  // DEBUG
+  console.log('Complete');
 
 };

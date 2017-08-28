@@ -1,8 +1,9 @@
 'use strict';
 
 // On conversion error
-module.exports = function(cmd, job) {
+module.exports = function(err, stdout, stderr) {
 
-  // TODO
+  // DEBUG
+  console.log(err);
 
 };

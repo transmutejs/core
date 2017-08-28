@@ -1,8 +1,9 @@
 'use strict';
 
 // On conversion start
-module.exports = function(cmd, job) {
+module.exports = function(cmd, job, metadata) {
 
-  // TODO
+  // DEBUG
+  console.log('Starting');
 
 };

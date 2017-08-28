@@ -1,8 +1,9 @@
 'use strict';
 
 // On screenshot filenames
-module.exports = function(cmd, job) {
+module.exports = function(files, job, metadata) {
 
-  // TODO
+  // DEBUG
+  console.log(files);
 
 };

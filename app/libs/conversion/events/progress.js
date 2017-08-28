@@ -1,8 +1,9 @@
 'use strict';
 
 // On progress update
-module.exports = function(cmd, job) {
+module.exports = function(progress, job, metadata) {
 
-  // TODO
+  // DEBUG
+  console.log(progress);
 
 };
