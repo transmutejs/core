@@ -12,6 +12,8 @@ const utils = require('../utils'),
 // Export for use
 module.exports = {
 
+  options: {},
+
   input: function() {
 
     // Add option validation to dash dash
@@ -28,6 +30,8 @@ module.exports = {
     // Add additional arguments
     options.platform = this.getPlatform();
     options.hwAccel  = this.getHwAccel();
+
+    // Define the temp directory to render to, not yet supported
     // options.temp  = ( config[options.platform].temp ? config[options.platform].temp : false );
 
     // Handle help output
@@ -37,6 +41,10 @@ module.exports = {
       return process.exit(0);
     }
 
+    // Assign options for use later if needed
+    this.options = options;
+
+    // Send them back
     return options;
   },
 
