@@ -36,6 +36,7 @@ module.exports = function(filename) {
     source.findShow(details.title).then((show) => {
       return source.findEpisode(show, details.season, details.episode);
     }).then((episode) => {
+      episode.type = 'show';
       return resolve(episode);
     }).catch((err) => {
       return reject(err);

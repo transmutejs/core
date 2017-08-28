@@ -30,6 +30,7 @@ module.exports = function(filename) {
 
     // Get the movie details
     source.findMovie(details.title).then((movie) => {
+      movie.type = 'movie';
       return resolve(movie);
     }).catch((err) => {
       return reject(err);
