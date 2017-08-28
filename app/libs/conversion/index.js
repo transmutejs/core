@@ -25,7 +25,7 @@ module.exports = {
             
           // Format arguments to include details and metadata
           let args = Array.prototype.slice.call(arguments);
-          args.push(details, metadata);
+          args.push(job, job.meta);
             
           // Call event callback with args
           this['on' + e].apply(this, args);
