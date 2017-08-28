@@ -1,7 +1,8 @@
 'use strict';
 
 // Load requirements
-const ffmpeg = require('fluent-ffmpeg');
+const ffmpeg = require('fluent-ffmpeg'),
+      path = require('path');
 
 // Configures the conversion task
 module.exports = {
@@ -14,6 +15,9 @@ module.exports = {
                     .outputOptions('-map_metadata', '0') // Keep metadata, title, cover image, etc.
                     .outputOptions('-map_chapters', '0') // Keep chapter data intact
                     .outputOptions('-hide_banner');      // Stops ffmpeg diagnostic output
+
+    // Temp
+    command.output(path.resolve('./sample.mp4'));
 
     return command;
   }
