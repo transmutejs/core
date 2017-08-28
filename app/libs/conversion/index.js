@@ -1,8 +1,14 @@
 'use strict';
 
 // Load requirements
+const moment = require('moment'),
+      filesize = require('filesize'),
+      path = require('path'),
+      fs = require('fs');
+
+// Load libraries
 const engine = require('../engine'),
-      moment = require('moment');
+      utils = require('../utils');
 
 // Export for use
 module.exports = {
@@ -26,6 +32,18 @@ module.exports = {
       let command = engine.config(job.file, job.options, job.meta, (err) => {
         return reject(err);
       });
+
+      // Add additional details
+      job.output    = path.resolve('./sample.mp4'); // Temporary until engine is more advanced
+      job.temp      = path.resolve('./sample.mp4'); // Temporary until engine is more advanced
+      job.framerate = utils.framerate(job.meta.streams[0].avg_frame_rate);
+      job.started = this.started.format('MMMM Do YYYY, h:mm:ss a');
+      job.size = {
+        original: {
+          raw: fs.statSync(job.file).size,
+          formatted: filesize(fs.statSync(job.file).size)
+        }
+      };
 
       // Bind events
       ['start', 'filenames', 'progress', 'error', 'end'].forEach((e) => {
