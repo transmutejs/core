@@ -72,7 +72,6 @@ module.exports = function(task) {
     Promise.all(promises).then((result) => {
       return resolve(result);
     }).catch((err) => {
-      console.log(err);
       return reject(err);
     });
   });
