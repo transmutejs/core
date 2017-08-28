@@ -5,11 +5,44 @@ const assign = require('deep-assign'),
       path = require('path'),
       fs = require('fs');
 
+// Load modules
+const utils = require('../utils');
+
 // Helper utilities
 module.exports = {
 
   assignDefaults: function(opts) {
-    return assign(require('./defaults'), opts);
+    return assign(require('./data/defaults'), opts);
+  },
+
+  // ucfirst
+  capitalize: function(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  },
+
+  // Gets a stream title from the metadata
+  getStreamTitle: function(stream) {
+    return stream.title || stream.tags ? stream.tags.title : undefined;
+  },
+
+  // Format stream language
+  normalizeStreamLanguage: function(stream) {
+    let lang = stream.language || stream.tags ? stream.tags.language : undefined;
+    return utils.normalizeLanguage(lang);
+  },
+
+  // Creates a standard naming convention for audio tracks
+  getFormatedChannels: function(channels) {
+    
+    if ( channels === 1 ) {
+      return 'Mono';
+    } else if ( channels === 2 ) {
+      return 'Stereo';
+    } else if ( channels % 2 ) {
+      return channels + '.0 Channel';
+    } else {
+      return (channels - 1) + '.1 Channel';
+    }
   },
 
   getMethods: function(obj) {
@@ -46,7 +79,7 @@ module.exports = {
       } else if ( data.codec_type === 'audio' ) {
         codecs.audio = {
           codec: data.codec_name,
-          channels: data.channels + '.1'
+          channels: this.getFormatedChannels(data.channels).replace(/[^0-9\.]+/ig, '')
         };
       }
     });
