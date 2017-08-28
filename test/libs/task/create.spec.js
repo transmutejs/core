@@ -106,7 +106,7 @@ describe('Function "create"', () => {
     });
   });
 
-  it('should be rejected with an invalid directory path', (done) => {
+  it('should reject with an invalid directory path', (done) => {
 
     let file = path.join(directory, 'object.valid.json');
 
@@ -119,6 +119,17 @@ describe('Function "create"', () => {
 
       return done();
     });
+  });
+
+  it('should reject when given an invalid file', () => {
+
+    let schema = require(path.join(directory, 'object.valid.json'));
+
+    schema.directory = listingDirectory;
+
+    let taskResult = task.create(schema);
+
+    expect(taskResult).to.eventually.be.rejected;
   });
 
 });
