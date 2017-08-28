@@ -60,7 +60,7 @@ module.exports = function(task) {
     });
 
     // DEBUG
-    console.log('Added:\n  ' + added.join('  \n').trim());
+    logger.info('Added:\n  {green:' + added.join('  \n').trim() + '}');
 
     // Unpause the queue
     this.items.maxPendingPromises = 1;
