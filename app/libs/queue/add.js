@@ -3,6 +3,9 @@
 // Load requirements
 const assign = require('deep-assign');
 
+// Load libraries
+const logger = require('../log');
+
 // Variables
 let queueCache = [];
 
@@ -48,7 +51,7 @@ module.exports = function(task) {
         task.overall = {total: this.total, current: this.current};
 
         // DEBUG
-        console.log('[{cyan:Queue}] Starting task %s of %s', this.current, this.total);
+        logger.info('Starting task {green:%s} of {cyan:%s}', this.current, this.total);
 
         // Send to conversion for processing
         return require('../conversion').run(job);
