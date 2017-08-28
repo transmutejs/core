@@ -12,7 +12,7 @@
     "postversion": "git push && git push --tags && npm publish"
   },
   "bin": {
-    "transmute": "./app/index.js"
+    "transmute": "./index.js"
   },
   "repository": {
     "type": "git",
