@@ -29,6 +29,11 @@ task.create({
 }).then((data) => {
   return queue.add(data);
 
+}).then((complete) => {
+
+  logger.info('End of queue.');
+  process.exit(0);
+
 }).catch((err) => {
   console.log(err);
   process.exit(0);
