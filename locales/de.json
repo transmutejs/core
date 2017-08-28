@@ -3,5 +3,7 @@
 	"%s cat": {
 		"one": "%s cat",
 		"other": "%s cats"
-	}
+	},
+	"PROGRESS.CONVERSION": "[{magenta::bar}] [{cyan:x:speed}] [{green::percent}] [{yellow::time}] [{yellow::taken}] [{green::size (:reduction%)}] [{magenta::estimate}]",
+	"PROGRESS.COPY": "Copying [{magenta::bar}] :rate/bps :percent :etas"
 }
