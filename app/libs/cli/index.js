@@ -120,6 +120,7 @@ module.exports = {
       if ( gpu.AdapterCompatibility === 'NVIDIA' ) {
         if ( /1[0-9]{3}/g.exec(gpu.VideoProcessor) !== null ) {
           logger.info('Nvidia 10 Series card found, unlocking hardware acceleration.');
+          logger.info('NVENC has limited support for the following arguments:\n\n  - You must use bitrate rather than crf\n  - Preset must be either slow or fast');
           return true;
         }
       }
