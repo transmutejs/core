@@ -4,17 +4,31 @@
 module.exports = function(command, file, options, metadata, details) {
   return new Promise((resolve, reject) => {
 
-    // Assign video codec
-    command.videoCodec(options.video.codec);
-
     // Check for hardware acceleration
-    // Detection not yet enabled
     if ( options.hwAccel ) {
-
+      
       // Enable x264 or hevc transcoding for nvidia 10 series cards
-      command.videoCodec(( /264/g.exec(options.video.codec) != null ? 'h264' : 'hevc' ) + '_nvenc');
+      options.video.codec = ( ( /264/g.exec(options.video.codec) != null ? 'h264' : 'hevc' ) + '_nvenc' );
+    
+    // Are we copying source?
+    } else if ( options.video.codec === 'copy' ) {
+
+      // Get the codec data from the video stream
+      options.video.codec = command.streams.video[0].codec_name;
     }
 
-    return resolve();
+    // Get a list of the available codecs
+    command.getAvailableCodecs((err, codecs) => {
+
+      // Check we have this one and can encode it
+      if ( ! codecs[options.video.codec] || ! codecs[options.video.codec].canEncode ) {
+        return reject('Codec "' + options.video.codec + '" is not available for encoding.');
+      }
+
+      // Assign video codec
+      command.videoCodec(options.video.codec);
+
+      return resolve();
+    });
   });
 };
