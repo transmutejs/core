@@ -56,9 +56,18 @@ module.exports = function(task) {
         // DEBUG
         logger.info('Starting task {cyan:%s} of {green:%s}', this.current, this.total);
 
+        // Queue data test
+        if ( this.current < this.total ) {
+          let next = this.items.queue[0].job;
+          logger.info('Next task {green:' + next.basename + '}');
+        }
+
         // Send to conversion for processing
         return require('../conversion').run(job);
       }));
+
+      // Add data to queue for lookup later
+      this.items.queue[( this.items.queue.length - 1)].job = job;
     });
 
     // DEBUG
