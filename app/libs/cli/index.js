@@ -7,7 +7,8 @@ const dashdash = require('dashdash'),
 
 // Load modules
 const utils = require('../utils'),
-      locale = require('../locale');
+      locale = require('../locale'),
+      logger = require('../log');
 
 // Export for use
 module.exports = {
