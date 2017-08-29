@@ -10,7 +10,7 @@ const cli = require('./libs/cli'),
 // Load required files
 const task = require('./libs/task'),
       queue = require('./libs/queue'),
-      logger = require('./libs/logger');
+      logger = require('./libs/log');
 
 // Load tasks from file
 task.load('./config/tasks.json').then((tasks) => {
