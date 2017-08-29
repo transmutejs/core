@@ -61,6 +61,7 @@ describe('Function "create"', () => {
     let schema = require(path.join(directory, 'object.valid.json'));
 
     schema.directory = metadataDirectory;
+    schema.seasons = [];
 
     let taskResult = task.create(schema);
 
@@ -72,6 +73,7 @@ describe('Function "create"', () => {
     let schema = require(path.join(directory, 'object.valid.json'));
 
     schema.directory = metadataDirectory;
+    schema.seasons = [];
 
     task.create(schema).then((result) => {
 
@@ -92,6 +94,7 @@ describe('Function "create"', () => {
     let schema = require(path.join(directory, 'object.valid.json'));
 
     schema.directory = metadataDirectory;
+    schema.seasons = [];
 
     task.create(schema).then((result) => {
 
