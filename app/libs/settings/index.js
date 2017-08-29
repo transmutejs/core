@@ -21,8 +21,8 @@ if ( ! fs.existsSync(configDir) ) {
 // Create example settings
 if ( ! fs.existsSync(settingsFile) ) {
   fs.writeFileSync(settingsFile, JSON.stringify(require('./data/sample'), null, 4));
-  logger.warn('Created a new settings file in config, please customise these settings before running again');
-  process.exit(0);
+  // logger.warn('Created a new settings file in config, please customise these settings before running again');
+  // process.exit(0);
 }
 
 // Define the recursive settings object builds
