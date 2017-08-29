@@ -23,8 +23,8 @@ module.exports = function() {
 
         let data = JSON.parse(fs.readFileSync(tvmazeConfig));
 
-        if ( data.show[name] !== undefined ) {
-          return resolve(data.show[name]);
+        if ( data.show[name.toLowerCase()] !== undefined ) {
+          return resolve(data.show[name.toLowerCase()]);
         }
 
         tvmaze.search(name, (err, res) => {
@@ -77,8 +77,8 @@ module.exports = function() {
         name: episode.name,
         date: episode.airdate,
         rating: show.rating, // episode rating not provided
-        description: episode.summary.replace(/(<([^>]+)>)/ig, ''),
-        background: episode.image.original,
+        description: ( episode.summary || '' ).replace(/(<([^>]+)>)/ig, ''),
+        background: ( episode.image !== null ? episode.image.original : null ),
         show: show
       };
     },
@@ -93,16 +93,16 @@ module.exports = function() {
         rating: show.rating.average,
         genres: show.genres,
         language: show.language,
-        description: show.summary.replace(/(<([^>]+)>)/ig, ''),
-        poster: show.image.original,
-        background: show.image.original
+        description: ( show.summary || '' ).replace(/(<([^>]+)>)/ig, ''),
+        poster: ( show.image !== null ? show.image.original : null ),
+        background: ( show.image !== null ? show.image.original : null )
       };
     },
 
     // Store show in cache to avoid getShow calls
     cacheShow: function(name, details) {
       let data = JSON.parse(fs.readFileSync(tvmazeConfig));
-      data.show[name] = details;
+      data.show[name.toLowerCase()] = details;
       return fs.writeFileSync(tvmazeConfig, JSON.stringify(data, null, 4));
     }
   };
