@@ -44,7 +44,7 @@ module.exports = function(directory, seasons) {
     }
 
     // Handle seasons
-    if ( seasons !== undefined && Array.isArray(seasons) ) {
+    if ( seasons !== undefined && Array.isArray(seasons) && seasons.length > 0 ) {
 
       // Loop through the supplied seasons
       seasons.forEach((season) => {
