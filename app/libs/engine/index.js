@@ -56,6 +56,8 @@ module.exports = {
 
   assignStreams: require('./methods/assign-streams'),
 
+  format: require('./methods/format'),
+
   videoCodec: require('./methods/video-codec'),
 
   videoBitrate: require('./methods/video-bitrate'),
