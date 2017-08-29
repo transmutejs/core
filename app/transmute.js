@@ -1,39 +1,34 @@
 'use strict';
 
-// Load base requirements
-const program = require('commander'),
-      dotenv = require('dotenv').config(),
-      path = require('path');
+// Load settings
+const settings = require('./libs/settings');
 
-// Load our libraries
-const utils = require('./libs/utils'),
-      logger = require('./libs/log'),
-      i18n = require('./libs/locale'),
+// Run CLI and get arguments
+const cli = require('./libs/cli'),
+      options = cli.input();
+
+// Load required files
+const task = require('./libs/task'),
       queue = require('./libs/queue'),
-      task = require('./libs/task');
+      logger = require('./libs/logger');
 
-// Create new task
-task.create({
-  "name": "Two Brothers, One Impala",
-  "directory": path.resolve('test/data/task/metadata'),
-  "type": "show",
-  "seasons": [1, 2],
-  "options": {
-    "preset": "slow",
-    "video" : {
-      "bitrate": 3500,
-      "quality": 0
-    }
-   }
-}).then((data) => {
-  return queue.add(data);
+// Load tasks from file
+task.load('./config/tasks.json').then((tasks) => {
+  
+  // Extract jobs from tasks
+  let jobs = [];
+  tasks.forEach((t) => { t.jobs.forEach((j, i) => { jobs.push(j); }); });
 
+  // Add jobs into queue and convert
+  return queue.add({jobs: jobs});
+
+// Conversion queue complete
 }).then((complete) => {
-
   logger.info('End of queue.');
   process.exit(0);
 
+// Catch any errors that bubble up
 }).catch((err) => {
   console.log(err);
-  process.exit(0);
+  process.exit(1);
 });
