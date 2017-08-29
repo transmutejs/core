@@ -2,7 +2,7 @@
     "name": "Less Drama, More Zombies",
     "directory": "Less Drama, More Zombies/",
     "type": "show",
-    "seasons": [1, 2, 3, 4],
+    "seasons": [1, 2],
     "options": {
         "preset": "slow",
         "video" : {
