@@ -17,6 +17,9 @@ module.exports = {
 
   input: function() {
 
+    // Variables
+    let options = {};
+
     // Add option validation to dash dash
     this.addBitdepthOption()
         .addPresetOption()
@@ -26,7 +29,12 @@ module.exports = {
     let parser = dashdash.createParser(require('./data/options.json'));
 
     // Get the command line arguments
-    let options = utils.nestOptions(parser.parse(process.argv));
+    try {
+      options = utils.nestOptions(parser.parse(process.argv));
+    } catch (e) {
+      logger.error(e.message);
+      return process.exit(1);
+    }
 
     // Add additional arguments
     options.platform = this.getPlatform();
