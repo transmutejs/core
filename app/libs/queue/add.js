@@ -57,7 +57,7 @@ module.exports = function(task) {
         logger.info('Starting task {cyan:%s} of {green:%s}', this.current, this.total);
 
         // Queue data test
-        if ( this.current < this.total ) {
+        if ( this.items.queue[0] ) {
           let next = this.items.queue[0].job;
           logger.info('Next task {green:' + next.basename + '}');
         }
