@@ -29,7 +29,7 @@ if ( ! fs.existsSync(settingsFile) ) {
 const buildSettings = function(rules) {    
   for ( let prop in rules ) {
     Object.defineProperty(this, prop, {
-      get: function() {
+      get: function() { // jshint ignore:line
         if ( rules[prop] !== null && typeof rules[prop] === 'object' && ! Array.isArray(rules[prop]) )
           return new buildSettings(rules[prop]);
         else
