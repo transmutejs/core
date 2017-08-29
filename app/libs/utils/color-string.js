@@ -8,7 +8,7 @@ const clk = require('chalk'),
 module.exports = function(str) {
 
   // Variables
-  const regex = /\{([a-z,]+)\:(.+?)\}/gi;
+  const regex = /\{([a-z,]+)\:([\s\S]*?)\}/gmi;
   let m;
 
   // Check for a non-string
