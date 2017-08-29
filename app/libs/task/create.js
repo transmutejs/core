@@ -1,8 +1,14 @@
 'use strict';
 
 // Load requirements
+const assign = require('deep-assign'),
+      path = require('path'),
+      os = require('os');
+
+// Load our libraries
 const job = require('../job'),
-      path = require('path');
+      settings = require('../settings'),
+      cli = require('../cli');
 
 // Export promise for use
 module.exports = function(task) {
@@ -21,8 +27,17 @@ module.exports = function(task) {
       return reject(valid.errors.map((err) => { return err.path + '\n  ' + err.message; }));
     }
 
+    // Check for absolute path, if not create one
+    if ( ! path.isAbsolute(task.directory) ) {
+      let paths = settings.platform[os.platform()];
+      task.directory = path.join(paths.root, paths.directories[task.type], task.directory);
+    }
+
+    // Combine default and task options
+    task.options = assign(cli.options, task.options);
+
     // Get a files listing
-    this.listing(task.directory).then((files) => {
+    this.listing(task.directory, task.seasons).then((files) => {
 
       // Variables
       let promises = [],
