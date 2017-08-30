@@ -3,7 +3,7 @@
 // Load our requirements
 const i18n = require('i18n'),
       path = require('path'),
-      logger = require('../log');
+      logger = require(__base + 'libs/log');
 
 // Variables
 let localeDir = path.resolve(__base + '../locales');
@@ -12,6 +12,7 @@ let localeDir = path.resolve(__base + '../locales');
 i18n.configure({
   locales: require('./available-locales')(localeDir),
   defaultLocale: 'en',
+  objectNotation: true,
   directory: localeDir,
   syncFiles: true,
   autoReload: true,
