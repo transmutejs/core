@@ -1,7 +1,7 @@
 'use strict';
 
 // Load modules
-const logger = require(__base, 'libs/log');
+const logger = require(__base + 'libs/log');
 
 // Builds an object of stream data to be assigned to our output
 module.exports = function(command, file, options, metadata, details) {
@@ -57,12 +57,12 @@ module.exports = function(command, file, options, metadata, details) {
 
     // Error in assignments
     if ( status !== true ) {
-      return reject(status);
+      return resolve(status);
     }
 
     // Exit without a video or audio stream
     if ( streams.video.length <= 0 || streams.audio.length <= 0 ) {
-      return reject('No available video or audio stream, skipping.');
+      return resolve('No available video or audio stream, skipping.');
     }
 
     // Only take forward one video stream
