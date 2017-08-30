@@ -3,13 +3,13 @@
 // Load our requirements
 const glob = require('glob'),
       path = require('path'),
-      logger = require('../log');
+      logger = require(__base + 'libs/log');
 
 // Build a list of the available locale files in a given directory
 module.exports = function(dir) {
 
   // Variables
-  let available = [];
+  let available = ['en'];
 
   // Run through the installed locales and add to array to be loaded
   glob.sync(path.join(dir, '/*.json')).forEach((file) => {
@@ -17,9 +17,8 @@ module.exports = function(dir) {
     // Get the shortname for the file
     let lang = path.basename(file, '.json');
 
-    // Add to our object
-    logger.debug('Found the "%s" locale.', lang);  
-    available.push(lang);
+    // Ignore english
+    if ( lang !== 'en' ) { available.push(lang); }
   });
 
   return available;
