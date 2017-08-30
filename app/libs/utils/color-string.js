@@ -9,12 +9,17 @@ module.exports = function(str) {
 
   // Variables
   const regex = /\{([a-z,]+)\:([\s\S]*?)\}/gmi;
-  let m;
+  let m = null, args = Array.prototype.slice.call(arguments, 1);
 
   // Check for a non-string
   if ( typeof str !== 'string' ) {
     return '';
   }
+
+  // Add basic sprintf-esque support
+  args.forEach((arg) => {
+    str = str.replace('%s', arg);
+  });
 
   // Loop through matches
   while ( ( m = regex.exec(str) ) !== null ) {
@@ -35,5 +40,5 @@ module.exports = function(str) {
   }
 
   // Still matches to be made
-  return ( str.match(regex) !== null ? this.colorString(str) : str.replace(/\{([a-z,]+)\:/gi, '') );
+  return ( str.match(regex) !== null ? this.colorString(str, args) : str.replace(/\{([a-z,]+)\:/gi, '') );
 };
