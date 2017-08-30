@@ -5,6 +5,9 @@ const job = require('../job'),
       path = require('path'),
       fs = require('fs');
 
+// Load modules
+const settings = require(__base + 'libs/settings');
+
 // Export promise for use
 module.exports = function(file) {
   return new Promise((resolve, reject) => {
@@ -13,7 +16,9 @@ module.exports = function(file) {
     let promises = [];
 
     // Resolve to an absolute path
-    file = path.resolve(file);
+    if ( ! path.isAbsolute(file) ) {
+      file = path.resolve(path.join(settings.directory, file));
+    }
 
     // Check the file exists
     if ( ! fs.existsSync(file) ) {
