@@ -2,19 +2,10 @@
 
 // Load requirements
 const glob = require('glob'),
-      path = require('path'),
-      fs = require('fs');
+      path = require('path');
 
-// Helper to avoid a lot of directory traversing
-global.__base = path.resolve(__dirname + '/../') + '/app/';
-
-// Define the config directory
-let configDir = path.resolve('./config');
-
-// Create config directory if we don't have one
-if ( ! fs.existsSync(configDir) ) {
-  fs.mkdirSync(configDir);
-}
+// Run preflight checks
+require('./pre.index.spec.js')();
 
 // Describe the application
 describe('Transmute', () => {
