@@ -5,6 +5,9 @@ const glob = require('glob'),
       path = require('path'),
       fs = require('fs');
 
+// Helper to avoid a lot of directory traversing
+global.__base = path.resolve(__dirname + '/../') + '/app/';
+
 // Define the config directory
 let configDir = path.resolve('./config');
 
