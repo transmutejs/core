@@ -4,16 +4,17 @@
 const path = require('path'),
       fs = require('fs');
 
-// Load modules
-const config = require(path.join(__base, 'libs/setup/config'))();
+// Load our modules
+const utils = require(__base + 'libs/utils'),
+      config = require('../config')();
 
 module.exports = {
   type: 'input',
   name: 'directory',
-  message: 'Where would you like me to put them?\n',
+  message: lang('setup.config.question'),
   default: config.directories.settings,
   when: () => {
-    console.log('\x1BcI store config and cache files that you may want to edit from time to time.\n');
+    utils.output(lang('setup.config.title'), lang('setup.config.message'), 1, 6);
     return true;
   },
   validate: (val) => {
@@ -26,7 +27,7 @@ module.exports = {
 
     // Exists as file, can't do anything
     if ( fs.existsSync(val) && fs.lstatSync(val).isFile() ) {
-      return 'That path exists...and is a file!';
+      return lang('setup.config.validation.path_exists');
     }
 
     // Exists as directory, nothing more to do
@@ -43,17 +44,21 @@ module.exports = {
     if ( fs.existsSync(parent) && fs.lstatSync(parent).isDirectory() ) {
 
       // Make the directory
-      fs.mkdirSync(val);
+      try {
+        fs.mkdirSync(val);
+      } catch(e) {
+        return lang('setup.config.validation.failed');
+      }
 
       // Update config
       config.directories.settings = val;
       config.set({directories: config.directories});
 
       // Let them know
-      return fs.existsSync(val) || 'Failed to create the requested directory';
+      return fs.existsSync(val) || lang('setup.config.validation.failed');
     }
 
     // We're done here
-    return 'Parent directory doesn\'t exist, nice try though';
+    return utils.colorString(lang('setup.config.validation.no_parent'));
   }
 };
