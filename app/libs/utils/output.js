@@ -14,7 +14,7 @@ module.exports = function(title, msg, step, total) {
   }
 
   // Output
-  process.stdout.write('\x1Bc')
+  process.stdout.write('\x1Bc');
   console.log(this.colorString('{bold:%s}', titleStr));
   console.log(this.colorString(msg) + '\n');
-};;
+};

@@ -140,8 +140,7 @@ module.exports = {
         // Output to the user
         utils.output(lang('setup.task.title'), lang('setup.task.message.confirm') + '\n\n' +
           lang('setup.task.message.created') + '\n\n' +
-          lang('setup.task.message.todo')
-        , 6, 6);
+          lang('setup.task.message.todo'), 6, 6);
 
         // Delete task cache, otherwise we won't see changes
         delete require.cache[file];
@@ -158,7 +157,7 @@ module.exports = {
 
         } catch(e) {
           console.log(utils.colorString('  {red:\u2717} ' + lang('setup.task.validation.invalid_json')));
-        };
+        }
 
         // Perform checks
         let schema = validate.file(tasks);

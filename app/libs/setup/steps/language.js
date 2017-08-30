@@ -5,6 +5,7 @@ const path = require('path');
 
 // Load our modules
 const utils = require(__base + 'libs/utils'),
+      i18n = require(__base + 'libs/locale'),
       config = require('../config')();
 
 // Get the available locales

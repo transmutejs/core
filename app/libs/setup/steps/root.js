@@ -14,7 +14,7 @@ module.exports = {
   name: 'root',
 
   // Hacky way to change the language if changed in when callback
-  message: () => { return lang('setup.root.question') },
+  message: () => { return lang('setup.root.question'); },
 
   when: (answers) => {
 
