@@ -1,7 +1,7 @@
 'use strict';
 
-// Load utils
-const logger = require('../../log');
+// Load modules
+const logger = require(__base, 'libs/log');
 
 // Builds an object of stream data to be assigned to our output
 module.exports = function(command, file, options, metadata, details) {
