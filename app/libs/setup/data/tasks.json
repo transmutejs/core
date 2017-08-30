@@ -1,0 +1,30 @@
+{
+    "tasks": [
+        {
+            "name": "Two Brothers, One Impala",
+            "directory": "Spooky Unnaturally/",
+            "type": "show",
+            "seasons": [1, 2, 3, 4, 5],
+            "options": {
+                "preset": "slow",
+                "video" : {
+                    "bitrate": 3500,
+                    "quality": 0
+                }
+            }
+        },
+        {
+            "name": "Less Drama, More Zombies!",
+            "directory": "The Wandering Plot Device/",
+            "type": "show",
+            "seasons": [1, 2, 3, 4, 5, 6],
+            "options": {
+                "preset": "slow",
+                "video" : {
+                    "bitrate": 1500,
+                    "quality": 0
+                }
+            }
+        }
+    ]
+}
