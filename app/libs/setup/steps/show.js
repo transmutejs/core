@@ -4,13 +4,14 @@
 const path = require('path'),
       fs = require('fs');
 
-// Load modules
-const utils = require(__base + 'libs/utils');
+// Load our modules
+const utils = require(__base + 'libs/utils'),
+      config = require('../config')();
 
 module.exports = {
   type: 'input',
   name: 'show',
-  message: 'How about your TV Show location?',
+  message: lang('setup.show.question'),
   default: 'TV Shows/',
   when: () => {
     return true;
@@ -18,11 +19,13 @@ module.exports = {
   validate: (val, answers) => {
 
     if ( ! val.match(/[/|\/]$/) ) {
-      return 'Paths must end with a slash';
+      return lang('setup.show.validation.slash');
     }
 
-    if ( ! fs.existsSync(answers.root + val) || ! fs.lstatSync(answers.root + val).isDirectory() ) {
-      return 'Path either does not exist or is not a directory';
+    let dir = path.normalize(path.join(answers.root, val));
+
+    if ( ! fs.existsSync(dir) || ! fs.lstatSync(dir).isDirectory() ) {
+      return lang('setup.show.validation.not_found');
     }
 
     return true;
