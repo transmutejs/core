@@ -3,14 +3,14 @@
 // Load requirements
 const winston = require('winston'),
       path = require('path'),
-      utils = require('../utils'),
+      utils = require(__base + 'libs/utils'),
       fs = require('fs');
 
 // Add rotation to winston logs
 require('winston-daily-rotate-file');
 
 // Get log directory
-let logDirectory = path.resolve('./logs');
+let logDirectory = path.resolve(path.join(__base, '../logs'));
 
 // Ensure the directory exists
 fs.mkdir(logDirectory, (err) => { return; });
@@ -27,14 +27,14 @@ const logger = new (winston.Logger)({
       datePattern: 'yyyy-MM-dd.log',
       level: process.env.LOG_LEVEL
     })
-  ]/*,
+  ],
   exceptionHandlers: [
     new (winston.transports.DailyRotateFile)({
       filename: path.join(logDirectory, 'exceptions.'),
       datePattern: 'yyyy-MM-dd.log',
       humanReadableUnhandledException: true
     })
-  ]*/
+  ]
 });
 
 // Add colorize support
