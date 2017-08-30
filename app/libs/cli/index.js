@@ -3,12 +3,17 @@
 // Load requirements
 const dashdash = require('dashdash'),
       spawn = require('child_process'),
-      os = require('os');
+      path = require('path'),
+      os = require('os'),
+      fs = require('fs');
 
 // Load modules
-const utils = require('../utils'),
-      locale = require('../locale'),
-      logger = require('../log');
+const utils = require(__base + 'libs/utils'),
+      locale = require(__base + 'libs/locale'),
+      logger = require(__base + 'libs/log');
+
+// Package info
+const pkg = require(path.resolve(path.join(__base, '../package')));
 
 // Export for use
 module.exports = {
@@ -110,6 +115,7 @@ module.exports = {
     return os.platform();
   },
 
+  // Detect hardware acceleration
   getHwAccel: function() {
 
     // Windows only for now
@@ -136,6 +142,28 @@ module.exports = {
     }
 
     return false;
+  },
+
+  // Output cli header
+  start: function() {
+
+    // Clear terminal
+    console.log('\x1Bc');
+
+    // Get the title output
+    let file = path.join(__base, 'libs/cli/data/title.txt'),
+        title = fs.readFileSync(file, 'utf8'),
+        length = title.split('\n').slice(-1).pop().length;
+
+    // Output the title
+    console.log(utils.colorString('{magenta:%s}'), title);
+
+    // Output version
+    let version = utils.pad('v' + pkg.version, length, ' ');
+    console.log(utils.colorString('{cyan:%s}\n'), version);
+
+    // Return for chaining
+    return this;
   }
 
 };
