@@ -12,6 +12,9 @@ const inquirer = require('inquirer'),
 const utils = require(__base + 'libs/utils'),
       config = require('./config')();
 
+// Package info
+const pkg = require(path.resolve(path.join(__base, '../package')));
+
 // Variables
 let settings = {};
 
@@ -30,16 +33,16 @@ module.exports = {
       inquirer.prompt([{
         type: 'confirm',
         name: 'continue',
-        message: 'Would you like to be taken through setup?',
+        message: lang('setup.index.continue'),
         when: () => {
-          console.log('\x1BcLooks like the first time you\'re running transmute');
+          utils.output(lang('setup.index.welcome', pkg.version), lang('setup.index.first_run'));
           return true;
         }
       }]).then((answers) => {
 
         // User doesn't want to do setup
         if ( answers.continue === false ) {
-          return reject('Manual setup instructions available: X');
+          return reject(lang('setup.index.manual', pkg.homepage));
         }
 
         // Continue setup
@@ -68,22 +71,16 @@ module.exports = {
 
       }).then(() => {
 
-        let count = 0,
-            wait = 5;
+        let count = 0, wait = 5, timer = setInterval(function() {
 
-        let timer = setInterval(function() {
-          
-          console.log('\x1Bc');
-          console.log(utils.colorString('{bold:Awesome job!}\n'));
-          console.log('You\'re all set to start trasmuting your media library (whooo!).\n');
-          console.log('Starting in %s seconds...', ( wait - count ));
+          utils.output(lang('setup.complete.title'),
+            lang('setup.complete.message') + '\n\n' +
+            lang('setup.complete.countdown', ( wait - count))
+          );
 
           count++;
 
-          if ( count > wait ) {
-            clearInterval(timer);
-            return resolve();
-          }
+          if ( count > wait ) { clearInterval(timer); return resolve(); }
         }, 1000);
 
       }).catch((err) => {
@@ -137,35 +134,46 @@ module.exports = {
       // Setup watcher
       watch(file).on('change', function(event, filename) {
 
-        // Start counting the passed checks
-        let passed = 0,
-            total = 1;
-        
-        // Let the user know
-        console.log('\x1BcI\'ve gone ahead and created you an example task file in your config directory.');
-        console.log('I\'ll wait here for you to edit it and we can start processing your first job!\n\n');
+        // Variables
+        let passed = 0, total = 2, tasks = {};
+
+        // Output to the user
+        utils.output(lang('setup.task.title'), lang('setup.task.message.confirm') + '\n\n' +
+          lang('setup.task.message.created') + '\n\n' +
+          lang('setup.task.message.todo')
+        , 6, 6);
 
         // Delete task cache, otherwise we won't see changes
         delete require.cache[file];
 
-        // Load task file
-        let tasks = require(file);
-        total = ( 1 + tasks.tasks.length );
+        try {
+          
+          // Load task file
+          tasks = require(file);
+          total = ( 2 + tasks.tasks.length );
+
+          // Valid json
+          console.log(utils.colorString('  {green:\u2713} ' + lang('setup.task.validation.valid_json')));
+          passed++;
+
+        } catch(e) {
+          console.log(utils.colorString('  {red:\u2717} ' + lang('setup.task.validation.invalid_json')));
+        };
 
         // Perform checks
         let schema = validate.file(tasks);
 
         // Is it valid
         if ( schema.status === true ) {
-          console.log(utils.colorString('  {green:\u2713} Valid task config'));
+          console.log(utils.colorString('  {green:\u2713} ' + lang('setup.task.validation.valid_schema')));
           passed++;
         } else {
-          console.log(utils.colorString('  {red:\u2717} Inalid task config'));
-          console.log(schema.errors.map((err) => { return err.path + '\n  ' + err.message; }));
+          console.log(utils.colorString('  {red:\u2717} ' + lang('setup.task.validation.invalid_schema')));
+          schema.errors.map((err) => { return console.log(utils.colorString('    {red:\u2717} ' + ( err.path ? err.path : 'root' ) + ':\n      ' + err.message)); });
         }
 
         // Check tasks for valid directories
-        tasks.tasks.forEach((task, i) => {
+        ( tasks.tasks ? tasks : {tasks: []} ).tasks.forEach((task, i) => {
 
           // Check for absolute path, if not create one
           if ( ! path.isAbsolute(task.directory) ) {
@@ -176,12 +184,14 @@ module.exports = {
           // Get a job listing for the task
           require(__base + 'libs/task/listing')(task.directory, task.seasons).then((result) => {
 
-            console.log(utils.colorString('  {green:\u2713} Task %s -'), ( i + 1 ));
+            console.log(utils.colorString('  {green:\u2713} ' + lang('setup.task.task_no'), ( i + 1 )));
             
             result.forEach((season) => {
-              console.log(utils.colorString('    {green:\u2713} %sound %s files'),
-                ( season.season !== false ? 'Season ' + season.season + ' - f' : 'F' ),
-                season.files.length);
+              if ( season.season !== false ) {
+                console.log(utils.colorString('    {green:\u2713} ' + lang('setup.task.season_files'), season.season, season.files.length));
+              } else {
+                console.log(utils.colorString('    {green:\u2713} ' + lang('setup.task.found_files'), season.files.length));
+              }
             });
 
             passed++;
@@ -192,8 +202,8 @@ module.exports = {
             }
 
           }).catch((err) => {
-            console.log(utils.colorString('  {red:\u2717} Task %s -'), ( i + 1 ));
-            console.log(utils.colorString('      {red:\u2717} %s'), err);
+            console.log(utils.colorString('  {red:\u2717} ' + lang('setup.task.task_no'), ( i + 1 )));
+            console.log(utils.colorString('      {red:\u2717} %s', err));
           });
 
         });
