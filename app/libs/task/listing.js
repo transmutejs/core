@@ -78,6 +78,11 @@ const listing = function(directory, seasons) {
 
     // Directory listing
     fs.readdir(directory, (err, result) => {
+
+      // Skip without files or an error
+      if ( err !== null || result.length <= 0 ) {
+        return resolve(tasks);
+      }
       
       // Loop the available files
       result.forEach((file) => {
