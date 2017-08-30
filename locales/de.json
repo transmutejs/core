@@ -29,7 +29,8 @@
 			"title": "setup.root.title",
 			"validation": {
 				"slash": "setup.root.validation.slash",
-				"empty": "setup.root.validation.empty"
+				"empty": "setup.root.validation.empty",
+				"absolute": "setup.root.validation.absolute"
 			}
 		},
 		"show": {
@@ -72,6 +73,19 @@
 			"title": "setup.complete.title",
 			"message": "setup.complete.message",
 			"countdown": "setup.complete.countdown"
+		},
+		"prereqs": {
+			"question": "setup.prereqs.question",
+			"title": "setup.prereqs.title",
+			"message": {
+				"initial": "setup.prereqs.message.initial",
+				"waiting": "setup.prereqs.message.waiting",
+				"next": "setup.prereqs.message.next"
+			},
+			"status": {
+				"ffmpeg": "setup.prereqs.status.ffmpeg",
+				"ffprobe": "setup.prereqs.status.ffprobe"
+			}
 		}
 	},
 	"conversion": {

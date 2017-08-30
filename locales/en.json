@@ -10,6 +10,20 @@
 			"first_run": "You're new. Not much of a rind on you...",
 			"manual": "Manual setup instructions are available at:\n  {green:%s}"
 		},
+		"prereqs": {
+			"title": "Prerequisites",
+			"message": {
+				"initial": "Before starting you must have both {red:ffmpeg} and {red:ffprobe} available in your $PATH and usable via terminal or command line.",
+				"cancel": "The ffmpeg URL is:\n\n  {green:%s}\n\nPlease try again once you can use both ffmpeg and ffprobe via terminal.",
+				"waiting": "While you're installing you can leave this window open to monitor the availability of the requirements.",
+				"next": "As the commands become available you'll see them update, and when all requirements have been met {magenta:transmute} will start."
+			},
+			"question": "Open ffmpeg installation page?",
+			"status": {
+				"ffmpeg": "%s ffmpeg",
+				"ffprobe": "%s ffprobe"
+			}
+		},
 		"config": {
 			"title": "Configuration Location",
 			"message": "During normal operation I store a few basic files that you may want to edit from time to time.\n\nI'm happy to store them internally but you may want them somewhere more convinient.",
