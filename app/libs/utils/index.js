@@ -8,5 +8,6 @@ module.exports = {
   request: require('./request'),
   metadata: require('./metadata'),
   framerate: require('./framerate'),
-  normalizeLanguage: require('./normalize-language')
+  normalizeLanguage: require('./normalize-language'),
+  pad: require('./pad')
 };
