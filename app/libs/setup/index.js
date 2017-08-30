@@ -16,7 +16,8 @@ const utils = require(__base + 'libs/utils'),
 const pkg = require(path.resolve(path.join(__base, '../package')));
 
 // Variables
-let settings = {};
+let settings = {},
+    ffmpegHomepage = 'https://www.ffmpeg.org/download.html';
 
 // Setup the environment for usage
 module.exports = {
@@ -24,21 +25,34 @@ module.exports = {
   oobe: function() {
     return new Promise((resolve, reject) => {
 
-      // Skip if user has already completed setup
-      if ( config.setup === true ) {
-        return resolve();
+      // Variables
+      let prereqs = Promise.resolve();
+
+      // Ensure the correct components are available
+      if ( ! utils.commandExists('ffmpeg') || ! utils.commandExists('ffprobe') ) {
+        prereqs = this.installPrereqs();
       }
 
-      // Confirm they want to continue
-      inquirer.prompt([{
-        type: 'confirm',
-        name: 'continue',
-        message: lang('setup.index.continue'),
-        when: () => {
-          utils.output(lang('setup.index.welcome', pkg.version), lang('setup.index.first_run'));
-          return true;
+      // Start with prerequisites
+      prereqs.then(() => {
+
+        // Skip if user has already completed setup
+        if ( config.setup === true ) {
+          return resolve();
         }
-      }]).then((answers) => {
+
+        // Confirm they want to be guided
+        return inquirer.prompt([{
+          type: 'confirm',
+          name: 'continue',
+          message: lang('setup.index.continue'),
+          when: () => {
+            utils.output(lang('setup.index.welcome', pkg.version), lang('setup.index.first_run'));
+            return true;
+          }
+        }]);
+
+      }).then((answers) => {
 
         // User doesn't want to do setup
         if ( answers.continue === false ) {
@@ -213,6 +227,67 @@ module.exports = {
         }
       });
 
+    });
+  },
+
+  installPrereqs: function() {
+    return new Promise((resolve, reject) => {
+
+      // Open installation page
+      inquirer.prompt([{
+        type: 'confirm',
+        name: 'ffmpeg',
+        message: lang('setup.prereqs.question'),
+        default: true,
+        when: () => {
+          utils.output(lang('setup.prereqs.title'), lang('setup.prereqs.message.initial'), 0, 6);
+          return true;
+        }
+      }]).then((answers) => {
+
+        // Don't want to continue
+        if ( ! answers.ffmpeg ) {
+          return reject(utils.colorString(lang('setup.prereqs.message.cancel'), ffmpegHomepage));
+        }
+
+        // Take them to the page
+        return require('opn')(ffmpegHomepage, {wait: false});
+
+      // Homepage opened, wait for path availability
+      }).then((result) => {
+
+        // Update terminal as installation happens
+        let prereqsStatus = () => {
+
+          // Figure out what's missing
+          let ffmpeg = utils.commandExists('ffmpeg'),
+              ffprobe = utils.commandExists('ffprobe');
+
+          // Build output message
+          let msg = lang('setup.prereqs.message.waiting') + '\n\n' +
+                    '  ' + lang('setup.prereqs.status.ffmpeg', ( ffmpeg ? '{green:\u2713}' : '{red:\u2717}' )) + '\n' +
+                    '  ' + lang('setup.prereqs.status.ffprobe', ( ffprobe ? '{green:\u2713}' : '{red:\u2717}' )) + '\n\n' +
+                    lang('setup.prereqs.message.next');
+
+          // Output status
+          utils.output('Prerequisites', msg, 0, 6);
+
+          // Success!
+          if ( ffmpeg && ffprobe ) {
+            clearInterval(timer);
+            return resolve();
+          }
+        };
+
+        // Update user
+        prereqsStatus();
+        
+        // Start a timer to keep updating
+        let timer = setInterval(prereqsStatus, 5000);
+
+      }).catch((err) => {
+        return reject(err);
+      });
     });
   }
 
