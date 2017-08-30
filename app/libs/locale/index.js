@@ -6,7 +6,7 @@ const i18n = require('i18n'),
       logger = require('../log');
 
 // Variables
-let localeDir = path.resolve('./locales');
+let localeDir = path.resolve(__base + '../locales');
 
 // Configure the localization engine
 i18n.configure({
