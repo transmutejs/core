@@ -1,11 +1,119 @@
 {
-	"test": "test",
-	"%s cat": {
-		"one": "%s cat",
-		"other": "%s cats"
+	"setup": {
+		"ui": {
+			"progress": "[Step {cyan:%s} of {green:%s}] %s",
+			"standard": "%s"
+		},
+		"index": {
+			"continue": "Would you like me to guide you through setup?",
+			"welcome": "Welcome to {magenta:transmute} {grey:v%s}",
+			"first_run": "You're new. Not much of a rind on you...",
+			"manual": "Manual setup instructions are available at:\n  {green:%s}"
+		},
+		"config": {
+			"title": "Configuration Location",
+			"message": "During normal operation I store a few basic files that you may want to edit from time to time.\n\nI'm happy to store them internally but you may want them somewhere more convinient.",
+			"question": "Where would you like me to put them?\n",
+			"validation": {
+				"path_exists": "I'm sorry Dave, I'm afraid I can't do that, the path exists...and it's a file!",
+				"no_parent": "Sorry Bambi but that parent {gray:(directory)} doesn't exist",
+				"failed": "I couldn't create that directory...SQUIRREL!"
+			}
+		},
+		"language": {
+			"title": "Language Preference",
+			"message": "Up until now we've been speaking English but I can be flexible.",
+			"question": "Which would you prefer to use?\n",
+			"validation": {
+				"not_found": "Hol wej vItu' ...wow something really went wrong there"
+			}
+		},
+		"root": {
+			"title": "Media Directories",
+			"message": {
+				"parts": "I split directory paths into three parts - {green:root}, {magenta:show} and {red:movie}.",
+				"example": "For example on Mac or Linux it could be:\n\n  {green:/volumes/media/}{magenta:TV Shows/}\n\nOr on a Windows network share:\n\n  {green:\\\\SERVER\\media\\}{red:Movies\\HD\\}",
+				"notice": "Don't worry though, while most tasks use these params you can just leave {magenta:show} or {red:movie} as a slash to use the same directory. You can also ignore these and setup tasks with absolute paths."
+			},
+			"question": "So firstly, where is your root media directory?",
+			"validation": {
+				"empty": "...yeah, if you could just go ahead and enter something that'd be great",
+				"slash": "Like Supernatural, paths must end with a slash",
+				"absolute": "Paths must be absolute. Really? Absolutely",
+				"not_found": "This is not the directory you are looking for"
+			}
+		},
+		"show": {
+			"question": "How about your TV Shows?",
+			"validation": {
+				"slash": "Slash missing",
+				"not_found": "not found or not directory"
+			}
+		},
+		"movie": {
+			"question": "And your movies?",
+			"validation": {
+				"slash": "Slash missing",
+				"not_found": "not found or not directory"
+			}
+		},
+		"temp": {
+			"question": "Where {gray:(if anywhere)} would you like files rendered to?\n",
+			"title": "Temp Directory",
+			"message": {
+				"why": "Sometimes you may prefer to have files rendered elsewhere than to the target directory, for example reading and writing from a network location can slow rendering dramatically.",
+				"options": "You can either set a temp directory or leave it blank {gray:(space)}."
+			},
+			"validation": {
+				"slash": "Slash missing",
+				"not_found": "not found or not directory"
+			}
+		},
+		"formats": {
+			"question": "Which video formats would you like to convert?\n",
+			"title": "Video Formats",
+			"message": "It's often useful to limit file searches to specific formats and you can select that here.",
+			"validation": {
+				"empty": "It's probably a good idea to pick at least one format"
+			}
+		},
+		"task": {
+			"title": "Task Configuration",
+			"message": {
+				"confirm": "Your settings have all been saved and now the last step is to setup some tasks.",
+				"created": "I've gone ahead and created you an example \"{green:tasks.json}\" file in your selected settings directory.",
+				"todo": "As this is your first time I'm here to try to validate things as you make changes, once everything looks good you'll be ready to start!"
+			},
+			"task_no": "Task %s",
+			"found_files": "Found %s files",
+			"season_files": "Season %s - found %s files",
+			"validation": {
+				"valid_json": "Valid JSON",
+				"invalid_json": "Invalid JSON",
+				"valid_schema": "Valid schema",
+				"invalid_schema": "Invalid schema"
+			}
+		},
+		"complete": {
+			"title": "Awesome job!",
+			"message": "{bold:High Five!} You're all done and ready to start {magenta:transmuting} your whole library.",
+			"countdown": "Starting up in %s seconds..."
+		}
 	},
-	"PROGRESS.CONVERSION": "[{magenta::bar}] [{cyan:x:speed}] [{green::percent}] [{yellow::time}] [{yellow::taken}] [{green::size (:reduction%)}] [{magenta::estimate}]",
-	"PROGRESS.COPY": "Copying [{magenta::bar}] :rate/bps :percent :etas",
-	"INFO.COMPLETE": "Original: {cyan:%s} New: {green:%s} Saving: {yellow:%s} ({green:%s%})",
-	"HELP.DIALOG": "\nUsage: transmute [options]\n\nOptions:\n\n%s\n\n"
+	"cli": {
+		"help": "\nUsage: transmute [options]\n\nOptions:\n\n%s\n\n"
+	},
+	"utils": {
+		"copy": {
+			"ui": {
+				"progress": "Copying [{magenta::bar}] :rate/bps :percent :etas"
+			}
+		}
+	},
+	"conversion": {
+		"ui": {
+			"progress": "[{magenta::bar}] [{cyan:x:speed}] [{green::percent}] [{yellow::time}] [{yellow::taken}] [{green::size (:reduction%)}] [{magenta::estimate}]",
+			"complete": "Original: {cyan:%s} New: {green:%s} Saving: {yellow:%s} ({green:%s%})"
+		}
+	}
 }

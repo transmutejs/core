@@ -1,11 +1,82 @@
 {
-	"test": "test",
-	"%s cat": {
-		"one": "%s cat",
-		"other": "%s cats"
+	"setup": {
+		"index": {
+			"continue": "setup.index.continue",
+			"welcome": "setup.index.welcome",
+			"first_run": "setup.index.first_run"
+		},
+		"ui": {
+			"standard": "setup.ui.standard",
+			"progress": "setup.ui.progress"
+		},
+		"config": {
+			"question": "setup.config.question",
+			"title": "setup.config.title",
+			"message": "setup.config.message"
+		},
+		"language": {
+			"question": "setup.language.question",
+			"title": "setup.language.title",
+			"message": "setup.language.message"
+		},
+		"root": {
+			"question": "setup.root.question",
+			"message": {
+				"parts": "setup.root.message.parts",
+				"example": "setup.root.message.example",
+				"notice": "setup.root.message.notice"
+			},
+			"title": "setup.root.title",
+			"validation": {
+				"slash": "setup.root.validation.slash",
+				"empty": "setup.root.validation.empty"
+			}
+		},
+		"show": {
+			"question": "setup.show.question"
+		},
+		"movie": {
+			"question": "setup.movie.question"
+		},
+		"temp": {
+			"question": "setup.temp.question",
+			"title": "setup.temp.title",
+			"message": {
+				"why": "setup.temp.message.why",
+				"options": "setup.temp.message.options"
+			}
+		},
+		"formats": {
+			"question": "setup.formats.question",
+			"title": "setup.formats.title",
+			"message": "setup.formats.message"
+		},
+		"task": {
+			"title": "setup.task.title",
+			"message": {
+				"created": "setup.task.message.created",
+				"todo": "setup.task.message.todo",
+				"confirm": "setup.task.message.confirm"
+			},
+			"validation": {
+				"valid": "setup.task.validation.valid",
+				"valid_json": "setup.task.validation.valid_json",
+				"valid_schema": "setup.task.validation.valid_schema",
+				"invalid_json": "setup.task.validation.invalid_json",
+				"invalid_schema": "setup.task.validation.invalid_schema"
+			},
+			"task_no": "setup.task.task_no",
+			"season_files": "setup.task.season_files"
+		},
+		"complete": {
+			"title": "setup.complete.title",
+			"message": "setup.complete.message",
+			"countdown": "setup.complete.countdown"
+		}
 	},
-	"PROGRESS.CONVERSION": "[{magenta::bar}] [{cyan:x:speed}] [{green::percent}] [{yellow::time}] [{yellow::taken}] [{green::size (:reduction%)}] [{magenta::estimate}]",
-	"PROGRESS.COPY": "Copying [{magenta::bar}] :rate/bps :percent :etas",
-	"INFO.COMPLETE": "Original: {cyan:%s} New: {green:%s} Saving: {yellow:%s} ({green:%s%})",
-	"HELP.DIALOG": "\nUsage: transmute [options]\n\nOptions:\n\n%s\n\n"
+	"conversion": {
+		"ui": {
+			"progress": "conversion.ui.progress"
+		}
+	}
 }
