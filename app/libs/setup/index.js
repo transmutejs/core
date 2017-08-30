@@ -61,7 +61,7 @@ module.exports = {
 
         // Mark setup as complete
         config.setup = true;
-        // config.set({setup: config.setup});
+        config.set({setup: config.setup});
 
         // Handle task file creation and validation
         return this.createTasks();
