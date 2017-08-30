@@ -4,35 +4,51 @@
 const path = require('path'),
       fs = require('fs');
 
-// Load modules
-const utils = require(__base + 'libs/utils');
+// Load our modules
+const utils = require(__base + 'libs/utils'),
+      i18n = require(__base + 'libs/locale'),
+      config = require('../config')();
 
 module.exports = {
   type: 'input',
   name: 'root',
-  message: 'Now, where is your root media directory?',
-  when: () => {
 
-    // War and peace!
-    console.log(utils.colorString('\x1Bc{bold:Now for some directory preferences!}\n'));
-    console.log(utils.colorString('I split directory paths into three parts - {green:root}, {magenta:show} and {red:movie}.\n'));
-    console.log(utils.colorString('For example on Mac or Linux it could be:\n\n  {green:/volumes/media/}{magenta:TV Shows/}\n\nOr on a Windows network share:\n\n  {green:\\\\SERVER\\media\\}{red:Movies\\}\n'));
-    console.log(utils.colorString('Don\'t worry though, while most tasks use these params you can just leave {magenta:show} or {red:movie} blank to use the same directory. You can also ignore these and setup tasks with absolute paths.\n'));
+  // Hacky way to change the language if changed in when callback
+  message: () => { return lang('setup.root.question') },
+
+  when: (answers) => {
+
+    // Until we get validation on lists, this has to go here
+    if ( i18n.getLocale() !== answers.language ) {
+      i18n.setLocale(answers.language);
+    }
+
+    // This part needs a lot more clarification than I'd like
+    let msg = lang('setup.root.message.parts') + '\n\n' +
+              lang('setup.root.message.example') + '\n\n' +
+              lang('setup.root.message.notice');
+
+    // Output it
+    utils.output(lang('setup.root.title'), msg, 3, 6);
 
     return true;
   },
   validate: (val, answers) => {
 
+    if ( val === '' ) {
+      return lang('setup.root.validation.empty');
+    }
+
     if ( ! val.match(/[/|\/]$/) ) {
-      return 'Paths must end with a slash';
+      return lang('setup.root.validation.slash');
     }
 
     if ( ! path.isAbsolute(val) ) {
-      return 'Root path must be absolute';
+      return lang('setup.root.validation.absolute');
     }
 
     if ( ! fs.existsSync(val) || ! fs.lstatSync(val).isDirectory() ) {
-      return 'Path either does not exist or is not a directory';
+      return lang('setup.root.validation.not_found');
     }
 
     return true;
