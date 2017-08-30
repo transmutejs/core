@@ -9,9 +9,10 @@ global.__base = path.resolve(__dirname + '/../') + '/app/';
 
 module.exports = function() {
 
-  // Define the config directory and file
+  // Define the required files and directories
   let configDir = path.resolve('./config'),
-      configFile = path.join(configDir, 'config.json');
+      configFile = path.join(configDir, 'config.json'),
+      settingsFile = path.join(configDir, 'settings.json');
 
   // Create config directory if we don't have one
   if ( ! fs.existsSync(configDir) ) {
@@ -27,6 +28,13 @@ module.exports = function() {
         settings: configDir
       }
     }, null, 4));
+  }
+
+  // Create a base settings file if needed
+  if ( ! fs.existsSync(settingsFile) ) {
+    fs.writeFileSync(settingsFile,
+      JSON.stringify(require(__base + 'libs/setup/data/settings'), null, 4)
+    );
   }
 
 };
