@@ -27,14 +27,14 @@ const logger = new (winston.Logger)({
       datePattern: 'yyyy-MM-dd.log',
       level: process.env.LOG_LEVEL
     })
-  ],
+  ]/*,
   exceptionHandlers: [
     new (winston.transports.DailyRotateFile)({
       filename: path.join(logDirectory, 'exceptions.'),
       datePattern: 'yyyy-MM-dd.log',
       humanReadableUnhandledException: true
     })
-  ]
+  ]*/
 });
 
 // Add colorize support
