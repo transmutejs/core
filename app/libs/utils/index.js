@@ -10,5 +10,6 @@ module.exports = {
   framerate: require('./framerate'),
   normalizeLanguage: require('./normalize-language'),
   pad: require('./pad'),
-  output: require('./output')
+  output: require('./output'),
+  commandExists: require('./command-exists')
 };
