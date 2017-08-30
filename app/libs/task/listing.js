@@ -4,6 +4,9 @@
 const path = require('path'),
       fs = require('fs');
 
+// Load modules
+const format = require(__base + 'libs/task/format');
+
 // Helper method to check a file or directory exists
 function exists(file) {
   return fs.existsSync(file);
@@ -14,7 +17,7 @@ function isFile(file) {
   return ( exists(file) ? fs.lstatSync(file).isFile() : false );
 }
 
-module.exports = function(directory, seasons) {
+const listing = function(directory, seasons) {
   return new Promise((resolve, reject) => {
 
     // Variables
@@ -57,7 +60,7 @@ module.exports = function(directory, seasons) {
             seasonDir = path.normalize(path.join(directory + '/' + seasonSub));
 
         // Push into promise queue
-        promises.push(this.listing(seasonDir, season));
+        promises.push(listing(seasonDir, season));
       });
 
       // Handle the promise resolution
@@ -83,7 +86,7 @@ module.exports = function(directory, seasons) {
         file = path.join(directory, file);
 
         // Check it's actually a file and in the format we want
-        if ( isFile(file) && this.format.match(file) ) {
+        if ( isFile(file) && format.match(file) ) {
           files.push(file);
         }
       });
@@ -94,3 +97,5 @@ module.exports = function(directory, seasons) {
     });
   });
 };
+
+module.exports = listing;

@@ -1,7 +1,7 @@
 'use strict';
 
 // Load requirements
-const logger = require('../log');
+const logger = require(__base + 'libs/log');
 
 // Define default formats
 const defaultFormats = ['mkv', 'mp4', 'avi', 'flv', 'mov', 'wmv'];
