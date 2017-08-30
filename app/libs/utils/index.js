@@ -9,5 +9,6 @@ module.exports = {
   metadata: require('./metadata'),
   framerate: require('./framerate'),
   normalizeLanguage: require('./normalize-language'),
-  pad: require('./pad')
+  pad: require('./pad'),
+  output: require('./output')
 };
