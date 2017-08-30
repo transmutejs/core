@@ -18,7 +18,7 @@ module.exports = function(cmd, job, metadata) {
 
   // Create a progress bar
   this.progressBar = new progress(
-    utils.colorString(lang('PROGRESS.CONVERSION')), {
+    utils.colorString(lang('conversion.ui.progress')), {
     complete: '=',
     incomplete: ' ',
     head: '>',

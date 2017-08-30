@@ -37,7 +37,7 @@ module.exports = function(stdout, stderr, job, metadata, resolve, reject) {
 
   // Stats
   logger.info(
-    lang('INFO.COMPLETE'),
+    lang('conversion.ui.complete'),
     job.size.original.formatted,
     job.size.current.formatted,
     job.size.difference.formatted,
