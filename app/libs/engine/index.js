@@ -2,7 +2,8 @@
 
 // Load requirements
 const ffmpeg = require('fluent-ffmpeg'),
-      path = require('path');
+      path = require('path'),
+      logger = require(__base + 'libs/log');
 
 // Configures the conversion task
 module.exports = {
@@ -31,6 +32,10 @@ module.exports = {
             Object.keys(result).forEach((key) => {
               if ( ! command.hasOwnProperty(key) ) { command[key] = result[key]; }
             });
+          
+          // Something we can't process
+          } else if ( typeof result === 'string' ) {
+            return resolve(result);
           }
 
           // Start the next setup command
