@@ -81,7 +81,7 @@ const listing = function(directory, seasons) {
 
       // Skip without files or an error
       if ( err !== null || result.length <= 0 ) {
-        return resolve(tasks);
+        return resolve([{season: seasons || false, files: []}]);
       }
       
       // Loop the available files
