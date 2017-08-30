@@ -6,7 +6,7 @@ const assign = require('deep-assign'),
       fs = require('fs');
 
 // Load modules
-const utils = require('../utils');
+const utils = require(__base + 'libs/utils');
 
 // Helper utilities
 module.exports = {
@@ -52,11 +52,6 @@ module.exports = {
     return Object.getOwnPropertyNames(obj).filter((property) => {
       return ( typeof obj[property] === 'function' && ! ignore.includes(property) );
     });
-  },
-
-  pad: function(n, width) {
-    n = n.toString();
-    return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
   },
 
   clean: function(str) {
@@ -124,9 +119,9 @@ module.exports = {
       vd: codecs.video.depth || null,
       ac: codecs.audio.codec || null,
       ad: codecs.audio.channels || null,
-      ss: this.pad(details.season || '0', 2),
+      ss: utils.pad(details.season || '0', 2),
       s: details.season || '0',
-      ee: this.pad(details.season || '0', 2),
+      ee: utils.pad(details.season || '0', 2),
       e: details.episode || '0'
     };
 
