@@ -51,7 +51,7 @@ module.exports = {
     // Handle help output
     if ( options.help ) {
       let help = parser.help({includeEnv: true}).trimRight();
-      console.log(utils.colorString(lang('HELP.DIALOG')), help.replace(/=/g, ' '));
+      console.log(utils.colorString(lang('cli.help')), help.replace(/=/g, ' '));
       return process.exit(0);
     }
 
