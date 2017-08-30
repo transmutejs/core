@@ -6,24 +6,12 @@ const fs = require('fs'),
       os = require('os');
 
 // Load modules
-const utils = require('../utils'),
-      logger = require('../log');
+const utils = require(__base + 'libs/utils'),
+      logger = require(__base + 'libs/log');
 
 // Variables
-const configDir = path.resolve('./config'),
-      settingsFile = path.join(configDir, 'settings.json');
-
-// Create directory
-if ( ! fs.existsSync(configDir) ) {
-  fs.mkdirSync(configDir);
-}
-
-// Create example settings
-if ( ! fs.existsSync(settingsFile) ) {
-  fs.writeFileSync(settingsFile, JSON.stringify(require('./data/sample'), null, 4));
-  // logger.warn('Created a new settings file in config, please customise these settings before running again');
-  // process.exit(0);
-}
+const config = require(path.join(__base, '../config/config')),
+      settingsFile = path.join(config.directories.settings, 'settings.json');
 
 // Define the recursive settings object builds
 const buildSettings = function(rules) {    
@@ -39,8 +27,11 @@ const buildSettings = function(rules) {
   }
 };
 
+
 // Create a dynamic object
-let settings = new buildSettings(require(settingsFile));
+let obj = require(settingsFile);
+obj.directory = config.directories.settings;
+let settings = new buildSettings(obj);
 
 // Export the object
 module.exports = settings;
