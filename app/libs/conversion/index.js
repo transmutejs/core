@@ -7,8 +7,9 @@ const moment = require('moment'),
       fs = require('fs');
 
 // Load libraries
-const engine = require('../engine'),
-      utils = require('../utils');
+const engine = require(__base + 'libs/engine'),
+      utils = require(__base + 'libs/utils'),
+      logger = require(__base + 'libs/log');
 
 // Export for use
 module.exports = {
@@ -30,6 +31,12 @@ module.exports = {
 
       // Configure the conversion engine command
       engine.config(job.file, job.options, job.meta, job.details).then((command) => {
+
+        // Check command isn't an error
+        if ( typeof command === 'string' ) {
+          logger.warn(command);
+          return resolve(false);
+        }
 
         // Add additional details
         job.output = path.resolve(command.output);
