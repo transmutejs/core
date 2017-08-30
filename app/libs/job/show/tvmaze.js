@@ -78,7 +78,7 @@ module.exports = function() {
         date: episode.airdate,
         rating: show.rating, // episode rating not provided
         description: ( episode.summary || '' ).replace(/(<([^>]+)>)/ig, ''),
-        background: ( episode.image !== null && episode.image.original ? episode.image.original : null ),
+        background: ( episode.image !== undefined && episode.image.original ? episode.image.original : null ),
         show: show
       };
     },
@@ -94,8 +94,8 @@ module.exports = function() {
         genres: show.genres,
         language: show.language,
         description: ( show.summary || '' ).replace(/(<([^>]+)>)/ig, ''),
-        poster: ( show.image !== null && show.image.original ? show.image.original : null ),
-        background: ( show.image !== null && show.image.original ? show.image.original : null )
+        poster: ( show.image !== undefined && show.image.original ? show.image.original : null ),
+        background: ( show.image !== undefined && show.image.original ? show.image.original : null )
       };
     },
 
