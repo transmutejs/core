@@ -9,7 +9,7 @@ const logger = require('./libs/log'),
       queue = require('./libs/queue');
 
 // Ensure we're ready to go
-require('./libs/setup').oobe().then(() => {
+require('./libs/setup').then(() => {
 
   // Run CLI, get arguments, and begin processing
   const cli = require('./libs/cli'),
