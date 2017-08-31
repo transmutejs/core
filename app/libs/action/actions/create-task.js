@@ -2,7 +2,8 @@
 
 // Load requirements
 const path = require('path'),
-      fs = require('fs');
+      fs = require('fs'),
+      parser = require('parse-torrent-name');
 
 // Load our modules
 const utils = __require('libs/utils'),

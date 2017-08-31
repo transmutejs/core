@@ -14,9 +14,6 @@ const logger = __require('libs/log'),
 // General task file handling
 module.exports = function(options) {
 
-  // Variables
-  let count = 0;
-
   // Does the user want to run this?
   if ( ! options.watch.config ) {
     return;
@@ -46,15 +43,12 @@ module.exports = function(options) {
       // Extract jobs from tasks
       tasks.forEach((t) => { t.jobs.forEach((j, i) => { jobs.push(j); }); });
 
-      // Update count
-      count = jobs.length;
-
       // Add jobs into queue and convert
       return queue.add({jobs: jobs});
 
     // Conversion queue complete
     }).then((complete) => {
-      logger.info('Completed %s tasks', count);
+      logger.info('Completed available tasks');
 
     // Error handler
     }).catch((err) => {

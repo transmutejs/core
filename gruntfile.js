@@ -23,7 +23,8 @@ module.exports = (grunt) => {
         after: false,
         beforeEach: false,
         afterEach: false,
-        '__base': false
+        '__base': false,
+        '__require': false
       }
     }
   });

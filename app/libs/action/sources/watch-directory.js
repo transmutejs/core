@@ -3,8 +3,7 @@
 // Load requirements
 const fs    = require('fs'),
       path  = require('path'),
-      watch = require('node-watch'),
-      parser = require('parse-torrent-name');
+      watch = require('node-watch');
 
 // Load our modules
 const logger = __require('libs/log'),
@@ -32,9 +31,6 @@ module.exports = function(options) {
 
     // Create a new task
     this.actions.createTask({file: filename}).then((jobs) => {
-
-      // Update count
-      count = jobs.length;
 
       // Add jobs into queue and convert
       return queue.add({jobs: jobs});
