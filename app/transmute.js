@@ -1,10 +1,11 @@
 'use strict';
 
-// Helper to avoid a lot of directory traversing
+// Helpers to avoid a lot of directory traversing
 global.__base = __dirname + '/';
+global.__require = function(name) { return require(__base + name); };
 
 // Set locale globally
-const i18n = require(__base + 'libs/locale');
+const i18n = require('./libs/locale');
 
 // Ensure we're ready to go
 require('./libs/setup').then(() => {
