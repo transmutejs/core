@@ -20,6 +20,12 @@ module.exports = {
   // Track the time since conversion began
   started: moment(),
 
+  // Current output target
+  output: null,
+
+  // Current temp target
+  temp: null,
+
   // Configures and runs the conversion task
   run: function(job) {
     return new Promise((resolve, reject) => {
@@ -39,8 +45,8 @@ module.exports = {
         }
 
         // Add additional details
-        job.output = path.resolve(command.output);
-        job.temp = path.resolve(command.temp);
+        job.output = this.output = path.resolve(command.output);
+        job.temp = this.temp = path.resolve(command.temp);
         job.framerate = utils.framerate(job.meta.streams[0].avg_frame_rate);
         job.started = this.started.format('MMMM Do YYYY, h:mm:ss a');
         job.size = {
