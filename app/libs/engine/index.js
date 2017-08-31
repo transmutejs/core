@@ -2,7 +2,10 @@
 
 // Load requirements
 const ffmpeg = require('fluent-ffmpeg'),
-      path = require('path'),
+      path = require('path');
+
+// Load our modules
+const utils = require(__base + 'libs/utils'),
       logger = require(__base + 'libs/log');
 
 // Configures the conversion task
@@ -22,7 +25,7 @@ module.exports = {
                       .outputOptions('-hide_banner');      // Stops ffmpeg diagnostic output
 
       // Loop over the available methods and configure the command
-      this.utils.getMethods(this).reduce((promise, method) => {
+      utils.getMethods(this, ['config']).reduce((promise, method) => {
         
         // Chain the promises
         return promise.then((result) => {
