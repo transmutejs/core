@@ -3,39 +3,17 @@
 // Helper to avoid a lot of directory traversing
 global.__base = __dirname + '/';
 
-// Load requirements
-const logger = require('./libs/log'),
-      task = require('./libs/task'),
-      queue = require('./libs/queue');
-
 // Ensure we're ready to go
 require('./libs/setup').then(() => {
 
   // Run CLI, get arguments, and begin processing
-  const cli = require('./libs/cli'),
-        options = cli.start().input();
+  const options = require('./libs/cli').input();
 
-  // Load tasks from file
-  return task.load('tasks.json');
-
-}).then((tasks) => {
-    
-  // Variables
-  let jobs = [];
-
-  // Extract jobs from tasks
-  tasks.forEach((t) => { t.jobs.forEach((j, i) => { jobs.push(j); }); });
-
-  // Add jobs into queue and convert
-  return queue.add({jobs: jobs});
-
-// Conversion queue complete
-}).then((complete) => {
-  logger.info('End of queue');
-  process.exit(0);
+  // Script entry point
+  require('./libs/action').go(options);
 
 // Catch any errors that bubble up
 }).catch((err) => {
-  logger.error(err);
+  require('./libs/log').error(err);
   process.exit(1);
 });
