@@ -24,7 +24,7 @@ module.exports = {
       return resolve();
       
       // Get version information
-      let latest = this.latestVersion(pkg.name);
+      let latest = this.latestVersion(pkg.name); // jshint ignore:line
 
       // Skip if we're current
       if ( latest.behind === 0 ) {
