@@ -3,7 +3,7 @@
 // Load requirements
 const winston = require('winston'),
       path = require('path'),
-      utils = require(__base + 'libs/utils'),
+      utils = __require('libs/utils'),
       fs = require('fs');
 
 // Add rotation to winston logs

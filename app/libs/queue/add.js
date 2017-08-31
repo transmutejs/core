@@ -4,7 +4,7 @@
 const assign = require('deep-assign');
 
 // Load libraries
-const logger = require('../log');
+const logger = __require('libs/log');
 
 // Variables
 let queueCache = [];

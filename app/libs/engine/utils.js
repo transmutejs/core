@@ -6,7 +6,7 @@ const assign = require('deep-assign'),
       fs = require('fs');
 
 // Load modules
-const utils = require(__base + 'libs/utils');
+const utils = __require('libs/utils');
 
 // Helper utilities
 module.exports = {

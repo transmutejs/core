@@ -1,7 +1,7 @@
 'use strict';
 
 // Load requirements
-const utils = require('../utils');
+const utils = __require('libs/utils');
 
 // Build the module structure
 module.exports = {

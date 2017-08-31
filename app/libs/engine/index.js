@@ -5,8 +5,8 @@ const ffmpeg = require('fluent-ffmpeg'),
       path = require('path');
 
 // Load our modules
-const utils = require(__base + 'libs/utils'),
-      logger = require(__base + 'libs/log');
+const utils = __require('libs/utils'),
+      logger = __require('libs/log');
 
 // Configures the conversion task
 module.exports = {

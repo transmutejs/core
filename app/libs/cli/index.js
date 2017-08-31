@@ -8,10 +8,10 @@ const dashdash = require('dashdash'),
       fs = require('fs');
 
 // Load modules
-const utils = require(__base + 'libs/utils'),
-      locale = require(__base + 'libs/locale'),
-      logger = require(__base + 'libs/log'),
-      settings = require(__base + 'libs/settings');
+const utils = __require('libs/utils'),
+      locale = __require('libs/locale'),
+      logger = __require('libs/log'),
+      settings = __require('libs/settings');
 
 // Package info
 const pkg = require(path.resolve(path.join(__base, '../package')));
