@@ -1,12 +1,12 @@
 'use strict';
 
 // Load requirements
-const job = require('../job'),
-      path = require('path'),
+const path = require('path'),
       fs = require('fs');
 
 // Load modules
-const settings = require(__base + 'libs/settings');
+const settings = __require('libs/settings'),
+      job = __require('libs/job');
 
 // Export promise for use
 module.exports = function(file) {

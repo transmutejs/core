@@ -5,7 +5,7 @@ const path = require('path'),
       fs = require('fs');
 
 // Load modules
-const format = require(__base + 'libs/task/format');
+const format = __require('libs/task/format');
 
 // Helper method to check a file or directory exists
 function exists(file) {

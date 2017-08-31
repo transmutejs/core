@@ -1,10 +1,11 @@
 'use strict';
 
 // Load requirements
-const logger = require(__base + 'libs/log');
+const logger = __require('libs/log'),
+      settings = __require('libs/settings');
 
 // Define default formats
-const defaultFormats = ['mkv', 'mp4', 'avi', 'flv', 'mov', 'wmv'];
+const defaultFormats = settings.video.formats || ['mkv', 'mp4', 'avi', 'flv', 'mov', 'wmv'];
 
 module.exports = {
 
