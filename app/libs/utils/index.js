@@ -1,16 +1,17 @@
 'use strict';
 
 module.exports = {
-  camelCase: require('./camel-case'),
-  colorString: require('./color-string'),
-  nestOptions: require('./nest-options'),
-  uid: require('./uid'),
-  request: require('./request'),
-  metadata: require('./metadata'),
-  framerate: require('./framerate'),
-  normalizeLanguage: require('./normalize-language'),
-  pad: require('./pad'),
-  output: require('./output'),
-  commandExists: require('./command-exists'),
-  getMethods: require('./get-methods')
+  camelCase: require('./methods/camel-case'),
+  colorString: require('./methods/color-string'),
+  nestOptions: require('./methods/nest-options'),
+  uid: require('./methods/uid'),
+  request: require('./methods/request'),
+  metadata: require('./methods/metadata'),
+  framerate: require('./methods/framerate'),
+  normalizeLanguage: require('./methods/normalize-language'),
+  pad: require('./methods/pad'),
+  output: require('./methods/output'),
+  commandExists: require('./methods/command-exists'),
+  getMethods: require('./methods/get-methods'),
+  socket: require('./methods/socket')
 };

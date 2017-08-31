@@ -1,6 +1,6 @@
 'use strict';
 
-const languages = require('./data/language');
+const languages = __require('libs/utils/data/language');
 
 // Normalize language string
 module.exports = function(lang) {
