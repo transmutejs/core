@@ -16,6 +16,7 @@ module.exports = function(answers) {
     language: answers.language,
     platform: {},
     server: {
+      enable: true,
       port: 3001,
       address: '0.0.0.0'
     },
