@@ -5,7 +5,7 @@ const inquirer = require('inquirer');
 
 // Load our modules
 const utils = require(__base + 'libs/utils'),
-      config = require('./config')();
+      config = require(_base + 'libs/setup/config')();
 
 // Variables
 const ffmpegHomepage = 'https://www.ffmpeg.org/download.html';
