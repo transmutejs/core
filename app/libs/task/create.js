@@ -6,9 +6,9 @@ const assign = require('deep-assign'),
       os = require('os');
 
 // Load our libraries
-const job = require('../job'),
-      settings = require('../settings'),
-      cli = require('../cli');
+const job = require(__base + 'libs/job'),
+      settings = require(__base + 'libs/settings'),
+      cli = require(__base + 'libs/cli');
 
 // Export promise for use
 module.exports = function(task) {
