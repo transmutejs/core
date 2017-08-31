@@ -11,5 +11,6 @@ module.exports = {
   normalizeLanguage: require('./normalize-language'),
   pad: require('./pad'),
   output: require('./output'),
-  commandExists: require('./command-exists')
+  commandExists: require('./command-exists'),
+  getMethods: require('./get-methods')
 };

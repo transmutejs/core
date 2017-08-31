@@ -45,15 +45,6 @@ module.exports = {
     }
   },
 
-  getMethods: function(obj) {
-
-    let ignore = ['config', 'getMethods'];
-
-    return Object.getOwnPropertyNames(obj).filter((property) => {
-      return ( typeof obj[property] === 'function' && ! ignore.includes(property) );
-    });
-  },
-
   clean: function(str) {
     return str.replace(/[^a-z0-9\s\.-]+/gmi, ' ')
               .replace(/[\s|\.]+/gmi, ' ')
