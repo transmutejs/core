@@ -2,11 +2,12 @@
 
 // Load requirements
 const moment = require('moment'),
-      fs = require('fs'),
-      filesize = require('filesize');
+      filesize = require('filesize'),
+      fs = require('fs');
 
 // Load libraries
-const logger = require('../../log');
+const logger = __require('libs/log'),
+      utils = __require('libs/utils');
 
 // On conversion completion
 module.exports = function(stdout, stderr, job, metadata, resolve, reject) {
@@ -34,6 +35,9 @@ module.exports = function(stdout, stderr, job, metadata, resolve, reject) {
 
   // DEBUG
   logger.info('Conversion complete in %s.', job.progress.taken);
+
+  // Update socket users
+  utils.socket.emit('conversion complete', job);
 
   // Stats
   logger.info(

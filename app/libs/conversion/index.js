@@ -7,24 +7,21 @@ const moment = require('moment'),
       fs = require('fs');
 
 // Load libraries
-const engine = require(__base + 'libs/engine'),
-      utils = require(__base + 'libs/utils'),
-      logger = require(__base + 'libs/log');
+const engine = __require('libs/engine'),
+      utils = __require('libs/utils'),
+      logger = __require('libs/log');
 
 // Export for use
 module.exports = {
 
   // Helps avoid errors when engine quits without starting
-  progressBar: {terminate: function() { }},
+  progressBar: {terminate: function() { return; }},
 
   // Track the time since conversion began
   started: moment(),
 
-  // Current output target
-  output: null,
-
-  // Current temp target
-  temp: null,
+  // Current job
+  current: null,
 
   // Configures and runs the conversion task
   run: function(job) {
@@ -34,6 +31,9 @@ module.exports = {
       if ( ! job ) {
         return reject('No job data provided');
       }
+
+      // Assign job to current task
+      this.current = job;
 
       // Configure the conversion engine command
       engine.config(job.file, job.options, job.meta, job.details).then((command) => {
@@ -45,8 +45,8 @@ module.exports = {
         }
 
         // Add additional details
-        job.output = this.output = path.resolve(command.output);
-        job.temp = this.temp = path.resolve(command.temp);
+        job.output = path.resolve(command.output);
+        job.temp = path.resolve(command.temp);
         job.framerate = utils.framerate(job.meta.streams[0].avg_frame_rate);
         job.started = this.started.format('MMMM Do YYYY, h:mm:ss a');
         job.size = {

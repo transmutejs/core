@@ -8,6 +8,10 @@ const fs = require('fs'),
 // Add duration formatting to moment
 require('moment-duration-format');
 
+// Load libraries
+const utils = __require('libs/utils'),
+      logger = __require('libs/log');
+
 // On progress update
 module.exports = function(progress, job, metadata) {
 
@@ -41,6 +45,9 @@ module.exports = function(progress, job, metadata) {
     size: job.size.current.formatted, // Duplicated to show on progress bar
     reduction: ( progress.percent > 10 ? ( ( size / progress.percent * 100 ) / job.size.original.raw * 100 ).toFixed(0) : 0 )
   };
+
+  // Update any socket connections
+  utils.socket.emit('conversion progress', job);
 
   // Update progress bar
   this.progressBar.update(( progress.percent / 100 ), job.progress);
