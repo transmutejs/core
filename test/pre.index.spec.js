@@ -5,8 +5,9 @@ const path = require('path'),
       fs = require('fs'),
       os = require('os');
 
-// Helper to avoid a lot of directory traversing
+// Helpers to avoid a lot of directory traversing
 global.__base = path.resolve(__dirname + '/../') + '/app/';
+global.__require = function(name) { return require(__base + name); };
 
 module.exports = function() {
 
