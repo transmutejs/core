@@ -92,5 +92,8 @@
 		"ui": {
 			"progress": "conversion.ui.progress"
 		}
+	},
+	"cli": {
+		"help": "cli.help"
 	}
 }
