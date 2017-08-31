@@ -10,7 +10,8 @@ const dashdash = require('dashdash'),
 // Load modules
 const utils = require(__base + 'libs/utils'),
       locale = require(__base + 'libs/locale'),
-      logger = require(__base + 'libs/log');
+      logger = require(__base + 'libs/log'),
+      settings = require(__base + 'libs/settings');
 
 // Package info
 const pkg = require(path.resolve(path.join(__base, '../package')));
@@ -43,10 +44,8 @@ module.exports = {
 
     // Add additional arguments
     options.platform = this.getPlatform();
-    options.hwAccel  = this.getHwAccel();
-
-    // Define the temp directory to render to, not yet supported
-    // options.temp  = ( config[options.platform].temp ? config[options.platform].temp : false );
+    options.hwAccel = this.getHwAccel();
+    options.temp = ( settings.platform[options.platform].temp ? settings.platform[options.platform].temp : false );
 
     // Handle help output
     if ( options.help ) {
@@ -54,6 +53,9 @@ module.exports = {
       console.log(utils.colorString(lang('cli.help')), help.replace(/=/g, ' '));
       return process.exit(0);
     }
+
+    // Start up, clear console and display header
+    this.start();
 
     // Assign options for use later if needed
     this.options = options;
