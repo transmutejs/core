@@ -5,8 +5,8 @@ const path = require('path'),
       fs = require('fs');
 
 // Load our modules
-const utils = require(__base + 'libs/utils'),
-      i18n = require(__base + 'libs/locale'),
+const utils = __require('libs/utils'),
+      i18n = __require('libs/locale'),
       config = require('../config')();
 
 module.exports = {

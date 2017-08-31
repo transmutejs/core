@@ -13,8 +13,8 @@ module.exports = function() {
     setup: false,
 
     directories: {
-      config: path.resolve(__base + '../config'),
-      settings: path.resolve(__base + '../config')
+      config: path.resolve(path.join(__base, '../config')),
+      settings: path.resolve(path.join(__base, '../config'))
     },
 
     file: null,

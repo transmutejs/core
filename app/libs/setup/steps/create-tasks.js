@@ -7,8 +7,8 @@ const path = require('path'),
       watch = require('node-watch');
 
 // Load our modules
-const utils = require(__base + 'libs/utils'),
-      settings = require(__base + 'libs/settings'),
+const utils = __require('libs/utils'),
+      settings = __require('libs/settings'),
       config = require('../config')();
 
 module.exports = function() {
@@ -16,10 +16,10 @@ module.exports = function() {
 
     // Variables
     let file = path.join(config.directories.settings, 'tasks.json'),
-        validate = require(__base + 'libs/task/validate');
+        validate = __require('libs/task/validate');
 
     // Create an example task file
-    fs.writeFileSync(file, JSON.stringify(require(__base + 'libs/setup/data/tasks.json'), null, 4));
+    fs.writeFileSync(file, JSON.stringify(__require('libs/setup/data/tasks.json'), null, 4));
 
     // Setup watcher
     watch(file).on('change', function(event, filename) {
@@ -71,7 +71,7 @@ module.exports = function() {
         }
 
         // Get a job listing for the task
-        require(__base + 'libs/task/listing')(task.directory, task.seasons).then((result) => {
+        __require('libs/task/listing')(task.directory, task.seasons).then((result) => {
 
           console.log(utils.colorString('  {green:\u2713} ' + lang('setup.task.task_no'), ( i + 1 )));
           

@@ -4,12 +4,13 @@
 const path = require('path');
 
 // Load our modules
-const utils = require(__base + 'libs/utils'),
-      i18n = require(__base + 'libs/locale'),
+const utils = __require('libs/utils'),
+      i18n = __require('libs/locale'),
       config = require('../config')();
 
 // Get the available locales
-let locales = require(__base + 'libs/locale/available-locales')(path.resolve(__base + '../locales'));
+let localesDir = path.resolve(path.join(__base, '../locales')),
+    locales = __require('libs/locale/available-locales')(localesDir);
 
 module.exports = {
   type: 'list',

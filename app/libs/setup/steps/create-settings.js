@@ -6,7 +6,7 @@ const path = require('path'),
       os = require('os');
 
 // Load our modules
-const utils = require(__base + 'libs/utils'),
+const utils = __require('libs/utils'),
       config = require('../config')();
 
 module.exports = function(answers) {

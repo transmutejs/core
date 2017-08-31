@@ -8,8 +8,8 @@ const inquirer = require('inquirer'),
       os = require('os');
 
 // Load our modules
-const utils = require(__base + 'libs/utils'),
-      update = require(__base + 'libs/update'),
+const utils = __require('libs/utils'),
+      update = __require('libs/update'),
       config = require('./config')();
 
 // Package info
