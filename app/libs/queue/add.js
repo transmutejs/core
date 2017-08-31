@@ -71,8 +71,11 @@ module.exports = function(task) {
       this.items.queue[( this.items.queue.length - 1)].job = job;
     });
 
-    // DEBUG
-    logger.info('Added:\n  {green:' + added.join('\n  ').trim() + '}');
+    // Additional items added
+    if ( this.items.maxPendingPromises === 1 ) {
+      console.log('');
+      logger.info('Added:\n  {green:' + added.join('\n  ').trim() + '}');
+    }
 
     // Unpause the queue
     this.items.maxPendingPromises = 1;
