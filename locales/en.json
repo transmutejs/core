@@ -139,5 +139,15 @@
 		"failed": "Failed to update to version {red:%s}",
 		"success": "{magenta:transmutejs} was successfully updated to version {green:%s}.",
 		"wait": "Restarting..."
+	},
+	"action": {
+		"create": {
+			"validation": {
+				"invalid": "Invalid task object provided",
+				"no_file": "File does not exist",
+				"format": "File is not in an acceptable format",
+				"output": "That file is the current render target"
+			}
+		}
 	}
 }
