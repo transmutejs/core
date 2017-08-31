@@ -1,9 +1,5 @@
 'use strict';
 
-// Load requirements
-const ffmpeg = require('fluent-ffmpeg'),
-      path = require('path');
-
 // Load our modules
 const utils = require(__base + 'libs/utils'),
       logger = require(__base + 'libs/log');
