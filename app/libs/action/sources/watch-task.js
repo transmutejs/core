@@ -6,10 +6,10 @@ const fs    = require('fs'),
       watch = require('node-watch');
 
 // Load our modules
-const logger = require(__base + 'libs/log'),
-      task = require(__base + 'libs/task'),
-      queue = require(__base + 'libs/queue'),
-      settings = require(__base + 'libs/settings');
+const logger = __require('libs/log'),
+      task = __require('libs/task'),
+      queue = __require('libs/queue'),
+      settings = __require('libs/settings');
 
 // General task file handling
 module.exports = function(options) {
@@ -27,6 +27,12 @@ module.exports = function(options) {
 
   // Setup watcher
   watch(file).on('change', function(event, filename) {
+
+    // Only use the update event
+    if ( event !== 'update' ) { return; }
+
+    // Ensure the file exists
+    if ( ! fs.existsSync(file) ) { return; }
 
     // Delete task cache, otherwise we won't see changes
     delete require.cache[file];

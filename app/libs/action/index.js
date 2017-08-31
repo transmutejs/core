@@ -1,27 +1,41 @@
 'use strict';
 
 // Load our modules
-const utils = require(__base + 'libs/utils'),
-      logger = require(__base + 'libs/log');
+const utils = __require('libs/utils'),
+      logger = __require('libs/log');
 
 // Configures the conversion task
 module.exports = {
 
   // Hand options off to actions and let them do their thing
   go: function(options) {
-    utils.getMethods(this, ['go']).forEach((method) => {
+    utils.getMethods(this.sources).forEach((method) => {
       logger.verbose('Starting up ' + method);
-      return this[method](options);
+      return this.sources[method](options);
     });
   },
 
-  // General task file handler
-  task: require('./actions/task'),
+  // Incoming data sources
+  sources: {
 
-  // Watch the task file for updates
-  watchTask: require('./actions/watch-task'),
+    // General task file handler
+    tasks: require('./sources/tasks'),
 
-  // Watch a directory for file changes
-  watchDirectory: require('./actions/watch-directory')
+    // Watch the task file for updates
+    watchTask: require('./sources/watch-task'),
+
+    // Watch a directory for file changes
+    watchDirectory: require('./sources/watch-directory'),
+
+    // Socket connections
+    socket: require('./sources/socket')
+  },
+
+  // Actions to perform
+  actions: {
+
+    // Creates a task object and returns the job list
+    createTask: require('./actions/create-task')
+  }
 
 };

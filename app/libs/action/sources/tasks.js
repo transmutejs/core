@@ -1,9 +1,9 @@
 'use strict';
 
 // Load our modules
-const logger = require(__base + 'libs/log'),
-      task = require(__base + 'libs/task'),
-      queue = require(__base + 'libs/queue');
+const logger = __require('libs/log'),
+      task = __require('libs/task'),
+      queue = __require('libs/queue');
 
 // General task file handling
 module.exports = function(options) {
