@@ -95,5 +95,11 @@
 	},
 	"cli": {
 		"help": "cli.help"
+	},
+	"update": {
+		"question": "update.question",
+		"title": "update.title",
+		"message": "update.message",
+		"in_progress": "update.in_progress"
 	}
 }

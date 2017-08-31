@@ -9,6 +9,7 @@ const inquirer = require('inquirer'),
 
 // Load our modules
 const utils = require(__base + 'libs/utils'),
+      update = require(__base + 'libs/update'),
       config = require('./config')();
 
 // Package info
@@ -27,6 +28,11 @@ module.exports = new Promise((resolve, reject) => {
 
   // Start with prerequisites
   prereqs.then(() => {
+
+    // Check version and attempt to update
+    return update.run();
+
+  }).then(() => {
 
     // Skip if user has already completed setup
     if ( config.setup === true ) {

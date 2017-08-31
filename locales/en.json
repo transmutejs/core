@@ -129,5 +129,15 @@
 			"progress": "[{magenta::bar}] [{cyan:x:speed}] [{green::percent}] [{yellow::time}] [{yellow::taken}] [{green::size (:reduction%)}] [{magenta::estimate}]",
 			"complete": "Original: {cyan:%s} New: {green:%s} Saving: {yellow:%s} ({green:%s%})"
 		}
+	},
+	"update": {
+		"elapsed": "w [weeks] d [days] h [hours] m [minutes]",
+		"question": "Would you like to update?",
+		"title": "New Update Available",
+		"message": "This version of {magenta:transmute} is %s versions behind the latest version ({gray:%s}) released {bold:%s} ago.",
+		"in_progress": "Update in progress, this should only take a moment.",
+		"failed": "Failed to update to version {red:%s}",
+		"success": "{magenta:transmutejs} was successfully updated to version {green:%s}.",
+		"wait": "Restarting..."
 	}
 }
