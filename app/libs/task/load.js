@@ -13,7 +13,8 @@ module.exports = function(file) {
   return new Promise((resolve, reject) => {
 
     // Variables
-    let promises = [];
+    let promises = [],
+        tasks = [];
 
     // Resolve to an absolute path
     if ( ! path.isAbsolute(file) ) {
@@ -26,7 +27,11 @@ module.exports = function(file) {
     }
 
     // Load the file
-    let tasks = require(file);
+    try {
+      tasks = require(file);
+    } catch(e) {
+      return reject('Invalid JSON data');
+    }
 
     // Check the task data is compliant
     let valid = this.validate.file(tasks);
