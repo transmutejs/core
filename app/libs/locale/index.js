@@ -3,7 +3,7 @@
 // Load our requirements
 const i18n = require('i18n'),
       path = require('path'),
-      logger = require(__base + 'libs/log');
+      logger = __require('libs/log');
 
 // Variables
 let localeDir = path.resolve(__base + '../locales');

@@ -2,8 +2,10 @@
 
 // Load our requirements
 const glob = require('glob'),
-      path = require('path'),
-      logger = require(__base + 'libs/log');
+      path = require('path');
+
+// Load libraries
+const logger = __require('libs/log');
 
 // Build a list of the available locale files in a given directory
 module.exports = function(dir) {
