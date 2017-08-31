@@ -66,8 +66,8 @@ module.exports = {
       // Build the command
       let cmd = 'npm install --silent --global ' + name;
 
-      // Clear screen and let them know it's in progress
-      console.log(utils.colorString(lang('update.in_progress', version)));
+      // Let them know it's in progress
+      utils.output(lang('update.title'), lang('update.in_progress', version) + '\n');
 
       // Run the command
       require('child_process').exec(cmd, (err, stdout, stderr) => {

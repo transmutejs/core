@@ -150,7 +150,7 @@ module.exports = {
   start: function() {
 
     // Clear terminal
-    console.log('\x1Bc');
+    process.stdout.write('\x1Bc');
 
     // Get the title output
     let file = path.join(__base, 'libs/cli/data/title.txt'),
