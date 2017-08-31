@@ -155,6 +155,12 @@
       "default": false
     },
     {
+      "names": ["no-task", "nt"],
+      "type": "bool",
+      "help": "Don't use the task config, default: false",
+      "default": false
+    },
+    {
       "names": ["language", "l"],
       "type": "string",
       "help": "Default language to include for subtitles, default: eng",

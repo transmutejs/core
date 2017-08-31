@@ -1,17 +1,17 @@
 'use strict';
 
-// Load requirements
-const ffmpeg = require('fluent-ffmpeg'),
-      path = require('path');
-
 // Load our modules
-const utils = require(__base + 'libs/utils'),
-      logger = require(__base + 'libs/log'),
+const logger = require(__base + 'libs/log'),
       task = require(__base + 'libs/task'),
       queue = require(__base + 'libs/queue');
 
 // General task file handling
 module.exports = function(options) {
+
+  // Does the user want to run this?
+  if ( options.no_task ) {
+    return;
+  }
 
   // Variables
   let count = 0;
