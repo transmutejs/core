@@ -13,5 +13,5 @@ module.exports = {
   output: require('./methods/output'),
   commandExists: require('./methods/command-exists'),
   getMethods: require('./methods/get-methods'),
-  socket: require('./methods/socket')
+  server: require('./methods/server')
 };
