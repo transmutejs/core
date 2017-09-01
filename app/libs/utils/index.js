@@ -13,5 +13,6 @@ module.exports = {
   output: require('./methods/output'),
   commandExists: require('./methods/command-exists'),
   getMethods: require('./methods/get-methods'),
-  server: require('./methods/server')
+  server: require('./methods/server'),
+  move: require('./methods/move')
 };
