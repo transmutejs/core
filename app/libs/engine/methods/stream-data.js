@@ -27,8 +27,8 @@ module.exports = function(command, file, options, metadata, details) {
         
         case 'video':
           
-          if ( stream.codec_name === 'hevc' && ! options.override ) {
-            status = 'Already encoded in x265, Skipping.';
+          if ( stream.codec_name === 'hevc' && ! options.force ) {
+            status = 'Already encoded in x265, Skipping, use --force to encode this file.';
             break;
           }
 
