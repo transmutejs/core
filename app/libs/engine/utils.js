@@ -138,7 +138,7 @@ module.exports = {
 
     // Sample suffix
     if ( options.preview ) {
-      str.replace('.' + replacements.ex, '-sample.' + replacements.ex);
+      str = str.replace('.' + replacements.ex, '-sample.' + replacements.ex);
     }
 
     // Clean and send it back
