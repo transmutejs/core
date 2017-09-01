@@ -13,8 +13,8 @@ module.exports = function(options) {
     return;
   }
 
-  // Variables
-  let count = 0;
+  // Let the user know
+  logger.info('Loading tasks from configuration file');
 
   // Load tasks from file
   task.load('tasks.json').then((tasks) => {
@@ -30,15 +30,12 @@ module.exports = function(options) {
     // Extract jobs from tasks
     tasks.forEach((t) => { t.jobs.forEach((j, i) => { jobs.push(j); }); });
 
-    // Update count
-    count = jobs.length;
-
     // Add jobs into queue and convert
     return queue.add({jobs: jobs});
 
   // Conversion queue complete
   }).then((complete) => {
-    logger.info('Completed %s tasks', count);
+    logger.info('Completed available tasks');
 
   // Error handler
   }).catch((err) => {
