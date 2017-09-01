@@ -7,6 +7,7 @@ const assign = require('deep-assign'),
 
 // Load our libraries
 const job = __require('libs/job'),
+      utils = __require('libs/utils'),
       settings = __require('libs/settings'),
       cli = __require('libs/cli'),
       logger = __require('libs/log');
@@ -14,6 +15,14 @@ const job = __require('libs/job'),
 // Export promise for use
 module.exports = function(task) {
   return new Promise((resolve, reject) => {
+
+    // Variables
+    let bar = {terminate: function() { return; }},
+        errors = [],
+        promises = [],
+        current = 1,
+        overall = 0,
+        resolved = 0;
 
     // Did we recieve any data
     if ( ! task ) {
@@ -40,15 +49,12 @@ module.exports = function(task) {
     // Get a files listing
     this.listing(task.directory, task.seasons).then((files) => {
 
-      // Variables
-      let promises = [],
-          current = 1,
-          overall = files.reduce(function(value, group) { return group.files.length; }, 0),
-          resolved = 0;
+      // Update overall job count
+      overall = files.reduce((value, group) => { return ( value + group.files.length ); }, 0);
 
       // Prepare to get additional information
       files.forEach((group) => {
-        group.files.forEach(function(file, i) {
+        group.files.forEach((file, i) => {
 
           // Push to be handled next
           promises.push(() => {
@@ -74,10 +80,15 @@ module.exports = function(task) {
         });
       });
 
+      // Create the progress bar
+      logger.info('Found {green:%s} jobs to process for {magenta:%s}.', overall, task.name);
+      bar = utils.progressBar(lang('task.create.ui.progress'), overall);
+
       // Process job tasks in serial and wait for result array
       return promises.reduce((prev, next) => {
         return prev.then((result) => {
-          return next().then(Array.prototype.concat.bind(result)).catch((err) => { logger.error(err); return result; });
+          bar.tick();
+          return next().then(Array.prototype.concat.bind(result)).catch((err) => { errors.push(err); return result; });
         });
       }, Promise.resolve([]));
 
@@ -85,6 +96,17 @@ module.exports = function(task) {
 
       // Assign the resolved items
       task.jobs = jobs;
+
+      // Close progress bar
+      bar.update(1);
+      bar.terminate();
+
+      // Error handling
+      if ( errors.length > 0 ) {
+        let str = '{red:Found %s error%s}:\n';
+        errors.forEach((err, i) => { str += '  {red:' + ( i + 1 ) + '} - ' + err + '\n'; });
+        console.log(utils.colorString(str.trim()), errors.length, errors.length != 1 ? 's' : '');
+      }
       
       // Resolve with task object
       return resolve(task);
