@@ -32,15 +32,7 @@ module.exports = function(source, dest) {
       const stream = fs.createReadStream(source);
 
       // Create the progress bar
-      let bar = new progress(lang('utils.move.ui.progress'), {
-        complete: '=',
-        incomplete: ' ',
-        head: '>',
-        clear: true,
-        renderThrottle: 0,
-        width: 30,
-        total: size 
-      });
+      let bar = this.progressBar(lang('utils.move.ui.progress'), size);
 
       // Handle progress update
       stream.on('data', (buffer) => {
