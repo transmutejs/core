@@ -29,8 +29,12 @@ module.exports = function(url) {
       // on every content chunk, push it to the data array
       response.on('data', (chunk) => { body.push(chunk); });
 
-      // we are done, resolve promise with those joined chunks
-      response.on('end', () => { resolve(body.join('')); });
+      // we are done, resolve promise with those joined chunks and JSON decoded if possible
+      response.on('end', () => { 
+        body = body.join('');
+        try { body = JSON.parse(body); } catch(e) { /* nothing */ };
+        return resolve(body);
+      });
     });
 
     // handle connection errors of the request
