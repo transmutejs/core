@@ -24,7 +24,7 @@ module.exports = function(options) {
   }
 
   // Setup watcher
-  watch(directory, {recursive: true}).on('change', function(event, filename) {
+  watch(directory, {recursive: true}).on('change', (event, filename) => {
 
     // Only use the update event
     if ( event !== 'update' ) { return; }
@@ -37,7 +37,10 @@ module.exports = function(options) {
 
     // Conversion queue complete
     }).then((complete) => {
-      logger.info('Completed available tasks');
+
+      if ( complete.length > 0 ) {
+        logger.info('Completed {green:%s} available tasks', complete.length);
+      }
 
     // Error handler
     }).catch((err) => {

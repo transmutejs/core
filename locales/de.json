@@ -106,12 +106,25 @@
 	"utils": {
 		"progress": {
 			"copy": "utils.progress.copy"
+		},
+		"move": {
+			"ui": {
+				"progress": "utils.move.ui.progress"
+			}
 		}
 	},
 	"task": {
 		"create": {
 			"ui": {
 				"progress": "task.create.ui.progress"
+			}
+		}
+	},
+	"action": {
+		"create": {
+			"validation": {
+				"format": "action.create.validation.format",
+				"output": "action.create.validation.output"
 			}
 		}
 	}

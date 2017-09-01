@@ -69,11 +69,13 @@ module.exports = function(task) {
       }));
 
       // Add data to queue for lookup later
-      this.items.queue[( this.items.queue.length - 1)].job = job;
+      if ( this.items.queue[( this.items.queue.length - 1)] ) {
+        this.items.queue[( this.items.queue.length - 1)].job = job;
+      }
     });
 
     // Additional items added
-    if ( this.items.maxPendingPromises === 1 ) {
+    if ( this.items.maxPendingPromises === 1 && added.length > 0 ) {
       console.log('');
       logger.info('Added:\n  {green:' + added.join('\n  ').trim() + '}');
     }

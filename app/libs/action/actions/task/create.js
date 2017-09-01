@@ -29,17 +29,17 @@ module.exports = function(data, options) {
 
     // Ensure the file exists
     if ( ! fs.existsSync(file) ) {
-      return reject(lang('action.create.validation.no_file'));
+      return resolve([]);// reject(lang('action.create.validation.no_file'));
     }
 
     // Check it's in a format the user wants
     if ( ! format.match(file) ) {
-      return reject(lang('action.create.validation.format'));
+      return resolve([]);// reject(lang('action.create.validation.format'));
     }
 
     // Ignore if this is our current render target
-    if ( file === conversion.current.output || file === conversion.current.temp ) {
-      return reject(lang('action.create.validation.output'));
+    if ( conversion.current && ( file === conversion.current.output || file === conversion.current.temp ) ) {
+      return resolve([]);// reject(lang('action.create.validation.output'));
     }
 
     // Create the task object
