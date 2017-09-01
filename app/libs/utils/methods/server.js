@@ -41,7 +41,7 @@ module.exports = function() {
 
     // Start it up
     server.listen(settings.server.port, settings.server.address, () => {
-      logger.info('%s listening at %s', server.name, server.url);
+      logger.verbose('%s listening at %s', server.name, server.url);
     });
   }
 
