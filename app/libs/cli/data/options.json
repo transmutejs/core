@@ -161,6 +161,17 @@
       "default": false
     },
     {
+      "names": ["overwrite"],
+      "type": "bool",
+      "help": "Overwrite files that exist",
+      "default": false
+    },    {
+      "names": ["force"],
+      "type": "bool",
+      "help": "Perform encodes to the same codec as the source",
+      "default": false
+    },
+    {
       "names": ["language", "l"],
       "type": "string",
       "help": "Default language to include for subtitles, default: eng",
