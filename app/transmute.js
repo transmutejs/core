@@ -10,11 +10,13 @@ const i18n = require('./libs/locale');
 // Ensure we're ready to go
 require('./libs/setup').then(() => {
 
-  // Run CLI, get arguments, and begin processing
-  const options = require('./libs/cli').input();
+  // Run CLI, and get arguments
+  return require('./libs/cli').input();
+
+}).then((options) => {
 
   // Script entry point
-  require('./libs/action').go(options);
+  return require('./libs/action').go(options);
 
 // Catch any errors that bubble up
 }).catch((err) => {
