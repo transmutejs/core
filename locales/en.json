@@ -149,5 +149,12 @@
 				"output": "That file is the current render target"
 			}
 		}
+	},
+	"task": {
+		"create": {
+			"ui": {
+				"progress": "Creating jobs [{magenta::bar}] :percent :etas"
+			}
+		}
 	}
 }

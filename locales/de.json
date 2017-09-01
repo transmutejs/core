@@ -107,5 +107,12 @@
 		"progress": {
 			"copy": "utils.progress.copy"
 		}
+	},
+	"task": {
+		"create": {
+			"ui": {
+				"progress": "task.create.ui.progress"
+			}
+		}
 	}
 }
