@@ -49,6 +49,18 @@ module.exports = function(stdout, stderr, job, metadata, resolve, reject) {
     job.size.difference.percent.toFixed(2)
   );
 
-  // All done
-  return resolve(job);
+  // Does the file need to be moved?
+  if ( job.temp !== job.output ) {
+
+    // Attempt to move or copy the file to the final target path
+    utils.move(job.temp, job.output).then((result) => {
+      return resolve(job);
+    }).catch((err) => {
+      return reject(err);
+    });
+
+  // We're done here
+  } else {
+    return resolve(job);
+  }
 };

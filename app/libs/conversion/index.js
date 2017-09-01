@@ -74,6 +74,7 @@ module.exports = {
 
       // Error with engine
       }).catch((err) => {
+        logger.error(err);
         return reject(err);
       });
     });

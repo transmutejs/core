@@ -20,15 +20,19 @@ module.exports = function(command, file, options, metadata, details) {
     let directory = this.utils.buildDir(file, options.target);
     let target = path.join(directory, filename);
 
+    // Build temp path
+    let tempDir = ( ! path.isAbsolute(options.temp) ? path.resolve(options.temp) : options.temp );
+    let temp = path.join(tempDir, filename);
+
     // Does it already exist
     if ( fs.existsSync(target) && ! options.overwrite ) {
-      return reject('"' + filename + '" already exists in target directory, set --overwrite to continue');
+      return resolve('"' + filename + '" already exists in target directory, set --overwrite to continue');
     }
 
-    // Assign to command
-    command.output(target);
+    // Assign to command, use temp if available
+    command.output(( temp !== target ? temp : target ));
 
     // Resolve with path
-    return resolve({output: target, temp: target});
+    return resolve({output: target, temp: temp});
   });
 };
