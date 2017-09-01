@@ -18,7 +18,7 @@ fs.mkdir(logDirectory, (err) => { return; });
 const logger = new (winston.Logger)({
   transports: [
     new (winston.transports.Console)({
-      level: process.env.CONSOLE_LEVEL || 'debug',
+      level: process.env.CONSOLE_LEVEL || 'info',
       colorize: true
     })/*,
     new (winston.transports.DailyRotateFile)({
