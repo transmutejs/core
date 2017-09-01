@@ -46,6 +46,9 @@ module.exports = {
   },
 
   clean: function(str) {
+
+    if ( typeof str !== 'string') { return str; }
+
     return str.replace(/[^a-z0-9\s\.-]+/gmi, ' ')
               .replace(/[\s|\.]+/gmi, ' ')
               .replace(/\s/gmi, '.');
