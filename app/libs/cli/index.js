@@ -19,49 +19,55 @@ const pkg = require(path.resolve(path.join(__base, '../package')));
 // Export for use
 module.exports = {
 
+  ready: false,
+
   options: {},
 
   input: function() {
+    return new Promise((resolve, reject) => {
 
-    // Variables
-    let options = {};
+      // Variables
+      let options = {};
 
-    // Add option validation to dash dash
-    this.addBitdepthOption()
-        .addPresetOption()
-        .addTuningOption();
+      // Add option validation to dash dash
+      this.addBitdepthOption()
+          .addPresetOption()
+          .addTuningOption();
 
-    // Build the parser with our configured options
-    let parser = dashdash.createParser(require('./data/options.json'));
+      // Build the parser with our configured options
+      let parser = dashdash.createParser(require('./data/options.json'));
 
-    // Get the command line arguments
-    try {
-      options = utils.nestOptions(parser.parse(process.argv));
-    } catch (e) {
-      logger.error(e.message);
-      return process.exit(1);
-    }
+      // Get the command line arguments
+      try {
+        options = utils.nestOptions(parser.parse(process.argv));
+      } catch (e) {
+        return reject(e.message);
+      }
 
-    // Add additional arguments
-    options.platform = this.getPlatform();
-    options.hwAccel = this.getHwAccel();
-    options.temp = ( settings.platform[options.platform].temp ? settings.platform[options.platform].temp : false );
+      // Add additional arguments
+      options.platform = this.getPlatform();
+      options.hwAccel = this.getHwAccel();
+      options.temp = ( settings.platform[options.platform].temp ? settings.platform[options.platform].temp : false );
 
-    // Handle help output
-    if ( options.help ) {
-      let help = parser.help({includeEnv: true}).trimRight();
-      console.log(utils.colorString(lang('cli.help')), help.replace(/=/g, ' '));
-      return process.exit(0);
-    }
+      // Handle help output
+      if ( options.help ) {
+        let help = parser.help({includeEnv: true}).trimRight();
+        console.log(utils.colorString(lang('cli.help')), help.replace(/=/g, ' '));
+        return process.exit(0);
+      }
 
-    // Start up, clear console and display header
-    this.start();
+      // Start up, clear console and display header
+      this.start();
 
-    // Assign options for use later if needed
-    this.options = options;
+      // Assign options for use later if needed
+      this.options = options;
 
-    // Send them back
-    return options;
+      // Set to ready
+      this.ready = true;
+
+      // Resolve with args  
+      return resolve(options);
+    });
   },
 
   addBitdepthOption: function() {
