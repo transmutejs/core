@@ -43,14 +43,16 @@ module.exports = function(file) {
 
     // Loop the available tasks and pass them to task creation
     tasks.tasks.forEach((task) => {
-      promises.push(this.create(task));
+      promises.push(() => { return this.create(task); });
     });
 
     // Resolve with all tasks
-    Promise.all(promises).then((result) => {
+    promises.reduce((prev, next) => {
+      return prev.then((result) => {
+        return next().then(Array.prototype.concat.bind(result)).catch((err) => { return result; });
+      });
+    }, Promise.resolve([])).then((result) => {
       return resolve(result);
-    }).catch((err) => {
-      return reject(err);
     });
   });
 };
