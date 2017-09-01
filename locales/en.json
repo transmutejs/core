@@ -118,7 +118,7 @@
 		"help": "\nUsage: transmute [options]\n\nOptions:\n\n%s\n\n"
 	},
 	"utils": {
-		"copy": {
+		"move": {
 			"ui": {
 				"progress": "Copying [{magenta::bar}] :rate/bps :percent :etas"
 			}

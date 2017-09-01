@@ -90,7 +90,8 @@
 	},
 	"conversion": {
 		"ui": {
-			"progress": "conversion.ui.progress"
+			"progress": "conversion.ui.progress",
+			"complete": "conversion.ui.complete"
 		}
 	},
 	"cli": {
@@ -101,5 +102,10 @@
 		"title": "update.title",
 		"message": "update.message",
 		"in_progress": "update.in_progress"
+	},
+	"utils": {
+		"progress": {
+			"copy": "utils.progress.copy"
+		}
 	}
 }
