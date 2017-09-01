@@ -1,7 +1,7 @@
 'use strict';
 
 // Load requirements
-const ajv = require('ajv')({allErrors: true, removeAdditional: 'all'});
+const ajv = require('ajv')({allErrors: true});
 
 // Load our schemas
 ajv.addSchema(require('./schema/tasks.schema'), 'tasks');
