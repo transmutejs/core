@@ -5,7 +5,8 @@ const progress = require('progress');
 
 // Load libraries
 const utils = __require('libs/utils'),
-      logger = __require('libs/log');
+      logger = __require('libs/log'),
+      io = utils.server().socket;
 
 // On conversion start
 module.exports = function(cmd, job, metadata) {
@@ -17,7 +18,7 @@ module.exports = function(cmd, job, metadata) {
   logger.info('Starting conversion of "{green:%s}".', job.basename);
 
   // Update any socket connections
-  utils.socket.emit('conversion start', job);
+  io.emit('conversion start', job);
 
   // Create a progress bar
   this.progressBar = new progress(

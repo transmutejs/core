@@ -10,7 +10,8 @@ require('moment-duration-format');
 
 // Load libraries
 const utils = __require('libs/utils'),
-      logger = __require('libs/log');
+      logger = __require('libs/log'),
+      io = utils.server().socket;
 
 // On progress update
 module.exports = function(progress, job, metadata) {
@@ -47,7 +48,7 @@ module.exports = function(progress, job, metadata) {
   };
 
   // Update any socket connections
-  utils.socket.emit('conversion progress', job);
+  io.emit('conversion progress', job);
 
   // Update progress bar
   this.progressBar.update(( progress.percent / 100 ), job.progress);

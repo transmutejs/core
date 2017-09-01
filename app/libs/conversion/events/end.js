@@ -7,7 +7,8 @@ const moment = require('moment'),
 
 // Load libraries
 const logger = __require('libs/log'),
-      utils = __require('libs/utils');
+      utils = __require('libs/utils'),
+      io = utils.server().socket;
 
 // On conversion completion
 module.exports = function(stdout, stderr, job, metadata, resolve, reject) {
@@ -37,7 +38,7 @@ module.exports = function(stdout, stderr, job, metadata, resolve, reject) {
   logger.info('Conversion complete in %s.', job.progress.taken);
 
   // Update socket users
-  utils.socket.emit('conversion complete', job);
+  io.emit('conversion complete', job);
 
   // Stats
   logger.info(
