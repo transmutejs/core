@@ -35,6 +35,7 @@ module.exports = new Promise((resolve, reject) => {
   }).then(() => {
 
     // Skip if user has already completed setup
+    // TODO: Enable bypass if new environment/os
     if ( config.setup === true ) {
       return resolve();
     }
