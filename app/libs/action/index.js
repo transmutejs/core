@@ -37,11 +37,22 @@ module.exports = {
   // Actions to perform
   actions: {
 
-    // Creates a task object and returns the job list
-    taskCreate: require('./actions/task-create'),
+    task: {
 
-    // Return the current task in process
-    taskCurrent: require('./actions/task-current')
+      // Creates a task object and returns the job list
+      create: require('./actions/task/create'),
+
+      // Return the current task in process
+      current: require('./actions/task/current'),
+
+    },
+
+    queue: {
+
+      // Get a list of the upcoming tasks
+      listing: require('./actions/queue/listing')
+
+    }
   }
 
 };

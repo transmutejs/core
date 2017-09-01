@@ -37,6 +37,11 @@ module.exports = function(options) {
     // Load tasks from file
     task.load(file).then((tasks) => {
 
+      // Check for tasks
+      if ( ! tasks ) {
+        return new Error('No tasks found');
+      }
+
       // Variables
       let jobs = [];
 

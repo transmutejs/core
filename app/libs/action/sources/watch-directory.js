@@ -30,7 +30,7 @@ module.exports = function(options) {
     if ( event !== 'update' ) { return; }
 
     // Create a new task
-    this.actions.createTask({file: filename}).then((jobs) => {
+    this.actions.task.create({file: filename}).then((jobs) => {
 
       // Add jobs into queue and convert
       return queue.add({jobs: jobs});

@@ -24,13 +24,24 @@ module.exports = function(options) {
 
   // Current task
   server.get('/task/current', (req, res, next) => {
-    this.actions.taskCurrent().then((result) => {
+    this.actions.task.current().then((result) => {
       res.send({status: true, result: result});
       return next();
     }).catch((err) => {
       res.send(404, {status: false, errors: [err]});
       return next();
     });
-  }); 
+  });
+
+  // Queue items
+  server.get('/queue', (req, res, next) => {
+    this.actions.queue.listing(req.query).then((result) => {
+      res.send({status: true, result: result});
+      return next();
+    }).catch((err) => {
+      res.send(404, {status: false, errors: [err]});
+      return next();
+    });
+  });
 
 };
