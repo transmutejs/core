@@ -1,7 +1,8 @@
 'use strict';
 
 // Load requirements
-const path = require('path');
+const path = require('path'),
+      fs = require('fs');
 
 // Variables
 const config = require(path.join(__base, '../config/config')),
