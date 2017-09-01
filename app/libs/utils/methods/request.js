@@ -24,7 +24,7 @@ module.exports = function(url) {
       }
 
       // temporary data holder
-      const body = [];
+      let body = [];
 
       // on every content chunk, push it to the data array
       response.on('data', (chunk) => { body.push(chunk); });
@@ -32,7 +32,7 @@ module.exports = function(url) {
       // we are done, resolve promise with those joined chunks and JSON decoded if possible
       response.on('end', () => { 
         body = body.join('');
-        try { body = JSON.parse(body); } catch(e) { /* nothing */ };
+        try { body = JSON.parse(body); } catch(e) { /* nothing */ }
         return resolve(body);
       });
     });

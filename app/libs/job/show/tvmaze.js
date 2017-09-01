@@ -93,7 +93,7 @@ module.exports = function() {
           });
         }).catch((err) => {
           return reject(err);
-        })
+        });
       });
     },
 
@@ -117,7 +117,7 @@ module.exports = function() {
     formatShow: function(show) {
 
       // Variables
-      let episodes = {}
+      let episodes = {};
 
       // Build the formatted show object
       let formatted = {
@@ -133,8 +133,8 @@ module.exports = function() {
       };
 
       // Is there episode data to format
-      if ( show['_embedded'] && show['_embedded'].episodes ) {
-        show['_embedded'].episodes.forEach((episode) => {
+      if ( show._embedded && show._embedded.episodes ) {
+        show._embedded.episodes.forEach((episode) => {
           let key = cache.episodeKey(episode.season, episode.number);
           episodes[key] = this.formatEpisode(episode, formatted);
         });
