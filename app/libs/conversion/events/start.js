@@ -1,8 +1,5 @@
 'use strict';
 
-// Load requirements
-const progress = require('progress');
-
 // Load libraries
 const utils = __require('libs/utils'),
       logger = __require('libs/log'),
@@ -21,14 +18,5 @@ module.exports = function(cmd, job, metadata) {
   io.emit('conversion start', job);
 
   // Create a progress bar
-  this.progressBar = new progress(
-    utils.colorString(lang('conversion.ui.progress')), {
-    complete: '=',
-    incomplete: ' ',
-    head: '>',
-    clear: true,
-    renderThrottle: 0,
-    total: 100,
-    width: 30
-  });
+  this.progressBar = utils.progressBar(lang('conversion.ui.progress'), 100);
 };
