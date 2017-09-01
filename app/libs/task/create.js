@@ -8,7 +8,8 @@ const assign = require('deep-assign'),
 // Load our libraries
 const job = __require('libs/job'),
       settings = __require('libs/settings'),
-      cli = __require('libs/cli');
+      cli = __require('libs/cli'),
+      logger = __require('libs/log');
 
 // Export promise for use
 module.exports = function(task) {
@@ -42,37 +43,47 @@ module.exports = function(task) {
       // Variables
       let promises = [],
           current = 1,
-          overall = files.reduce(function(value, group) { return group.files.length; }, 0);
+          overall = files.reduce(function(value, group) { return group.files.length; }, 0),
+          resolved = 0;
 
-      // Get additional details for each task
+      // Prepare to get additional information
       files.forEach((group) => {
         group.files.forEach(function(file, i) {
-          
-          promises.push(job.build({
-            file: file,
-            path: path.dirname(file),
-            basename: path.basename(file),
-            type: task.type,
-            task: {
-              current: ( i + 1 ),
-              total: group.files.length
-            },
-            overall: {
-              current: current,
-              total: overall
-            },
-            options: task.options
-          }));
 
+          // Push to be handled next
+          promises.push(() => {
+            return job.build({
+              file: file,
+              path: path.dirname(file),
+              basename: path.basename(file),
+              type: task.type,
+              task: {
+                current: ( i + 1 ),
+                total: group.files.length
+              },
+              overall: {
+                current: current,
+                total: overall
+              },
+              options: task.options
+            });
+          });
+
+          // update current position
           current++;
         });
       });
 
-      // Wait for formatted job results
-      return Promise.all(promises);
+      // Process job tasks in serial and wait for result array
+      return promises.reduce((prev, next) => {
+        return prev.then((result) => {
+          return next().then(Array.prototype.concat.bind(result)).catch((err) => { logger.error(err); return result; });
+        });
+      }, Promise.resolve([]));
 
     }).then((jobs) => {
 
+      // Assign the resolved items
       task.jobs = jobs;
       
       // Resolve with task object
