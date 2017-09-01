@@ -16,13 +16,17 @@ module.exports = function() {
 
     // Variables
     let file = path.join(config.directories.settings, 'tasks.json'),
-        validate = __require('libs/task/validate');
+        validate = __require('libs/task/validate'),
+        action = 'existing';
 
-    // Create an example task file
-    fs.writeFileSync(file, JSON.stringify(__require('libs/setup/data/tasks.json'), null, 4));
+    // Create an example task file if needed
+    if ( ! fs.existsSync(file) ) {
+      action = 'created';
+      fs.writeFileSync(file, JSON.stringify(__require('libs/setup/data/tasks.json'), null, 4));
+    }
 
     // Setup watcher
-    watch(file).on('change', function(event, filename) {
+    let watcher = watch(file).on('change', function(event, filename) {
 
       // Variables
       let passed = 0, total = 2, tasks = {};
@@ -101,6 +105,11 @@ module.exports = function() {
       if ( passed >= total ) {
         return resolve();
       }
+
     });
+
+    // Trigger the initial event
+    watcher.emit('change');
+
   });
 };

@@ -57,7 +57,8 @@
 			"message": {
 				"created": "setup.task.message.created",
 				"todo": "setup.task.message.todo",
-				"confirm": "setup.task.message.confirm"
+				"confirm": "setup.task.message.confirm",
+				"existing": "setup.task.message.existing"
 			},
 			"validation": {
 				"valid": "setup.task.validation.valid",

@@ -96,6 +96,7 @@
 			"message": {
 				"confirm": "Your settings have all been saved and now the last step is to setup some tasks.",
 				"created": "I've gone ahead and created you an example \"{green:tasks.json}\" file in your selected settings directory.",
+				"existing": "It looks like you already had a \"{green:tasks.json}\" file in your selected settings directory. I'll just keep that one for you shall I?",
 				"todo": "As this is your first time I'm here to try to validate things as you make changes, once everything looks good you'll be ready to start!"
 			},
 			"task_no": "Task %s",

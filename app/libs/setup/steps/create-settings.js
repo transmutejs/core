@@ -11,6 +11,9 @@ const utils = __require('libs/utils'),
 
 module.exports = function(answers) {
 
+  // Variables
+  let file = path.join(config.directories.settings, 'settings.json');
+
   // Build the base settings object
   let settings = {
     language: answers.language,
@@ -36,8 +39,5 @@ module.exports = function(answers) {
   };
 
   // Write the settings object
-  fs.writeFileSync(
-    path.join(config.directories.settings, 'settings.json'),
-    JSON.stringify(settings, null, 4)
-  );
+  fs.writeFileSync(file, JSON.stringify(settings, null, 4));
 };

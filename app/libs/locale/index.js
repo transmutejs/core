@@ -5,8 +5,7 @@ const i18n = require('i18n'),
       path = require('path');
 
 // Load libraries
-const logger = __require('libs/log'),
-      settings = __require('libs/settings');
+const logger = __require('libs/log');
 
 // Variables
 let localeDir = path.resolve(__base + '../locales');
@@ -25,11 +24,6 @@ i18n.configure({
     '__n': 'plural'
   }
 });
-
-// Set the locale
-if ( settings.language !== 'en' ) {
-  i18n.setLocale(settings.language);
-}
 
 // Export for future use
 module.exports = i18n;

@@ -5,8 +5,7 @@ const restify = require('restify'),
       path = require('path');
 
 // Load libraries
-const logger = __require('libs/log'),
-      settings = __require('libs/settings');
+const logger = __require('libs/log');
 
 // Get package information
 const pkg = require(path.resolve(path.join(__base, '../package')));
@@ -17,6 +16,9 @@ let server = null,
 
 // Export the returned object
 module.exports = function() {
+
+  // Get settings
+  const settings = __require('libs/settings');
 
   // Check if the user wants to enable this
   if ( settings.server.enable !== true ) {
