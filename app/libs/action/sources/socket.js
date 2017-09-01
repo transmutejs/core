@@ -16,6 +16,6 @@ module.exports = function(options) {
   }
 
   // Start the server
-  
+  let io = utils.server().socket;
 
 };
