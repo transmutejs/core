@@ -16,31 +16,30 @@ module.exports = function(options) {
   // Start the server
   let server = utils.server().api;
 
-  // Test
-  server.get('/hello/:name', (req, res, next) => {
-    res.send('hello ' + req.params.name);
-    return next();
-  });
+  // Automatically register action endpoints
+  Object.keys(this.actions).forEach((resource) => {
+    utils.getMethods(this.actions[resource]).forEach((action) => {
 
-  // Current task
-  server.get('/task/current', (req, res, next) => {
-    this.actions.task.current().then((result) => {
-      res.send({status: true, result: result});
-      return next();
-    }).catch((err) => {
-      res.send(404, {status: false, errors: [err]});
-      return next();
-    });
-  });
+      // Variables
+      let method = 'get',
+          uri = '/' + resource;
 
-  // Queue items
-  server.get('/queue', (req, res, next) => {
-    this.actions.queue.listing(req.query).then((result) => {
-      res.send({status: true, result: result});
-      return next();
-    }).catch((err) => {
-      res.send(404, {status: false, errors: [err]});
-      return next();
+      // Detect method & update uri
+      if ( action === 'create' ) { method = 'post'; }
+      else if ( action === 'listing' ) { method = 'get'; }
+      else { uri += '/' + action; }
+
+      // Create the routing action
+      server[method](uri, (req, res, next) => {
+        this.actions[resource][action](req.query).then((result) => {
+          res.send({status: true, result: result});
+          return next();
+        }).catch((err) => {
+          res.send(404, {status: false, errors: [err]});
+          return next();
+        });
+      });
+
     });
   });
 
