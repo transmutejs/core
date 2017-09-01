@@ -34,7 +34,7 @@ module.exports = function(filename) {
 
     // Check for the show in cache
     source.findShow(details.title).then((show) => {
-      return source.findEpisode(show, details.season, details.episode);
+      return source.findEpisode(details.title, details.season, details.episode);
     }).then((episode) => {
       episode.type = 'show';
       return resolve(episode);

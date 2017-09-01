@@ -15,11 +15,11 @@ module.exports = {
   },
 
   // Wrap the utils helper method to get metadata for a file
-  get: function(file) {
+  get: function(task) {
     return new Promise((resolve, reject) => {
 
       // Get the metadata
-      utils.metadata(file).then((data) => {
+      utils.metadata(task.file).then((data) => {
         return resolve(data);
       }).catch((err) => {
         return reject(this.error(err));

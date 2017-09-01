@@ -16,8 +16,8 @@ module.exports = {
         return reject('Invalid job type "' + task.type + '" specified');
       }
 
-      // Get metadata, auth with trakt and get media information
-      this.metadata.get(task.file).then((meta) => {
+      // Decorate task with metadata and media information
+      this.metadata.get(task).then((meta) => {
         task.meta = meta;
         return this[task.type](task.basename);
       }).then((info) => {
@@ -33,5 +33,7 @@ module.exports = {
 
   show: require('./show'),
 
-  movie: require('./movie')
+  movie: require('./movie'),
+
+  cache: require('./cache')
 };
