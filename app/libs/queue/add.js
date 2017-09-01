@@ -55,6 +55,7 @@ module.exports = function(task) {
 
         // DEBUG
         logger.info('Starting task {cyan:%s} of {green:%s}', this.current, this.total);
+        logger.debug('{magenta:%s}', job.basename);
 
         // Queue data test
         // Not needed, just keeping it for reference later
@@ -64,7 +65,7 @@ module.exports = function(task) {
         }*/
 
         // Send to conversion for processing
-        return require('../conversion').run(job);
+        return __require('libs/conversion').run(job);
       }));
 
       // Add data to queue for lookup later
