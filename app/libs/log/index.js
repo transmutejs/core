@@ -3,7 +3,6 @@
 // Load requirements
 const winston = require('winston'),
       path = require('path'),
-      utils = __require('libs/utils'),
       fs = require('fs');
 
 // Add rotation to winston logs
@@ -19,14 +18,14 @@ fs.mkdir(logDirectory, (err) => { return; });
 const logger = new (winston.Logger)({
   transports: [
     new (winston.transports.Console)({
-      level: process.env.CONSOLE_LEVEL,
+      level: process.env.CONSOLE_LEVEL || 'debug',
       colorize: true
-    }),
+    })/*,
     new (winston.transports.DailyRotateFile)({
       filename: path.join(logDirectory, process.env.ENV + '.'),
       datePattern: 'yyyy-MM-dd.log',
       level: process.env.LOG_LEVEL
-    })
+    })*/
   ]/*,
   exceptionHandlers: [
     new (winston.transports.DailyRotateFile)({
@@ -39,7 +38,7 @@ const logger = new (winston.Logger)({
 
 // Add colorize support
 logger.filters.push((level, msg, meta) => {
-  return utils.colorString(msg);
+  return __require('libs/utils/methods/color-string')(msg);
 });
 
 // Export for use
