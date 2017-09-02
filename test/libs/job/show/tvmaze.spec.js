@@ -36,6 +36,18 @@ describe('Class "tvmaze"', () => {
                                    .and.to.eventually.be.rejected;
     });
 
+    it('should resolve with show data', (done) => {
+      
+      let tvmazeInst = tvmaze();
+
+      tvmazeInst.findShow('The Handmaids Tale').then((show) => {
+        expect(show).to.be.an('object');
+        return done();
+      }).catch((err) => {
+        return done(err);
+      });
+    });
+
     it('should reject if the show was not found', (done) => {
 
       let tvmazeInst = tvmaze();
@@ -73,9 +85,7 @@ describe('Class "tvmaze"', () => {
       
       let tvmazeInst = tvmaze();
 
-      tvmazeInst.findShow('The Simpsons').then((show) => {
-        return tvmazeInst.findEpisode(show.name, 1, 1);
-      }).then((episode) => {
+      tvmazeInst.findEpisode('The Handmaids Tale', 1, 1).then((episode) => {
         expect(episode).to.be.an('object');
         return done();
       }).catch((err) => {
@@ -99,9 +109,7 @@ describe('Class "tvmaze"', () => {
 
       let tvmazeInst = tvmaze();
 
-      tvmazeInst.findShow('The Simpsons').then((show) => {
-        return tvmazeInst.findEpisode(show.name, 99, 1);
-      }).then((episode) => {
+      tvmazeInst.findEpisode('The Handmaids Tale', 99, 37).then((episode) => {
         return done(false);
       }).catch((err) => {
         expect(err).to.be.a('string').and.to.match(/no results/ig);

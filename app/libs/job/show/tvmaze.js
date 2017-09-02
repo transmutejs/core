@@ -70,9 +70,11 @@ module.exports = function() {
         // Not found, try and get it
         this.findShow(name).then((show) => {
           tvmaze.showById(show.id, 'episodesbynumber', [season, episode], (err, res) => {
-            
+
             // Something went wrong...
-            if ( err !== null ) { return reject(err); }
+            if ( err !== null ) {
+              return reject(err);
+            }
 
             // Decode JSON data
             res = ( typeof res === 'string' ? JSON.parse(res) : /* istanbul ignore next */ res );

@@ -9,6 +9,21 @@ const path = require('path'),
 global.__base = path.resolve(__dirname + '/../') + '/app/';
 global.__require = function(name) { return require(__base + name); };
 
+// Recursive removal of files/directory
+function rimraf(dir_path) {
+    if (fs.existsSync(dir_path)) {
+        fs.readdirSync(dir_path).forEach(function(entry) {
+            var entry_path = path.join(dir_path, entry);
+            if (fs.lstatSync(entry_path).isDirectory()) {
+                rimraf(entry_path);
+            } else {
+                fs.unlinkSync(entry_path);
+            }
+        });
+        fs.rmdirSync(dir_path);
+    }
+}
+
 module.exports = function() {
 
   // Define the required files and directories
@@ -16,6 +31,9 @@ module.exports = function() {
       configFile = path.join(configDir, 'config.json'),
       settingsFile = path.join(configDir, 'settings.json'),
       tasksFile = path.join(configDir, 'tasks.json');
+
+  // Start with a clean slate
+  rimraf(configDir);
 
   // Create config directory if we don't have one
   if ( ! fs.existsSync(configDir) ) {
