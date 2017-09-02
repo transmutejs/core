@@ -12,8 +12,14 @@ const logger = __require('libs/log');
 module.exports = function(source, dest) {
   return new Promise((resolve, reject) => {
 
-    // Get our socket
-    const io = this.server().socket;
+    // Check paths
+    if ( ! source || ! dest ) {
+      return reject('Invalid paths provided');
+    }
+
+    // Resolve them
+    source = path.resolve(source);
+    dest = path.resolve(dest);
 
     // Are source and dest the same?
     if ( source === dest ) { return resolve(); }
@@ -45,10 +51,10 @@ module.exports = function(source, dest) {
         let pct = ( ( copied / size  ) * 100 );
 
         // Throttle copy updates
-        if ( io !== undefined && ( pct - percent ) > 0.5 ) {
+        if ( ( pct - percent ) > 0.5 ) {
           
           // Update socket users
-          io.emit('copy progress', {
+          this.server().socket.emit('copy progress', {
             speed: buffer.length,
             percent: pct.toFixed(2) + '%',
             transfer: filesize(copied)

@@ -12,7 +12,7 @@ const sinon = require('sinon'),
       https = require('https');
 
 // Load our module
-const utils = require('../../../app/libs/utils');
+const utils = __require('libs/utils');
 
 // Creates a pseudo unique string of a given length
 describe('Function "request"', () => {

@@ -5,7 +5,7 @@ const languages = __require('libs/utils/data/language');
 // Normalize language string
 module.exports = function(lang) {
 
-  if ( typeof lang === 'undefined' ) {
+  if ( ! lang || typeof lang !== 'string' ) {
     return 'Unknown';
   }
 
@@ -15,6 +15,6 @@ module.exports = function(lang) {
     case 3:
       return languages.alpha3Languages[lang] || "Unknown";
     default:
-      return ( lang.charAt(0).toUpperCase() + lang.slice(1) ) || "Unknown";
+      return ( lang.charAt(0).toUpperCase() + lang.slice(1) );
   }
 };

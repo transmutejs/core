@@ -5,7 +5,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const utils = require('../../../app/libs/utils');
+const utils = __require('libs/utils');
 
 // Nests command line arguments by a character, default colon
 describe('Function "nestOptions"', () => {

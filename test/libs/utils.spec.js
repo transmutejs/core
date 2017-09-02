@@ -9,12 +9,21 @@ const utils = require('../../app/libs/utils');
 
 // Define the available functions
 const utilFunctions = [
+  'camel-case',
   'color-string',
-  'nest-options',
-  'uid',
-  'request',
+  'command-exists',
+  'framerate',
+  'get-methods',
   'metadata',
-  'camel-case'
+  'move',
+  'nest-options',
+  'normalize-language',
+  'output',
+  'pad',
+  'progress-bar',
+  'request',
+  'server',
+  'uid'
 ];
 
 // Convert string to camelCase

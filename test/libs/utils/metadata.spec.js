@@ -9,7 +9,7 @@ const expect = chai.expect;
 chai.use(require('chai-as-promised'));
 
 // Load our module
-const utils = require('../../../app/libs/utils');
+const utils = __require('libs/utils');
 
 describe('Function "metadata"', () => {
 
