@@ -103,9 +103,8 @@ module.exports = function(task) {
 
       // Error handling
       if ( errors.length > 0 ) {
-        let str = '{red:Found %s error%s}:\n';
-        errors.forEach((err, i) => { str += '  {red:' + ( i + 1 ) + '} - ' + err + '\n'; });
-        console.log(utils.colorString(str.trim()), errors.length, errors.length != 1 ? 's' : '');
+        let str = '{red:Skipped %s file%s due to errors.}';
+        logger.warn(str, errors.length, errors.length != 1 ? 's' : '');
       }
       
       // Resolve with task object
