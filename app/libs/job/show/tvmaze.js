@@ -10,7 +10,6 @@ const settings = __require('libs/settings'),
       cache = __require('libs/job/cache');
 
 module.exports = function() {
-
   return {
 
     // Get show from cache or search tvmaze
@@ -19,6 +18,11 @@ module.exports = function() {
 
         // Variables
         let show;
+
+        // Missing required data
+        if ( ! name ) {
+          return reject('Invalid data provided');
+        }
 
         // Try and get it from cache
         if ( ( show = cache.findShow(name) ) ) {

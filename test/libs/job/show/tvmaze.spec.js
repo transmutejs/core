@@ -9,24 +9,12 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load module
-const tvmaze = require('../../../../app/libs/job/show/tvmaze'),
-      tvmazeConfig = path.resolve('./config/_tvmaze.json');
+const tvmaze = __require('libs/job/show/tvmaze');
 
 describe('Class "tvmaze"', () => {
 
   it('should export a function', () => {
     expect(tvmaze).to.be.a('function');
-  });
-
-  it('should create a blank config file on start', () => {
-
-    if ( fs.existsSync(tvmazeConfig) ) {
-      fs.unlinkSync(tvmazeConfig);
-    }
-
-    let tvmazeInst = tvmaze();
-
-    expect(fs.existsSync(tvmazeConfig)).to.be.true;
   });
 
   describe('Function "findShow"', () => {
@@ -42,7 +30,7 @@ describe('Class "tvmaze"', () => {
 
       let tvmazeInst = tvmaze();
 
-      let findShowResult = tvmazeInst.findShow('');
+      let findShowResult = tvmazeInst.findShow();
 
       return expect(findShowResult).to.be.a('promise')
                                    .and.to.eventually.be.rejected;
@@ -75,10 +63,10 @@ describe('Class "tvmaze"', () => {
 
       let tvmazeInst = tvmaze();
 
-      let findEpisodeResult = tvmazeInst.findEpisode('');
+      let findEpisodeResult = tvmazeInst.findEpisode();
 
       return expect(findEpisodeResult).to.be.a('promise')
-                                   .and.to.eventually.be.rejected;
+                                      .and.to.eventually.be.rejected;
     });
 
     it('should resolve with a episode data', (done) => {
@@ -86,7 +74,7 @@ describe('Class "tvmaze"', () => {
       let tvmazeInst = tvmaze();
 
       tvmazeInst.findShow('The Simpsons').then((show) => {
-        return tvmazeInst.findEpisode(show, 1, 1);
+        return tvmazeInst.findEpisode(show.name, 1, 1);
       }).then((episode) => {
         expect(episode).to.be.an('object');
         return done();
@@ -102,7 +90,7 @@ describe('Class "tvmaze"', () => {
       tvmazeInst.findEpisode(undefined, 1, 1).then((episode) => {
         return done(false);
       }).catch((err) => {
-        expect(err).to.be.a('string').and.to.match(/invalid show/ig);
+        expect(err).to.be.a('string').and.to.match(/invalid data/ig);
         return done();
       });
     });
@@ -112,7 +100,7 @@ describe('Class "tvmaze"', () => {
       let tvmazeInst = tvmaze();
 
       tvmazeInst.findShow('The Simpsons').then((show) => {
-        return tvmazeInst.findEpisode(show, 99, 1);
+        return tvmazeInst.findEpisode(show.name, 99, 1);
       }).then((episode) => {
         return done(false);
       }).catch((err) => {

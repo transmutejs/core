@@ -9,7 +9,7 @@ const expect = chai.expect;
 chai.use(require('chai-as-promised'));
 
 // Load our module
-const task = require('../../../app/libs/task');
+const task = __require('libs/task');
 
 // Define the test data directory
 let directory = path.resolve('./test/data/task/validate'),
@@ -29,8 +29,10 @@ describe('Function "create"', () => {
   it('should reject when called with an invalid schema', (done) => {
 
     let file = path.join(directory, 'object.invalid.json');
+    delete require.cache[file];
+    let schema = require(file);
 
-    task.create(require(file)).then((result) => {
+    task.create(schema).then((result) => {
       return done(false);
     }).catch((err) => {
 
@@ -58,7 +60,9 @@ describe('Function "create"', () => {
 
   it('should resolve when given a valid schema', () => {
 
-    let schema = require(path.join(directory, 'object.valid.json'));
+    let file = path.join(directory, 'object.valid.json');
+    delete require.cache[file];
+    let schema = require(file);
 
     schema.directory = metadataDirectory;
     schema.seasons = [];
@@ -70,7 +74,9 @@ describe('Function "create"', () => {
 
   it('should assign valid data to the returned object', (done) => {
 
-    let schema = require(path.join(directory, 'object.valid.json'));
+    let file = path.join(directory, 'object.valid.json');
+    delete require.cache[file];
+    let schema = require(file);
 
     schema.directory = metadataDirectory;
     schema.seasons = [];
@@ -91,7 +97,9 @@ describe('Function "create"', () => {
 
   it('should return an array of objects containing jobs to be processed', (done) => {
     
-    let schema = require(path.join(directory, 'object.valid.json'));
+    let file = path.join(directory, 'object.valid.json');
+    delete require.cache[file];
+    let schema = require(file);
 
     schema.directory = metadataDirectory;
     schema.seasons = [];
@@ -112,6 +120,8 @@ describe('Function "create"', () => {
   it('should reject with an invalid directory path', (done) => {
 
     let file = path.join(directory, 'object.valid.json');
+    delete require.cache[file];
+    let schema = require(file);
 
     task.create(require(file)).then((result) => {
       return done(false);
@@ -126,7 +136,9 @@ describe('Function "create"', () => {
 
   it('should reject when given an invalid file', () => {
 
-    let schema = require(path.join(directory, 'object.valid.json'));
+    let file = path.join(directory, 'object.valid.json');
+    delete require.cache[file];
+    let schema = require(file);
 
     schema.directory = listingDirectory;
 
