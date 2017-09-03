@@ -5,6 +5,7 @@ const logger = __require('libs/log'),
       settings = __require('libs/settings');
 
 // Define default formats
+/* istanbul ignore next */
 const defaultFormats = settings.video.formats || ['mkv', 'mp4', 'avi', 'flv', 'mov', 'wmv'];
 
 module.exports = {

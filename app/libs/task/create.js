@@ -104,6 +104,8 @@ module.exports = function(task) {
       // Error handling
       if ( errors.length > 0 ) {
         let str = '{red:Skipped %s file%s due to errors.}';
+
+        /* istanbul ignore next */
         logger.warn(str, errors.length, errors.length != 1 ? 's' : '');
       }
       
