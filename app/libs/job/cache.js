@@ -12,6 +12,7 @@ const settings = __require('libs/settings'),
 const cacheDir = path.join(settings.directory, 'cache');
 
 // Create the cache directory if it doesnt exist
+/* istanbul ignore else */
 if ( ! fs.existsSync(cacheDir) ) {
   fs.mkdirSync(cacheDir);
 }
@@ -20,13 +21,17 @@ module.exports = {
 
   // Normalize a text string to avoid missed searches
   normalize: function(text) {
+
+    text = text || '';
+
     return text.toString().toLowerCase().trim()
-               .normalize('NFD')                // separate accent from letter
-               .replace(/[\u0300-\u036f]/g, '') // remove all separated accents
-               .replace(/\s+/g, '-')            // replace spaces with -
-               .replace(/&/g, '-and-')          // replace & with 'and'
-               .replace(/[^\w\-]+/g, '')        // remove all non-word chars
-               .replace(/\-\-+/g, '-');         // replace multiple '-' with single '-'
+               .normalize('NFD')                   // separate accent from letter
+               .replace(/[\u0300-\u036f]/g, '')    // remove all separated accents
+               .replace(/\s+/g, '-')               // replace spaces with -
+               .replace(/&/g, '-and-')             // replace & with 'and'
+               .replace(/[^\w\-]+/g, '')           // remove all non-word chars
+               .replace(/\-\-+/g, '-')             // replace multiple '-' with single '-'
+               .replace(/^[_-\s]+|[_-\s]+$/g, ''); // trim left and right characters
   },
 
   // Builds an episode key

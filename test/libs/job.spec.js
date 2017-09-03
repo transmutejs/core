@@ -5,7 +5,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const job = require('../../app/libs/job');
+const job = __require('libs/job');
 
 // Define the available functions
 const jobFunctions = [
@@ -16,6 +16,7 @@ const jobFunctions = [
 // Define the available classes
 const jobClasses = [
   'metadata',
+  'cache',
   'show/tvmaze',
   'show/tmdb'
 ];
