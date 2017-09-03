@@ -27,13 +27,13 @@ module.exports = function(task) {
     task.jobs.forEach((job) => {
 
       // Skip if already in queue
-      if ( queueCache.includes(job.file) ) {
+      if ( this.cache.includes(job.file) ) {
         return false;
       }
 
       // Add to cache to stop additional runs
-      queueCache.push(job.file);
-      this.total = queueCache.length;
+      this.cache.push(job.file);
+      this.total = this.cache.length;
       
       // Track files being added with this task
       added.push(job.basename);

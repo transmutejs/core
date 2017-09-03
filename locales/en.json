@@ -123,6 +123,9 @@
 			"ui": {
 				"progress": "Copying [{magenta::bar}] :rate/bps :percent :etas"
 			}
+		},
+		"server": {
+			"ready": "Accepting requests at {magenta:%s}"
 		}
 	},
 	"conversion": {

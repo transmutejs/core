@@ -58,6 +58,7 @@ module.exports = function() {
       language: 'en',
       platform: {},
       server: {
+        enable: true,
         port: 3001,
         address: '0.0.0.0'
       },

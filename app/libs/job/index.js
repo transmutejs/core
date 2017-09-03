@@ -1,5 +1,11 @@
 'use strict';
 
+// Load requirements
+const assign = require('deep-assign');
+
+// Load libraries
+const utils = __require('libs/utils');
+
 module.exports = {
 
   build: function(task) {
@@ -15,6 +21,9 @@ module.exports = {
       if ( ! task.type || ! ['show', 'movie'].includes(task.type) ) {
         return reject('Invalid job type "' + task.type + '" specified');
       }
+
+      // Create a unique id and prepend it to task
+      task = assign({id: utils.uid(16)}, task);
 
       // Decorate task with metadata and media information
       this.metadata.get(task).then((meta) => {

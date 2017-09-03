@@ -109,7 +109,7 @@ describe('Function "create"', () => {
       expect(result).to.have.nested.property('jobs')
                     .to.be.an('array')
                     .to.have.nested.property('[0]')
-                    .with.all.keys(['file', 'path', 'basename', 'type', 'task', 'overall', 'options', 'meta', 'details']);
+                    .with.all.keys(['id', 'file', 'path', 'basename', 'type', 'task', 'overall', 'options', 'meta', 'details']);
 
       return done();
     }).catch((err) => {

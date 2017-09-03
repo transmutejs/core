@@ -18,6 +18,9 @@ module.exports = {
   // Current task number being run
   current: 0,
 
+  // Cache of added items to prevent duplicates
+  cache: [],
+
   // Add tasks to the queue
   add: require('./add')
 };

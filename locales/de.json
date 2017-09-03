@@ -112,6 +112,9 @@
 			"ui": {
 				"progress": "utils.move.ui.progress"
 			}
+		},
+		"server": {
+			"ready": "utils.server.ready"
 		}
 	},
 	"task": {
@@ -125,7 +128,8 @@
 		"create": {
 			"validation": {
 				"format": "action.create.validation.format",
-				"output": "action.create.validation.output"
+				"output": "action.create.validation.output",
+				"invalid": "action.create.validation.invalid"
 			}
 		}
 	}

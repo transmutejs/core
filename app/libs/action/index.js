@@ -50,7 +50,13 @@ module.exports = {
     queue: {
 
       // Get a list of the upcoming tasks
-      listing: require('./actions/queue/listing')
+      listing: require('./actions/queue/listing'),
+
+      // Remove a queue item
+      delete: require('./actions/queue/delete'),
+
+      // Removes all items from queue
+      clear: require('./actions/queue/clear')
 
     }
   }
