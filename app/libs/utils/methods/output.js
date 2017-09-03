@@ -1,6 +1,7 @@
 'use strict';
 
 // Clear screen and output a message with title
+/* istanbul ignore next */
 module.exports = function(title, msg, step, total) {
 
   // Variables

@@ -9,6 +9,7 @@ const fs = require('fs'),
 // Load libraries
 const logger = __require('libs/log');
 
+/* istanbul ignore next */
 module.exports = function(source, dest) {
   return new Promise((resolve, reject) => {
 

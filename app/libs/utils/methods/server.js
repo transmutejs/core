@@ -15,6 +15,7 @@ let server = null,
     socket = null;
 
 // Export the returned object
+/* istanbul ignore next */
 module.exports = function() {
 
   // Get settings
