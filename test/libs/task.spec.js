@@ -17,6 +17,7 @@ let directory = path.resolve('./test/data/task/validate');
 const taskFunctions = [
   'listing',
   'create',
+  'load'
 ];
 
 // Define the available objects
