@@ -1,0 +1,116 @@
+{
+    "id": 16579,
+    "name": "The Handmaid's Tale",
+    "year": "2017",
+    "rating": 7.7,
+    "genres": [
+        "Drama",
+        "Science-Fiction"
+    ],
+    "language": "English",
+    "description": "The Handmaid's Tale is the story of life in the dystopia of Gilead, a totalitarian society in what was formerly the United States. Facing environmental disasters and a plunging birthrate, Gilead is ruled by a twisted fundamentalism in its militarized ‘return to traditional values'. As one of the few remaining fertile women, Offred is a Handmaid in the Commander's household, one of the caste of women forced into sexual servitude as a last desperate attempt to repopulate the world. In this terrifying society, Offred must navigate between Commanders, their cruel Wives, domestic Marthas, and her fellow Handmaids – where anyone could be a spy for Gilead – all with one goal: to survive and find the daughter that was taken from her.",
+    "poster": "http://static.tvmaze.com/uploads/images/original_untouched/103/258595.jpg",
+    "background": "http://static.tvmaze.com/uploads/images/original_untouched/103/258595.jpg",
+    "episodes": {
+        "S01E01": {
+            "id": 1016554,
+            "season": 1,
+            "episode": 1,
+            "name": "Offred",
+            "date": "2017-04-26",
+            "rating": 7.7,
+            "description": "Offred, one the few fertile women known as Handmaids in the oppressive Republic of Gilead, struggles to survive as a reproductive surrogate for a powerful Commander and his resentful wife.",
+            "background": "http://static.tvmaze.com/uploads/images/original_untouched/108/272386.jpg"
+        },
+        "S01E02": {
+            "id": 1109050,
+            "season": 1,
+            "episode": 2,
+            "name": "Birth Day",
+            "date": "2017-04-26",
+            "rating": 7.7,
+            "description": "Offred and her fellow Handmaids assist with the delivery of Janine's baby, prompting Offred to recall her own daughter's birth. Offred draws closer to Ofglen while dreading a secret meeting with the Commander.",
+            "background": "http://static.tvmaze.com/uploads/images/original_untouched/108/272122.jpg"
+        },
+        "S01E03": {
+            "id": 1109051,
+            "season": 1,
+            "episode": 3,
+            "name": "Late",
+            "date": "2017-04-26",
+            "rating": 7.7,
+            "description": "Offred visits Janine's baby with Serena Joy and remembers the early days of the revolution before Gilead. Ofglen faces a difficult challenge.",
+            "background": "http://static.tvmaze.com/uploads/images/original_untouched/108/272123.jpg"
+        },
+        "S01E04": {
+            "id": 1113970,
+            "season": 1,
+            "episode": 4,
+            "name": "Nolite Te Bastardes Carborundorum",
+            "date": "2017-05-03",
+            "rating": 7.7,
+            "description": "Punished by Serena Joy, Offred begins to unravel and reflects on her time with Moira at the Red Center. A complication during the Ceremony threatens Offred's survival with the Commander and Serena...",
+            "background": "http://static.tvmaze.com/uploads/images/original_untouched/110/275885.jpg"
+        },
+        "S01E05": {
+            "id": 1153628,
+            "season": 1,
+            "episode": 5,
+            "name": "Faithful",
+            "date": "2017-05-10",
+            "rating": 7.7,
+            "description": "Serena Joy makes Offred a surprising proposition. Offred remembers the unconventional beginnings of her relationship with her husband.",
+            "background": "http://static.tvmaze.com/uploads/images/original_untouched/111/278332.jpg"
+        },
+        "S01E06": {
+            "id": 1153629,
+            "season": 1,
+            "episode": 6,
+            "name": "A Woman's Place",
+            "date": "2017-05-17",
+            "rating": 7.7,
+            "description": "A Mexican Ambassador visiting Gilead questions Offred about her life as a Handmaid. Serena Joy reflects on her marriage and the role she once played in Gilead's inception.",
+            "background": "http://static.tvmaze.com/uploads/images/original_untouched/112/281030.jpg"
+        },
+        "S01E07": {
+            "id": 1153630,
+            "season": 1,
+            "episode": 7,
+            "name": "The Other Side",
+            "date": "2017-05-24",
+            "rating": 7.7,
+            "description": "Remembering her family's treacherous escape attempt, a shocking revelation from life before Gilead provides a new perspective on Offred's life. ",
+            "background": "http://static.tvmaze.com/uploads/images/original_untouched/113/284084.jpg"
+        },
+        "S01E08": {
+            "id": 1153631,
+            "season": 1,
+            "episode": 8,
+            "name": "Jezebels",
+            "date": "2017-05-31",
+            "rating": 7.7,
+            "description": "The Commander surprises Offred with a secret adventure in Gilead. Nick's troubled past leads to his recruitment by the Sons of Jacob. ",
+            "background": "http://static.tvmaze.com/uploads/images/original_untouched/114/287164.jpg"
+        },
+        "S01E09": {
+            "id": 1153632,
+            "season": 1,
+            "episode": 9,
+            "name": "The Bridge",
+            "date": "2017-06-07",
+            "rating": 7.7,
+            "description": "Offred embarks on a dangerous mission for the resistance. Janine moves to a new posting. Serena Joy suspects the Commander's infidelity. ",
+            "background": "http://static.tvmaze.com/uploads/images/original_untouched/115/289322.jpg"
+        },
+        "S01E10": {
+            "id": 1153633,
+            "season": 1,
+            "episode": 10,
+            "name": "Night",
+            "date": "2017-06-14",
+            "rating": 7.7,
+            "description": "Serena Joy confronts Offred and the Commander. Offred struggles with a complicated, life-changing revelation. The Handmaids face a brutal decision. ",
+            "background": "http://static.tvmaze.com/uploads/images/original_untouched/116/291633.jpg"
+        }
+    }
+}

@@ -22,8 +22,10 @@ module.exports = {
   // Normalize a text string to avoid missed searches
   normalize: function(text) {
 
+    // Ensure text is a string
     text = text || '';
 
+    // Perform all the replacements
     return text.toString().toLowerCase().trim()
                .normalize('NFD')                   // separate accent from letter
                .replace(/[\u0300-\u036f]/g, '')    // remove all separated accents
@@ -36,6 +38,12 @@ module.exports = {
 
   // Builds an episode key
   episodeKey: function(season, episode) {
+
+    // Ensure season and episode exist
+    season = season || '0';
+    episode = episode || '0';
+
+    // Create a normalized key
     return 'S' + utils.pad(season.toString(), 2) + 'E' + utils.pad(episode.toString(), 2);
   },
 
@@ -50,8 +58,15 @@ module.exports = {
       return false;
     }
 
-    // Read and return
-    return JSON.parse(fs.readFileSync(file));
+    // Read the file
+    let data = fs.readFileSync(file);
+
+    // Attempt to decode it
+    try {
+      return JSON.parse(data);
+    } catch(e) {
+      return false;
+    }
   },
 
   // Search for an episode within a show cache

@@ -14,4 +14,32 @@ describe('Function "episodeKey"', () => {
     expect(cache.episodeKey).to.be.a('function');
   });
 
+  it('should set season to 0 when undefined', () => {
+
+    let episodeKeyResult = cache.episodeKey(undefined, 1);
+
+    expect(episodeKeyResult).to.be.a('string').and.equal('S00E01');
+  });
+
+  it('should set episode to 0 when undefined', () => {
+
+    let episodeKeyResult = cache.episodeKey(1, undefined);
+
+    expect(episodeKeyResult).to.be.a('string').and.equal('S01E00');
+  });
+
+  it('should create a correctly formatted string', () => {
+
+    let episodeKeyResult = cache.episodeKey(1, 1);
+
+    expect(episodeKeyResult).to.be.a('string').and.equal('S01E01');
+  });
+
+  it('should handle arguments longer than 2 numbers', () => {
+
+    let episodeKeyResult = cache.episodeKey(100, 1);
+
+    expect(episodeKeyResult).to.be.a('string').and.equal('S100E01');
+  });
+
 });

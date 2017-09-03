@@ -24,13 +24,19 @@ describe('Function "normalize"', () => {
     expect(cache.normalize).to.be.a('function');
   });
 
+  it('should return a string', () => {
+
+    let normalizeResult = cache.normalize('');
+
+    expect(normalizeResult).to.be.a('string').and.to.equal('');
+  });
+
   Object.keys(tests).forEach((key) => {
     it('should change "' + key + '" to "' + tests[key] + '"', () => {
 
       let normalizeResult = cache.normalize(key);
 
-      expect(normalizeResult).to.be.a('string')
-                             .and.to.equal(tests[key]);
+      expect(normalizeResult).to.be.a('string').and.to.equal(tests[key]);
     });
   });
 
@@ -38,8 +44,7 @@ describe('Function "normalize"', () => {
 
     let normalizeResult = cache.normalize(undefined);
 
-    expect(normalizeResult).to.be.a('string')
-                           .and.to.equal('');
+    expect(normalizeResult).to.be.a('string').and.to.equal('');
   });
 
 });
