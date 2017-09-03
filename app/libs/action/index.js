@@ -52,6 +52,9 @@ module.exports = {
       // Get a list of the upcoming tasks
       listing: require('./actions/queue/listing'),
 
+      // Get a single queue items details
+      single: require('./actions/queue/single'),
+
       // Remove a queue item
       delete: require('./actions/queue/delete'),
 

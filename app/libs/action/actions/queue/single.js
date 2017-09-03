@@ -6,7 +6,7 @@ const utils = __require('libs/utils'),
       queue = __require('libs/queue');
 
 // Get the current in progress task
-module.exports = function(params) {
+module.exports = function(id) {
   return new Promise((resolve, reject) => {
 
     // Is there anything in the queue
@@ -15,18 +15,18 @@ module.exports = function(params) {
     }
 
     // DEBUG
-    params.id = queue.items.queue[0].job.id;
+    id = queue.items.queue[0].job.id;
 
     // Filter the queue items down
     let result = queue.items.queue.filter((item, i) => {
-      return item.job.id === params.id ? true : false; 
+      return ( item.job.id === id ? true : false ); 
     }).map((item) => {
       return item.job;
     });
 
     // Was anything found
-    if ( result.length ) {
-      return reject('Queue item "' + params.id + '" was not found');
+    if ( result.length <= 0 ) {
+      return reject('Queue item "' + id + '" was not found');
     }
 
     // Otherwise resolve with item

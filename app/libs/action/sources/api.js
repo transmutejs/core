@@ -31,6 +31,17 @@ module.exports = function(options) {
     });
   });
 
+  // Get a single queue item
+  server.get('/queue/:id([a-z0-9]{16})', (req, res, next) => {
+    this.actions.queue.single(req.params.id).then((result) => {
+      res.send({status: true, result: result});
+      return next();
+    }).catch((err) => {
+      res.send(404, {status: false, errors: [err]});
+      return next();
+    });
+  });
+
   // Clear the queue
   server.del('/queue/clear', (req, res, next) => {
     this.actions.queue.clear().then((result) => {

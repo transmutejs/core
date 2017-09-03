@@ -21,7 +21,7 @@ module.exports = function(options) {
 
     // Check for tasks
     if ( ! tasks ) {
-      return new Error('No tasks found');
+      return logger.error('No tasks found');
     }
     
     // Variables
