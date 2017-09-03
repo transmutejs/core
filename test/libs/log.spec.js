@@ -16,7 +16,7 @@ const sinon = require('sinon');
 chai.use(require('sinon-chai'));
 
 // Load our module
-const logger = require('../../app/libs/log');
+const logger = __require('libs/log');
 
 // Describe the module
 describe('Log module', () => {

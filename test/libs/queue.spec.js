@@ -5,7 +5,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const queue = require('../../app/libs/queue');
+const queue = __require('libs/queue');
 
 // Define the available functions
 const queueFunctions = [
