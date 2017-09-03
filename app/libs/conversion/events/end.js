@@ -49,6 +49,18 @@ module.exports = function(stdout, stderr, job, metadata, resolve, reject) {
     job.size.difference.percent.toFixed(2)
   );
 
+  // Delete the original?
+  if ( job.options.delete && ! job.options.preview ) {
+    fs.unlink(job.file, (err) => {
+
+      // Something went wrong
+      if ( err !== null ) { return logger.error(err); }
+
+      // Success
+      return logger.info('Deleting {red:%s}', job.basename);
+    }); 
+  }
+
   // Does the file need to be moved?
   if ( job.temp !== job.output ) {
 

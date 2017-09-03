@@ -161,11 +161,18 @@
       "default": false
     },
     {
+      "names": ["delete"],
+      "type": "bool",
+      "help": "Delete the source file after conversion, really not recommended",
+      "default": false
+    },
+    {
       "names": ["overwrite"],
       "type": "bool",
-      "help": "Overwrite files that exist",
+      "help": "Overwrite converted files that exist",
       "default": false
-    },    {
+    },
+    {
       "names": ["force"],
       "type": "bool",
       "help": "Perform encodes to the same codec as the source",
