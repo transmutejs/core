@@ -10,7 +10,7 @@ const expect = chai.expect;
 chai.use(require('chai-as-promised'));
 
 // Load our module
-const metadata = require('../../../app/libs/job/metadata');
+const metadata = __require('libs/job/metadata');
 
 describe('Class "metadata"', () => {
 

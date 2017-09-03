@@ -15,14 +15,12 @@ const utilFunctions = [
   'framerate',
   'get-methods',
   'metadata',
-  'move',
   'nest-options',
   'normalize-language',
   'output',
   'pad',
   'progress-bar',
   'request',
-  'server',
   'uid'
 ];
 

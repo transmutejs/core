@@ -22,14 +22,14 @@ module.exports = function(file) {
     }
 
     // Check the file exists
-    if ( ! fs.existsSync(file) ) {
+    if ( ! fs.existsSync(file) || ! fs.lstatSync(file).isFile() ) {
       return reject('Provided file "' + file + '" does not exist.');
     }
 
     // Load the file
     try {
       tasks = require(file);
-    } catch(e) {
+    } catch (e) {
       return reject('Invalid JSON data');
     }
 

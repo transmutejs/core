@@ -17,7 +17,7 @@ module.exports = function(task) {
   return new Promise((resolve, reject) => {
 
     // Variables
-    let bar = {terminate: function() { return; }},
+    let bar = {},
         errors = [],
         promises = [],
         current = 1,

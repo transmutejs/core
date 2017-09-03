@@ -1,0 +1,30 @@
+{
+    "tasks": [
+        {
+            "name": "foo",
+            "directory": "foo/",
+            "type": "show",
+            "seasons": [1, 2],
+            "options": {
+                "preset": "slow",
+                "video" : {
+                    "bitrate": 3500,
+                    "quality": 0
+                }
+            }
+        },
+        {
+            "name": "bar",
+            "directory": "bar/",
+            "type": "show",
+            "seasons": [1, 2, 3],
+            "options": {
+                "preset": "slow",
+                "video" : {
+                    "bitrate": 3500,
+                    "quality": 0
+                }
+            }
+        }
+    
+}

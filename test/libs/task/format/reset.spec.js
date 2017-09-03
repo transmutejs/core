@@ -5,7 +5,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const format = require('../../../../app/libs/task/format');
+const format = __require('libs/task/format');
 
 // Describe the module
 describe('Function "reset"', () => {

@@ -9,6 +9,9 @@ module.exports = function(n, width, c) {
   // Ensure we have a string
   n = n.toString();
 
+  // Set a width
+  width = width || n.length;
+
   // Return the original if it's longer than width, otherwise pad it out
   return n.length >= width ? n : new Array(width - n.length + 1).join(c) + n;
 };

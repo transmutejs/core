@@ -5,7 +5,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const task = require('../../../app/libs/task');
+const task = __require('libs/task');
 
 // Define the available functions
 const validateFunctions = ['error', 'file', 'object'];

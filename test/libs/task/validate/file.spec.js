@@ -8,7 +8,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 // Load our module
-const validate = require('../../../../app/libs/task/validate');
+const validate = __require('libs/task/validate');
 
 // Define the test data directory
 let directory = path.resolve('./test/data/task/validate');
