@@ -19,12 +19,9 @@ module.exports = {
 
   run: function() {
     return new Promise((resolve, reject) => {
-
-      // Disable until more testing has been done
-      return resolve();
       
       // Get version information
-      let latest = this.latestVersion(pkg.name); // jshint ignore:line
+      let latest = this.latestVersion(pkg.name);
 
       // Skip if we're current
       if ( latest.behind === 0 ) {
@@ -78,7 +75,7 @@ module.exports = {
         }
 
         // Get the version info
-        let latest = this.latestVersion(version);
+        let latest = this.latestVersion(name);
 
         // Check the versions match
         if ( version !== latest.version ) {
@@ -100,7 +97,7 @@ module.exports = {
     let m, latest = {version: '', released: ''},
         releases = {},
         versions = [],
-        version = pkg.version,
+        version = '0.7.3', // pkg.version,
         regex = /'(.+?)': '([0-9]{4}-[0-9]{2}-[0-9]{2}.+?)'/gmi;
 
     // Ensure name is set
