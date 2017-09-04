@@ -3,7 +3,9 @@
 // Load requirements
 const path = require('path'),
       moment = require('moment'),
-      inquirer = require('inquirer');
+      inquirer = require('inquirer'),
+      fs = require('fs'),
+      mv = require('mv');
 
 // Add duration timing to moment
 require("moment-duration-format");
@@ -13,6 +15,10 @@ const utils = __require('libs/utils');
 
 // Package info
 const pkg = require(path.resolve(path.join(__base, '../package')));
+
+// Config paths
+const configDir = path.resolve(path.join(__base, '../config')),
+      tmpDir = path.join(require('os').tmpdir(), 'config');
 
 module.exports = {
 
@@ -59,6 +65,11 @@ module.exports = {
   update: function(name, version) {
     return new Promise((resolve, reject) => {
 
+      // Backup the config directory if there is one
+      if ( fs.existsSync(configDir) ) {
+        mv(configDir, tmpDir, {mkdirp: true}, (err) => {});
+      }
+
       // Build the command
       let cmd = 'npm update --silent --global ' + name;
 
@@ -71,6 +82,11 @@ module.exports = {
         // Check for errors
         if ( err !== null ) {
           return reject(err);
+        }
+
+        // Move the config directory back
+        if ( fs.existsSync(tmpDir) ) {
+          mv(tmpDir, configDir, {mkdirp: true}, (err) => {});
         }
 
         // Get the version info
@@ -96,7 +112,7 @@ module.exports = {
     let m, latest = {version: '', released: ''},
         releases = {},
         versions = [],
-        version = pkg.version,
+        version = '0.7.3', // pkg.version,
         regex = /'(.+?)': '([0-9]{4}-[0-9]{2}-[0-9]{2}.+?)'/gmi;
 
     // Ensure name is set
