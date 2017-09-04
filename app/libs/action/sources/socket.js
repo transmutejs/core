@@ -18,4 +18,22 @@ module.exports = function(options) {
   // Start the server
   let io = utils.server().socket;
 
+  // Client connected
+  io.on('connection', (socket) => {
+
+    // Blank line to avoid progress bar clash
+    console.log('');
+
+    // log it
+    let clientIp = socket.request.connection.remoteAddress;
+    logger.info('Socket connection from {magenta:%s}', clientIp);
+
+    // Respond with current task
+    this.actions.task.current().then((result) => {
+      return socket.emit('task current', {status: true, result: result});
+    }).catch((err) => {
+      return socket.emit('task current', {status: false, errors: [err]});
+    });
+  });
+
 };
