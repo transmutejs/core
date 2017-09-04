@@ -112,7 +112,7 @@ module.exports = {
     let m, latest = {version: '', released: ''},
         releases = {},
         versions = [],
-        version = '0.7.3', // pkg.version,
+        version = pkg.version,
         regex = /'(.+?)': '([0-9]{4}-[0-9]{2}-[0-9]{2}.+?)'/gmi;
 
     // Ensure name is set
