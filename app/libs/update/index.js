@@ -140,7 +140,7 @@ module.exports = {
     versions.reverse();
 
     // Calculate time since release
-    let elapsed = moment.duration(releases[version].diff(moment()), 'milliseconds');
+    let elapsed = moment.duration(releases[latest.version].diff(moment()), 'milliseconds');
 
     // Prepare and return object
     return {
