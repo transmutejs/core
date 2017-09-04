@@ -60,7 +60,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
 
       // Build the command
-      let cmd = 'npm install --silent --global ' + name;
+      let cmd = 'npm update --silent --global ' + name;
 
       // Let them know it's in progress
       utils.output(lang('update.title'), lang('update.in_progress', version) + '\n');
