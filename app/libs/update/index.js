@@ -18,7 +18,7 @@ const pkg = require(path.resolve(path.join(__base, '../package')));
 
 // Config paths
 const configDir = path.resolve(path.join(__base, '../config')),
-      tmpDir = path.join(require('os').tmpdir(), 'config');
+      tmpDir = path.join(require('os').tmpdir(), utils.uid(16));
 
 module.exports = {
 
