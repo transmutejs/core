@@ -15,6 +15,9 @@ const utils = __require('libs/utils'),
 // Package info
 const pkg = require(path.resolve(path.join(__base, '../package')));
 
+// Settings file
+const settingsFile = path.join(config.directories.settings, 'settings.json');
+
 // Setup the environment for usage
 module.exports = new Promise((resolve, reject) => {
 
@@ -34,9 +37,14 @@ module.exports = new Promise((resolve, reject) => {
 
   }).then(() => {
 
+    // Try and load the settings file to check for OS specific config
+    if ( fs.existsSync(settingsFile) ) {
+      let settings = require(settingsFile);
+      config.osSetup = ( settings.platform[os.platform()] ? true : false );
+    }
+
     // Skip if user has already completed setup
-    // TODO: Enable bypass if new environment/os
-    if ( config.setup === true ) {
+    if ( config.setup === true /* && config.osSetup*/ ) {
       return resolve();
     }
 

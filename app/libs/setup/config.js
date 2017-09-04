@@ -12,6 +12,8 @@ module.exports = function() {
 
     setup: false,
 
+    osSetup: false,
+
     directories: {
       config: path.resolve(path.join(__base, '../config')),
       settings: path.resolve(path.join(__base, '../config'))
