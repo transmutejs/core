@@ -56,7 +56,6 @@
   "dependencies": {
     "ajv": "^5.2.2",
     "chalk": "^2.1.0",
-    "command-exists": "^1.2.2",
     "dashdash": "^1.14.1",
     "deep-assign": "^2.0.0",
     "dotenv": "^4.0.0",
@@ -64,6 +63,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "glob": "^7.1.2",
     "gpu-info": "0.0.1",
+    "hasbin": "^1.2.3",
     "i18n": "^0.8.3",
     "inquirer": "^3.2.2",
     "moment": "^2.18.1",
