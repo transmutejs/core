@@ -9,8 +9,7 @@ const path = require('path'),
 require("moment-duration-format");
 
 // Load our modules
-const utils = __require('libs/utils'),
-      update = __require('libs/update');
+const utils = __require('libs/utils');
 
 // Package info
 const pkg = require(path.resolve(path.join(__base, '../package')));

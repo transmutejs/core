@@ -10,8 +10,7 @@ const dashdash = require('dashdash'),
 // Load modules
 const utils = __require('libs/utils'),
       locale = __require('libs/locale'),
-      logger = __require('libs/log'),
-      settings = __require('libs/settings');
+      logger = __require('libs/log');
 
 // Package info
 const pkg = require(path.resolve(path.join(__base, '../package')));
@@ -43,6 +42,9 @@ module.exports = {
       } catch (e) {
         return reject(e.message);
       }
+
+      // Get settings
+      let settings = __require('libs/settings');
 
       // Add additional arguments
       options.platform = this.getPlatform();
