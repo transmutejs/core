@@ -12,7 +12,7 @@ module.exports = function(command, file, options, metadata, details) {
     let filename = path.basename(file, path.extname(file)) + ( options.preview ? '-preview' : '' ) + '.' + options.format;
 
     // Update filename with pattern
-    if ( options.pattern ) {
+    if ( options.pattern && details.type && options.pattern[details.type] ) {
       filename = this.utils.buildName(options.pattern[details.type], file, options, metadata, details);
     }
 
