@@ -104,12 +104,12 @@ module.exports = {
 
     // Build data object
     let replacements = {
-      t: details.name,
-      n: ( details.type === 'show' ? details.show.name : '' ) || null,
+      t: ( details.type === 'show' ? details.name : details.title ) || null,
+      n: ( details.type === 'show' ? details.show.name : details.title ) || null,
       y: ( details.type === 'show' ? details.show.year : details.year ) || null,
       ex: options.format,
       vc: ( options.video.codec === 'copy' ? codecs.video.codec : options.video.codec.replace('lib', '').replace('h', 'x') ),
-      r: codecs.video.resolution || null,
+      r: ( details.resolution !== null ? details.resolution : codecs.video.resolution ) || null,
       vd: codecs.video.depth || null,
       ac: codecs.audio.codec || null,
       ad: codecs.audio.channels || null,

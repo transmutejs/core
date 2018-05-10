@@ -15,8 +15,20 @@ module.exports = function(filename) {
       return reject('No filename provided');
     }
 
-    // No movie providers yet
-    return resolve({});
+    // Decode episode details from filename
+    let details = parser(filename);
+
+    // Append type
+    details.type = 'movie';
+
+    // Check we have what we need to continue
+    // TODO: Replace with better validation
+    if ( ! details.title ) {
+      return resolve({});
+    }
+
+    // Resolve with base details
+    return resolve(details);
 
     // Check for tmdb key
     /*if ( process.env.TMDB_KEY ) {
