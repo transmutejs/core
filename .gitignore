@@ -60,3 +60,5 @@ typings/
 # Misc
 .sublime-*
 config/
+settings.json
+tasks.json
