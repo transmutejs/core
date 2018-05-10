@@ -4,6 +4,7 @@
 const path = require('path'),
       moment = require('moment'),
       inquirer = require('inquirer'),
+      stripAnsi = require('strip-ansi'),
       fs = require('fs'),
       mv = require('mv');
 
@@ -113,13 +114,16 @@ module.exports = {
         releases = {},
         versions = [],
         version = pkg.version,
-        regex = /'(.+?)': '([0-9]{4}-[0-9]{2}-[0-9]{2}.+?)'/gmi;
+        regex = /^latest: (.+)[\n]+published (.+?) by/gmi;
 
     // Ensure name is set
     name = name || pkg.name;
 
     // Get the package data from npm
-    const output = require('child_process').execSync('npm info ' + name, {encoding: 'utf8'});
+    let output = require('child_process').execSync('npm info ' + name, {encoding: 'utf8'});
+
+    // Remove color formatting
+    output = stripAnsi(output);
 
     // Decode versions into a usable object
     while ( ( m = regex.exec(output) ) !== null ) {
@@ -128,7 +132,8 @@ module.exports = {
       if ( m.index === regex.lastIndex ) { regex.lastIndex++; }
         
       // Push into all versions
-      releases[m[1]] = moment(m[2]);
+      let diff = m[2].split(' ');
+      releases[m[1]] = moment().subtract(diff[0], diff[1])
       versions.push(m[1]);
 
       // Update latest release
@@ -146,7 +151,7 @@ module.exports = {
     return {
       current: version,
       version: versions[0],
-      behind: versions.indexOf(version),
+      behind: version !== versions[0] ? 1 : 0,
       duration: elapsed.abs().format(lang('update.elapsed'), {trim: 'left'})
     };
   }
