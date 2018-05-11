@@ -32,7 +32,7 @@ module.exports = function(filename) {
 
     // Check we have what we need to continue
     // TODO: Replace with better validation
-    if ( source === null !! ! details.title ) {
+    if ( source === null || ! details.title ) {
       return resolve({});
     }
 
