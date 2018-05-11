@@ -3,6 +3,9 @@
 // Load requirements
 const parser = require('parse-torrent-name');
 
+// Load libraries
+const settings = __require('libs/settings');
+
 // Create promise to resolve with dataset
 module.exports = function(filename) {
   return new Promise((resolve, reject) => {
@@ -15,11 +18,16 @@ module.exports = function(filename) {
       return reject('No filename provided');
     }
 
-    // Decode episode details from filename
-    let details = parser(filename);
+    // Check for tmdb key
+    /* istanbul ignore if */
+    if ( process.env.TMDB_KEY) {
+      source = require('./movie/tmdb')(process.env.TMDB_KEY);
+    } else if ( settings.tmdb && settings.tmdb.key ) {
+      source = require('./movie/tmdb')(settings.tmdb.key);
+    }
 
-    // Append type
-    details.type = 'movie';
+    // Decode details from filename
+    let details = parser(filename);
 
     // Check we have what we need to continue
     // TODO: Replace with better validation
@@ -27,25 +35,12 @@ module.exports = function(filename) {
       return resolve({});
     }
 
-    // Resolve with base details
-    return resolve(details);
-
-    // Check for tmdb key
-    /*if ( process.env.TMDB_KEY ) {
-      source = require('./movie/tmdb')(process.env.TMDB_KEY);
-    } else {
-      source = require('./movie/tvmaze')();
-    }
-
-    // Decode details from filename
-    let details = parser(filename);
-
     // Get the movie details
     source.findMovie(details.title).then((movie) => {
       movie.type = 'movie';
       return resolve(movie);
     }).catch((err) => {
       return reject(err);
-    });*/
+    });
   });
 };
