@@ -2,6 +2,10 @@
 
 // Load requirements
 const parser = require('parse-torrent-name');
+const assign = require('deep-assign');
+
+// Load libraries
+const settings = __require('libs/settings');
 
 // Create promise to resolve with dataset
 module.exports = function(filename) {
@@ -17,8 +21,10 @@ module.exports = function(filename) {
 
     // Check for tmdb key
     /* istanbul ignore if */
-    if ( process.env.TMDB_KEY ) {
+    if ( process.env.TMDB_KEY) {
       source = require('./show/tmdb')(process.env.TMDB_KEY);
+    } else if ( settings.tmdb && settings.tmdb.key ) {
+      source = require('./show/tmdb')(settings.tmdb.key);
     } else {
       source = require('./show/tvmaze')();
     }
@@ -37,7 +43,7 @@ module.exports = function(filename) {
       return source.findEpisode(details.title, details.season, details.episode);
     }).then((episode) => {
       episode.type = 'show';
-      return resolve(episode);
+      return resolve(assign(details, episode));
     }).catch((err) => {
       return reject(err);
     });

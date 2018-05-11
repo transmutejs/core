@@ -104,8 +104,8 @@ module.exports = {
 
     // Build data object
     let replacements = {
-      t: ( details.type === 'show' ? details.name : details.title ) || null,
-      n: ( details.type === 'show' ? details.show.name : details.title ) || null,
+      t: ( details.type === 'show' ? details.name : details.name ) || null,
+      n: ( details.type === 'show' ? details.show.name : details.name ) || null,
       y: ( details.type === 'show' ? details.show.year : details.year ) || null,
       ex: options.format,
       vc: ( options.video.codec === 'copy' ? codecs.video.codec : options.video.codec.replace('lib', '').replace('h', 'x') ),
