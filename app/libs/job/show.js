@@ -3,6 +3,9 @@
 // Load requirements
 const parser = require('parse-torrent-name');
 
+// Load libraries
+const settings = __require('libs/settings');
+
 // Create promise to resolve with dataset
 module.exports = function(filename) {
   return new Promise((resolve, reject) => {
@@ -17,8 +20,10 @@ module.exports = function(filename) {
 
     // Check for tmdb key
     /* istanbul ignore if */
-    if ( process.env.TMDB_KEY ) {
+    if ( process.env.TMDB_KEY) {
       source = require('./show/tmdb')(process.env.TMDB_KEY);
+    } else if ( settings.tmdb && settings.tmdb.key ) {
+      source = require('./show/tmdb')(settings.tmdb.key);
     } else {
       source = require('./show/tvmaze')();
     }
