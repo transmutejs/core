@@ -132,7 +132,7 @@ module.exports = {
     if ( this.getPlatform() !== 'win32' ) { return false; }
 
     // Require gpu info parser only
-    const gpuInfo = require('../node_modules/gpu-info/lib/windowsParser.js');
+    const gpuInfo = __require('../node_modules/gpu-info/lib/windowsParser');
 
     // Get GPU data string from windows
     let output = spawn.execSync('wmic path win32_VideoController', {encoding: 'utf8'});
