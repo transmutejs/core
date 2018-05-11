@@ -7,6 +7,9 @@ const assign = require('deep-assign');
 // Load libraries
 const settings = __require('libs/settings');
 
+// Load libraries
+const settings = __require('libs/settings');
+
 // Create promise to resolve with dataset
 module.exports = function(filename) {
   return new Promise((resolve, reject) => {
