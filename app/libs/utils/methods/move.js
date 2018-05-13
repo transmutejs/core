@@ -86,6 +86,14 @@ module.exports = function(source, dest) {
         bar.update(( percent / 100 ), progress);
 
         // Update socket users
+        this.server().socket.emit('copy progress', {
+          raw: moved,
+          speed: progress.speed,
+          eta: progress.estimate,
+          taken: progress.taken,
+          percent: progress.percent + '%',
+          transfer: filesize(copied)
+        });
 
         // Reset for next update
         last = new Date();
