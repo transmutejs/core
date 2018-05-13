@@ -15,5 +15,6 @@ module.exports = {
   getMethods: require('./methods/get-methods'),
   server: require('./methods/server'),
   move: require('./methods/move'),
-  progressBar: require('./methods/progress-bar')
+  progressBar: require('./methods/progress-bar'),
+  bytesToSize: require('./methods/bytes-to-size')
 };

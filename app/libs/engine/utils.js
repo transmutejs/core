@@ -119,6 +119,12 @@ module.exports = {
       e: details.episode || '0'
     };
 
+    // Default to original filename if we don't have any details
+    if ( replacements.t === null ) {
+      let filename = path.basename(file).replace(/\.[^/.]+$/, '');
+      return this.clean(filename + '-' + replacements.vc + '.' + replacements.ex);
+    }
+
     // Are there any custom replacements in options
     if ( typeof options.replacements === 'object' ) {
       replacements = assign(replacements, options.replacements);

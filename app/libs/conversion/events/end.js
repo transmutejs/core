@@ -51,7 +51,7 @@ module.exports = function(stdout, stderr, job, metadata, resolve, reject) {
 
   // Delete the original?
   if ( job.options.delete && ! job.options.preview ) {
-    fs.unlink(job.file, (err) => {
+    fs.unlinkSync(job.file, (err) => {
 
       // Something went wrong
       if ( err !== null ) { return logger.error(err); }
