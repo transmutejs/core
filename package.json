@@ -9,7 +9,9 @@
     "preversion": "npm test",
     "preversion:readme": "replace '/v\\d+\\.\\d+\\.\\d+' \"/v$npm_package_version\" ./README.md",
     "version": "npm run preversion:readme && git add -A README.md",
-    "postversion": "git push && git push --tags && npm publish"
+    "postversion": "git push && git push --tags && npm publish",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "bin": {
     "transmute": "./index.js"
@@ -80,6 +82,8 @@
     "strip-ansi": "^4.0.0",
     "tvmaze-node": "^1.0.4",
     "winston": "^2.4.2",
-    "winston-daily-rotate-file": "^3.1.4"
-  }
+    "winston-daily-rotate-file": "^3.1.4",
+    "snyk": "^1.319.1"
+  },
+  "snyk": true
 }
