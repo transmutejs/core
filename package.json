@@ -54,7 +54,7 @@
     "sinon-chai": "^3.0.0"
   },
   "dependencies": {
-    "ajv": "^6.5.0",
+    "ajv": "^6.12.3",
     "chalk": "^2.4.1",
     "dashdash": "^1.14.1",
     "deep-assign": "^2.0.0",
