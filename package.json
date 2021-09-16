@@ -65,7 +65,7 @@
     "gpu-info": "0.0.1",
     "hasbin": "^1.2.3",
     "i18n": "^0.8.3",
-    "inquirer": "^5.2.0",
+    "inquirer": "^7.0.5",
     "moment": "^2.22.1",
     "moment-duration-format": "^2.2.2",
     "moviedb": "^0.2.10",
@@ -77,7 +77,7 @@
     "promise-queue": "^2.2.5",
     "restify": "^7.1.1",
     "socket.io": "^2.1.0",
-    "strip-ansi": "^4.0.0",
+    "strip-ansi": "^6.0.0",
     "tvmaze-node": "^1.0.4",
     "winston": "^2.4.2",
     "winston-daily-rotate-file": "^3.1.4"
