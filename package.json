@@ -66,7 +66,7 @@
     "hasbin": "^1.2.3",
     "i18n": "^0.8.3",
     "inquirer": "^5.2.0",
-    "moment": "^2.22.1",
+    "moment": "^2.29.4",
     "moment-duration-format": "^2.2.2",
     "moviedb": "^0.2.10",
     "mv": "^2.1.1",
