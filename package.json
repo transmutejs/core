@@ -9,7 +9,9 @@
     "preversion": "npm test",
     "preversion:readme": "replace '/v\\d+\\.\\d+\\.\\d+' \"/v$npm_package_version\" ./README.md",
     "version": "npm run preversion:readme && git add -A README.md",
-    "postversion": "git push && git push --tags && npm publish"
+    "postversion": "git push && git push --tags && npm publish",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "bin": {
     "transmute": "./index.js"
@@ -54,7 +56,7 @@
     "sinon-chai": "^3.0.0"
   },
   "dependencies": {
-    "ajv": "^6.5.0",
+    "ajv": "^6.12.3",
     "chalk": "^2.4.1",
     "dashdash": "^1.14.1",
     "deep-assign": "^2.0.0",
@@ -66,20 +68,22 @@
     "hasbin": "^1.2.3",
     "i18n": "^0.8.3",
     "inquirer": "^5.2.0",
-    "moment": "^2.22.1",
+    "moment": "^2.29.4",
     "moment-duration-format": "^2.2.2",
-    "moviedb": "^0.2.10",
+    "moviedb": "^0.2.12",
     "mv": "^2.1.1",
     "node-watch": "^0.5.8",
     "opn": "^5.3.0",
     "parse-torrent-name": "^0.5.4",
     "progress": "github:jHoldroyd/node-progress#fix/ansi-styling",
     "promise-queue": "^2.2.5",
-    "restify": "^7.1.1",
-    "socket.io": "^2.1.0",
+    "restify": "^8.1.0",
+    "socket.io": "^3.0.0",
     "strip-ansi": "^4.0.0",
     "tvmaze-node": "^1.0.4",
     "winston": "^2.4.2",
-    "winston-daily-rotate-file": "^3.1.4"
-  }
+    "winston-daily-rotate-file": "^3.1.4",
+    "@snyk/protect": "latest"
+  },
+  "snyk": true
 }
