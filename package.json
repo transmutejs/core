@@ -75,11 +75,11 @@
     "parse-torrent-name": "^0.5.4",
     "progress": "github:jHoldroyd/node-progress#fix/ansi-styling",
     "promise-queue": "^2.2.5",
-    "restify": "^7.1.1",
+    "restify": "^10.0.0",
     "socket.io": "^2.1.0",
     "strip-ansi": "^4.0.0",
     "tvmaze-node": "^1.0.4",
     "winston": "^2.4.2",
-    "winston-daily-rotate-file": "^3.1.4"
+    "winston-daily-rotate-file": "^4.0.0"
   }
 }
