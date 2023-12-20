@@ -68,7 +68,7 @@
     "inquirer": "^5.2.0",
     "moment": "^2.22.1",
     "moment-duration-format": "^2.2.2",
-    "moviedb": "^0.2.10",
+    "moviedb": "^0.2.12",
     "mv": "^2.1.1",
     "node-watch": "^0.5.8",
     "opn": "^5.3.0",
